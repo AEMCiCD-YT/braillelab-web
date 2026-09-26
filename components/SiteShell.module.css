@@ -209,16 +209,6 @@
   touch-action: manipulation;
 }
 
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 19px 0;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: .78rem;
-}
-
 @media (max-width: 900px) {
   .nav {
     display: none;
@@ -313,11 +303,6 @@
 
   .footerGrid > div:first-child {
     grid-column: auto;
-  }
-
-  .footerBottom {
-    display: grid;
-    gap: 5px;
   }
 }
 
