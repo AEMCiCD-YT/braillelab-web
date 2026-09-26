@@ -51,12 +51,12 @@ export function TimelineStatus() {
   const next = timeline?.nextEvent || timelineEvents[0] || null;
 
   if (current) {
-    return <div className="timeline-header" aria-live="polite"><span className="pill">Hito actual</span><h2>{current.title}</h2><p>{current.date}</p></div>;
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Hito actual</span><h2>{current.title}</h2><p>{current.date}</p></div>;
   }
 
   if (next) {
-    return <div className="timeline-header" aria-live="polite"><span className="pill">Próximo hito</span><h2>{next.title}</h2><p>{next.date}</p></div>;
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Próximo hito</span><h2>{next.title}</h2><p>{next.date}</p></div>;
   }
 
-  return <div className="timeline-header" aria-live="polite"><span className="pill">Edición 2027</span><h2>Proceso finalizado</h2><p>Consulta BrailleLab Ecuador para conocer las siguientes actividades.</p></div>;
+  return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h2>Proceso finalizado</h2><p>Consulta BrailleLab Ecuador para conocer las siguientes actividades.</p></div>;
 }
