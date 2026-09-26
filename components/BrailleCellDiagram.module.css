@@ -9,4 +9,13 @@
 .grid button:focus-visible, .header button:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .state { margin: 22px 0 7px; }
 .hint { color: #c6d4e1; font-size: .86rem; margin: 0; }
-@media (prefers-reduced-motion: reduce) { .grid button { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .grid button {
+    transition: none;
+  }
+
+  .grid button:hover,
+  .grid button[aria-pressed="true"] {
+    transform: none;
+  }
+}
