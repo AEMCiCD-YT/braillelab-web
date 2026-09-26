@@ -285,3 +285,9 @@
     display: block;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink::after {
+    transition: none;
+  }
+}
