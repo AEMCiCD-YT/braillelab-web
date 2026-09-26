@@ -172,12 +172,8 @@ button:focus-visible {
     scroll-behavior:auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration:.01ms;
-    animation-iteration-count:1;
-    transition-duration:.01ms;
+  .button {
+    transition:none;
   }
 
   .button:hover {
