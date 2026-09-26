@@ -136,10 +136,6 @@ export default function SiteShell({ children }) {
           </div>
         </div>
       </div>
-      <div className={`wrap ${styles.footerBottom}`}>
-        <span>Actualizado el {site.updatedAtLabel}</span>
-        <span>{site.event.name}</span>
-      </div>
     </footer>
   </>;
 }
