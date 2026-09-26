@@ -67,13 +67,6 @@
   margin: 30px 0 18px;
 }
 
-.heroStatus {
-  max-width: 690px;
-  margin: 0;
-  color: #bac9d7;
-  font-size: var(--type-small);
-}
-
 .visualCaption {
   margin: 12px 0 0;
   color: #aebdca;
@@ -174,41 +167,15 @@
   text-align: right;
 }
 
-.statusBand {
-  position: relative;
-  z-index: 2;
-  margin-top: -28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 24px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  box-shadow: 0 18px 46px rgb(11 19 43 / 10%);
-}
-
-.statusBand > div {
-  display: grid;
-  gap: 5px;
-}
-
-.statusBand strong {
-  font-size: .96rem;
-}
-
-.metaLabel {
-  color: var(--color-info);
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+.factsSection {
+  padding: 54px 0 62px;
+  background: var(--color-surface-subtle);
 }
 
 .factRail {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 24px;
+  margin-top: 0;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
 }
@@ -279,7 +246,7 @@
 
 .softSection {
   padding: 100px 0;
-  background: var(--color-surface-subtle);
+  background: #eef4f7;
 }
 
 .sectionHeading {
@@ -453,6 +420,11 @@
   font-weight: 700;
 }
 
+.participationShell {
+  background: #eef8f4;
+  border-block: 1px solid rgb(0 124 131 / 10%);
+}
+
 .participationSection {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -470,7 +442,7 @@
 .coorgSection {
   padding: 72px 0;
   border-block: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: #fbfcfd;
 }
 
 .coorgGrid {
@@ -497,6 +469,10 @@
   color: var(--color-interactive);
   font-family: var(--font-mono);
   font-style: normal;
+}
+
+.demoShell {
+  background: #fff8df;
 }
 
 .demoSection {
@@ -646,16 +622,6 @@
     padding: 9px;
   }
 
-  .statusBand {
-    margin-top: 0;
-    display: grid;
-    padding: 18px;
-  }
-
-  .statusBand :global(.button) {
-    width: 100%;
-  }
-
   .factRail,
   .resourceGrid {
     grid-template-columns: 1fr;
@@ -682,6 +648,10 @@
   .softSection,
   .evidenceSection {
     padding-block: 76px;
+  }
+
+  .factsSection {
+    padding-block: 36px 44px;
   }
 
   .sectionHeading {
