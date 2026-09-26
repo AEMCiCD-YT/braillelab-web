@@ -264,3 +264,18 @@
     padding: 70px 0;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .metric,
+  .processList li,
+  .support article {
+    transition: none;
+  }
+
+  .card:hover,
+  .metric:hover,
+  .support article:hover {
+    transform: none;
+  }
+}
