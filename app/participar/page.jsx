@@ -95,7 +95,7 @@ export default function ParticiparPage() {
             <h2>La siguiente acción cambia conforme avanza la edición.</h2>
             <p>El sitio adapta el CTA según apertura, cierre y etapa del Challenge.</p>
           </div>
-          <div>
+          <div className={layout.actionGroup}>
             <EventActionLink primary />
             <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
           </div>
