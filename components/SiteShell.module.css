@@ -1,3 +1,48 @@
+.skipLink {
+  position: fixed;
+  z-index: 100;
+  top: -4rem;
+  left: 1rem;
+  padding: 10px 14px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 800;
+}
+
+.skipLink:focus {
+  top: 1rem;
+}
+
+.statusBar {
+  background: var(--color-info);
+  color: var(--color-on-dark);
+  font-size: .82rem;
+}
+
+.statusInner {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.header {
+  height: 88px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
 .signature {
   display: inline-flex;
   align-items: center;
@@ -6,12 +51,13 @@
   border-left: 3px solid var(--color-interactive);
   color: var(--color-brand);
   text-decoration: none;
+  touch-action: manipulation;
 }
 
 .signatureCopy {
+  min-width: 0;
   display: grid;
   gap: 4px;
-  min-width: 0;
 }
 
 .signature b {
@@ -36,8 +82,101 @@
   font-weight: 900;
 }
 
+.nav {
+  display: flex;
+  gap: 1.35rem;
+}
+
+.navLink {
+  min-height: 44px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 7px;
+  font-size: .92rem;
+  font-weight: 750;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-interactive);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
+.menuToggle {
+  display: none;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--color-brand);
+  touch-action: manipulation;
+}
+
+.menuToggle:active {
+  transform: translateY(1px);
+}
+
+.menuToggle svg {
+  width: 25px;
+  height: 25px;
+}
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  background: #fbfcfd;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.25fr .65fr 1fr;
+  gap: 60px;
+  padding: 70px 0;
+}
+
+.footerGrid p {
+  color: var(--color-text-muted);
+  font-size: .92rem;
+}
+
 .footerSignature {
   margin-bottom: 14px;
+}
+
+.footerTitle {
+  color: var(--color-brand);
+  font-size: .8rem;
+  font-weight: 850;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.footerLinks a {
+  display: block;
+  margin: 8px 0;
+  color: var(--color-info);
+  font-size: .92rem;
+  font-weight: 800;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.footerLinks a:hover,
+.contact a:hover {
+  color: var(--color-info);
 }
 
 .contact {
@@ -50,9 +189,74 @@
   color: var(--color-info);
   font-size: .92rem;
   font-weight: 800;
+  touch-action: manipulation;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 19px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: .78rem;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+    position: absolute;
+    z-index: 15;
+    top: 88px;
+    right: 0;
+    left: 0;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .navOpen {
+    display: grid;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .navLink {
+    min-height: 48px;
+    padding: 10px;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footerGrid > div:first-child {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 560px) {
+  .statusInner {
+    align-items: flex-start;
+    padding: 7px 0;
+    line-height: 1.35;
+  }
+
+  .statusInner > span:last-child {
+    display: block;
+    max-width: 280px;
+  }
+
+  .header {
+    height: 72px;
+  }
+
+  .nav {
+    top: 72px;
+  }
+
   .signature {
     padding-left: 10px;
     border-left-width: 2px;
@@ -65,5 +269,19 @@
   .signature small {
     max-width: 205px;
     font-size: .62rem;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 50px 0;
+  }
+
+  .footerGrid > div:first-child {
+    grid-column: auto;
+  }
+
+  .footerBottom {
+    display: block;
   }
 }
