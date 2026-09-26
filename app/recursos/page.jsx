@@ -122,7 +122,7 @@ export default function RecursosPage() {
             <Eyebrow tone="dark">Usa la documentación según tu etapa</Eyebrow>
             <h2>Consulta solo versiones 2027 publicadas por los canales oficiales.</h2>
           </div>
-          <div>
+          <div className={layout.actionGroup}>
             <EventActionLink primary />
             <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
           </div>
