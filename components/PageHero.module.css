@@ -44,10 +44,21 @@
 
 @media (max-width: 560px) {
   .hero {
-    padding: 58px 0;
+    padding: 48px 0 52px;
   }
 
   .grid {
-    gap: 34px;
+    gap: 30px;
+  }
+
+  .title {
+    max-width: 100%;
+    margin-bottom: 16px;
+    font-size: clamp(2.35rem, 12vw, 3.15rem);
+  }
+
+  .copy {
+    font-size: 1rem;
+    line-height: 1.55;
   }
 }
