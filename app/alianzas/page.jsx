@@ -3,6 +3,7 @@ import PageHero from "../../components/PageHero";
 import { Eyebrow } from "../../components/Visuals";
 import { site } from "../../content/site";
 import layout from "../public.module.css";
+import styles from "./alianzas.module.css";
 
 export const metadata = { title: "Aliados y contacto" };
 
@@ -26,19 +27,50 @@ export default function AlianzasPage() {
         Organizaciones, mentores e instituciones pueden aportar al desarrollo de tecnología Braille abierta y reproducible.
       </PageHero>
 
-      <section className={`wrap ${layout.section} ${layout.support}`}>
-        {support.map(([title, copy]) => (
-          <article key={title}>
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
+      <section className={`wrap ${layout.section} ${styles.coorg}`}>
+        <div>
+          <Eyebrow>Coorganización 2027</Eyebrow>
+          <h2>El Challenge se articula desde la comunidad universitaria.</h2>
+          <p>La coorganización vigente se comunica por nombre institucional; los patrocinadores y aliados externos se publican únicamente cuando exista confirmación y autorización para difusión.</p>
+        </div>
+        <div className={styles.names}>
+          <span>AEMCiCD · Universidad Yachay Tech</span>
+          <span>IEEE Student Branch · Universidad Yachay Tech</span>
+        </div>
+      </section>
+
+      <section className={layout.surfaceSoft}>
+        <div className="wrap">
+          <Eyebrow>Modalidades de colaboración</Eyebrow>
+          <h2>Apoyos distintos para necesidades distintas.</h2>
+          <div className={layout.support}>
+            {support.map(([title, copy]) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`wrap ${layout.section} ${styles.confirmed}`}>
+        <div>
+          <Eyebrow>Aliados confirmados</Eyebrow>
+          <h2>La web está preparada para integrar alianzas sin alterar su contenido base.</h2>
+          <p>Cuando una colaboración esté formalmente confirmada y exista autorización de difusión, podrá incorporarse aquí con su alcance correspondiente.</p>
+        </div>
+        <aside className={styles.emptyState}>
+          <span>Estado de publicación</span>
+          <strong>Sin listado público adicional por ahora.</strong>
+          <p>No se mostrarán nombres, logotipos ni beneficios no confirmados.</p>
+        </aside>
       </section>
 
       <section className={layout.darkCta}>
         <div className="wrap">
-          <Eyebrow tone="dark">Contacto</Eyebrow>
-          <h2>Conversemos sobre una colaboración.</h2>
+          <Eyebrow tone="dark">Contacto institucional</Eyebrow>
+          <h2>Conversemos sobre una colaboración con alcance definido.</h2>
           <p>Escríbenos a <a href={`mailto:${site.contact}`}>{site.contact}</a>.</p>
         </div>
       </section>
