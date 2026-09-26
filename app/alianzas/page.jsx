@@ -60,10 +60,13 @@ export default function AlianzasPage() {
           <h2>Tu organización puede formar parte de BrailleTech Challenge Ecuador 2027.</h2>
           <p>Los patrocinadores confirmados podrán contar con presencia institucional en este espacio y en las piezas correspondientes, de acuerdo con el alcance acordado.</p>
         </div>
-        <aside className={styles.emptyState}>
-          <span>Espacio para patrocinadores</span>
-          <strong>Tu logo puede estar aquí.</strong>
-          <p>Conversemos sobre patrocinio, recursos técnicos o apoyo al Demo Day 2027.</p>
+        <aside className={styles.sponsorSlot}>
+          <div className={styles.logoPlaceholder} aria-hidden="true">TU LOGO</div>
+          <div>
+            <span>Espacio para patrocinadores</span>
+            <strong>Tu logo puede estar aquí.</strong>
+            <p>Conversemos sobre patrocinio, recursos técnicos o apoyo al Demo Day 2027.</p>
+          </div>
         </aside>
       </section>
 
