@@ -99,7 +99,7 @@ export default function HomeEventStatus() {
               <span>Cuenta regresiva</span>
               <strong>{runtime.target ? runtime.target.title : "Edición 2027"}</strong>
             </div>
-            <small>{runtime.target ? runtime.target.date : "Proceso finalizado"}</small>
+            <small>{!ready ? "Sincronizando…" : runtime.target ? runtime.target.date : runtime.currentEvent ? runtime.currentEvent.date : "Proceso finalizado"}</small>
           </div>
 
           {!ready ? (
