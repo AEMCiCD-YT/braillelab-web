@@ -65,7 +65,7 @@
   letter-spacing: .08em;
 }
 
-.sponsorSlot > span {
+.sponsorSlot > div > span {
   color: var(--color-info);
   font-family: var(--font-mono);
   font-size: .7rem;
@@ -98,4 +98,10 @@
   .logoPlaceholder {
     width: min(180px, 100%);
   }
+}
+
+.coorg > *,
+.confirmed > *,
+.sponsorSlot > * {
+  min-width: 0;
 }
