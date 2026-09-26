@@ -1,0 +1,266 @@
+.section {
+  padding: 104px 0;
+  scroll-margin-top: 120px;
+}
+
+.surfaceSoft {
+  padding: 104px 0;
+  scroll-margin-top: 120px;
+  background: linear-gradient(135deg, #f5f8fb 0%, #eef6f7 100%);
+}
+
+.surfaceSoft h2,
+.darkCta h2 {
+  margin-bottom: 20px;
+  font-size: var(--type-heading-lg);
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.bodyCopy {
+  color: var(--color-text-muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  min-height: 230px;
+  padding: 28px;
+  border: 1px solid rgb(11 19 43 / 13%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card:hover {
+  border-color: rgb(0 124 131 / 48%);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-3px);
+}
+
+.cardIndex {
+  color: var(--color-info);
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+.card h2 {
+  margin: 26px 0 10px;
+  font-size: var(--type-heading-md);
+}
+
+.card p {
+  color: var(--color-text-muted);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 74px;
+}
+
+.metric {
+  padding: 26px;
+  border: 1px solid rgb(11 19 43 / 13%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.metric:hover {
+  border-color: rgb(0 124 131 / 48%);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-3px);
+}
+
+.metric > b {
+  color: var(--color-info);
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.metric h2 {
+  margin: 13px 0 6px;
+  font-size: 1.25rem;
+}
+
+.metric p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.steps {
+  display: grid;
+  gap: 15px;
+  margin-top: 42px;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-left: 4px solid var(--color-interactive);
+  background: var(--color-surface);
+}
+
+.step > b {
+  flex: 0 0 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+}
+
+.step h3 {
+  margin: 0 0 5px;
+  font-size: 1.25rem;
+}
+
+.step p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.processList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.processList li {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 1.16rem;
+  font-weight: 800;
+  transition: background 180ms ease, padding-inline 180ms ease;
+}
+
+.processList li:hover {
+  padding-inline: 12px;
+  background: var(--color-surface-subtle);
+}
+
+.processList b {
+  color: var(--color-info);
+  font-family: var(--font-mono);
+}
+
+.support {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.support article {
+  min-height: 190px;
+  padding: 26px;
+  border: 1px solid rgb(11 19 43 / 13%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.support article:hover {
+  border-color: rgb(0 124 131 / 48%);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-3px);
+}
+
+.support article:last-child {
+  grid-column: 2;
+}
+
+.support h2 {
+  font-size: 1.4rem;
+}
+
+.support p {
+  color: var(--color-text-muted);
+}
+
+.darkCta {
+  padding: 90px 0;
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+}
+
+.ctaContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.ctaContent h2 {
+  max-width: 680px;
+}
+
+.ctaContent p,
+.darkCta > div > p {
+  margin-bottom: 0;
+  color: #cad5e0;
+}
+
+.timelinePage {
+  padding: 90px 0;
+}
+
+@media (max-width: 900px) {
+  .twoColumn {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .cards,
+  .metrics,
+  .support {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .support article:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .section,
+  .surfaceSoft {
+    padding: 76px 0;
+  }
+
+  .cards,
+  .metrics,
+  .support {
+    grid-template-columns: 1fr;
+  }
+
+  .card:hover,
+  .metric:hover,
+  .support article:hover {
+    transform: none;
+  }
+
+  .ctaContent {
+    display: block;
+  }
+
+  .ctaContent :global(.button) {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .timelinePage {
+    padding: 70px 0;
+  }
+}
