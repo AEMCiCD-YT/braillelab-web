@@ -16,8 +16,24 @@ const links = [
   ["/alianzas", "Aliados"],
 ];
 
-function Mark() {
-  return <span className="brand-mark" aria-hidden="true">{Array.from({ length: 6 }).map((_, index) => <i key={index} />)}</span>;
+function useChallengeRuntime() {
+  const [runtime, setRuntime] = useState(null);
+
+  useEffect(() => {
+    function refresh() {
+      const now = new Date();
+      setRuntime({
+        action: challengeAction(now),
+        status: challengeStatus(now),
+      });
+    }
+
+    refresh();
+    const interval = window.setInterval(refresh, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  return runtime;
 }
 
 function useChallengeRuntime() {
@@ -53,14 +69,14 @@ export default function SiteShell({ children }) {
     <a className="skip-link" href="#main">Saltar al contenido principal</a>
     <div className="status-bar"><div className="wrap status-inner"><span aria-hidden="true" /><b>{status.label}</b><span>{status.detail}</span></div></div>
     <header className="header wrap">
-      <Link href="/" className="brand" onClick={() => setOpen(false)}><Mark /><span><b>BrailleLab Ecuador</b><small>BrailleTech Challenge 2027</small></span></Link>
+      <Link href="/" className="brand" onClick={() => setOpen(false)}><Mark /><span><b>BrailleLab Ecuador</b><small>BrailleTech Challenge 2026</small></span></Link>
       <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">{open ? <X /> : <Menu />}<span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span></button>
       <nav id="main-nav" className={open ? "open" : ""} aria-label="Navegación principal">
         {links.map(([href, label]) => <Link key={href} href={href} className={pathname === href ? "active" : ""} aria-current={pathname === href ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>)}
       </nav>
     </header>
     <main id="main" tabIndex="-1">{children}</main>
-    <footer className="footer"><div className="wrap footer-grid"><div><Link href="/" className="brand footer-brand"><Mark /><span><b>BrailleLab Ecuador</b><small>BrailleTech Challenge 2027</small></span></Link><p>Investigación aplicada, aprendizaje y tecnología Braille accesible.</p></div><div><p className="footer-title">Explora</p>{links.slice(0, 4).map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div><div><p className="footer-title">Datos y contacto</p><div className={styles.contact}><a href={`mailto:${site.contact}`}>{site.contact}</a><Link href="/privacidad">Aviso de privacidad</Link></div></div></div><div className="wrap footer-bottom"><span>Actualizado el {site.updatedAtLabel}</span><span>{site.event.name}</span></div></footer>
+    <footer className="footer"><div className="wrap footer-grid"><div><Link href="/" className="brand footer-brand"><Mark /><span><b>BrailleLab Ecuador</b><small>BrailleTech Challenge 2026</small></span></Link><p>Investigación aplicada, aprendizaje y tecnología Braille accesible.</p></div><div><p className="footer-title">Explora</p>{links.slice(0, 4).map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div><div><p className="footer-title">Datos y contacto</p><div className={styles.contact}><a href={`mailto:${site.contact}`}>{site.contact}</a><Link href="/privacidad">Aviso de privacidad</Link></div></div></div><div className="wrap footer-bottom"><span>Actualizado el 25 de agosto de 2026</span><span>BrailleTech Challenge Ecuador 2026</span></div></footer>
   </>;
 }
 

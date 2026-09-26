@@ -1,3 +1,45 @@
+.signature {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--cyan);
+  color: var(--night);
+  text-decoration: none;
+}
+
+.signatureCopy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.signature b {
+  display: block;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 1.12rem;
+  line-height: 1;
+  letter-spacing: -.025em;
+}
+
+.signature small {
+  display: block;
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .015em;
+}
+
+.edition {
+  color: var(--petrol);
+  font-weight: 900;
+}
+
+.footerSignature {
+  margin-bottom: 14px;
+}
+
 .contact {
   display: grid;
   gap: 10px;
@@ -8,4 +50,20 @@
   color: var(--petrol);
   font-size: .92rem;
   font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .signature {
+    padding-left: 10px;
+    border-left-width: 2px;
+  }
+
+  .signature b {
+    font-size: 1rem;
+  }
+
+  .signature small {
+    max-width: 205px;
+    font-size: .62rem;
+  }
 }
