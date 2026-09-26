@@ -6,9 +6,9 @@ import styles from "./TimelineExplorer.module.css";
 
 export default function TimelineExplorer() {
   const [filter, setFilter] = useState("all");
-  const [selectedId, setSelectedId] = useState(timelineEvents[0]?.id);
+  const [selectedId, setSelectedId] = useState(null);
   const visibleEvents = useMemo(() => timelineEvents.filter((event) => filter === "all" || event.phase === filter), [filter]);
-  const selected = visibleEvents.find((event) => event.id === selectedId) || visibleEvents[0];
+  const selected = selectedId ? (visibleEvents.find((event) => event.id === selectedId) || visibleEvents[0]) : null;
 
   useEffect(() => {
     const highlighted = getHighlightedTimelineEvent(new Date());
@@ -29,13 +29,18 @@ export default function TimelineExplorer() {
       <ol className={styles.eventList} aria-label="Hitos disponibles">
         {visibleEvents.map((event) => <li key={event.id}><button type="button" className={selected?.id === event.id ? styles.selectedEvent : ""} onClick={() => setSelectedId(event.id)} aria-pressed={selected?.id === event.id}><time>{event.date}</time><span>{event.title}</span><small>{event.phaseLabel}</small></button></li>)}
       </ol>
-      {selected && <article className={styles.detail} aria-live="polite">
+      <article className={styles.detail} aria-live="polite">
         <p>Hito seleccionado</p>
-        <time>{selected.date}</time>
-        <h2>{selected.title}</h2>
-        <p>{selected.copy}</p>
-        <span>{selected.phaseLabel}</span>
-      </article>}
+        {selected ? <>
+          <time>{selected.date}</time>
+          <h2>{selected.title}</h2>
+          <p>{selected.copy}</p>
+          <span>{selected.phaseLabel}</span>
+        </> : <>
+          <h2>Sincronizando cronograma</h2>
+          <p>Calculando el hito relevante de la edición 2027.</p>
+        </>}
+      </article>
     </div>
   </section>;
 }
@@ -44,7 +49,13 @@ export function TimelineStatus() {
   const [timeline, setTimeline] = useState(null);
 
   useEffect(() => {
-    setTimeline(getTimelineState(new Date()));
+    function refresh() {
+      setTimeline(getTimelineState(new Date()));
+    }
+
+    refresh();
+    const interval = window.setInterval(refresh, 60_000);
+    return () => window.clearInterval(interval);
   }, []);
 
   if (!timeline) {
