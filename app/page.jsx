@@ -62,7 +62,7 @@ export default function Home() {
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
-            <Eyebrow>BrailleLab Ecuador presenta</Eyebrow>
+            <Eyebrow tone="dark">BrailleLab Ecuador presenta</Eyebrow>
             <h1>BrailleTech Challenge <em>Ecuador 2027</em></h1>
             <p className={styles.concept}>Del punto al sistema.</p>
             <p className={styles.lede}>
@@ -141,7 +141,7 @@ export default function Home() {
       <section className={styles.evidenceSection}>
         <div className={`wrap ${styles.evidenceGrid}`}>
           <div>
-            <Eyebrow>Evidencia de proceso</Eyebrow>
+            <Eyebrow tone="dark">Evidencia de proceso</Eyebrow>
             <h2>La edición 2027 todavía está en pre-lanzamiento.</h2>
             <p>
               Este espacio mostrará únicamente sesiones, componentes, prototipos o validaciones reales cuando exista material autorizado para difusión. No se usarán fotografías de stock ni simulaciones presentadas como evidencia.
@@ -247,7 +247,7 @@ export default function Home() {
       <section className={styles.closing}>
         <div className={`wrap ${styles.closingGrid}`}>
           <div>
-            <Eyebrow>BrailleLab Ecuador</Eyebrow>
+            <Eyebrow tone="dark">BrailleLab Ecuador</Eyebrow>
             <h2>Ingeniería abierta, accesibilidad y capacidad local.</h2>
             <p>Para participación, alianzas o consultas institucionales, utiliza los canales oficiales del programa.</p>
           </div>
