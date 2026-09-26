@@ -287,25 +287,26 @@
   min-height: 220px;
 }
 
-.network::before,
-.network::after {
-  content: "";
+.networkLines {
   position: absolute;
-  inset: 50% 15% auto;
-  height: 1px;
-  background: var(--visual-accent);
-  opacity: .45;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.network::after {
-  inset: 18% 50% 18%;
-  width: 1px;
-  height: auto;
+.networkLines line {
+  stroke: var(--visual-accent);
+  stroke-width: .45;
+  vector-effect: non-scaling-stroke;
+  opacity: .5;
 }
 
 .networkCenter,
 .networkNode {
   position: absolute;
+  z-index: 2;
   display: grid;
   place-items: center;
   min-height: 48px;
@@ -314,10 +315,10 @@
   background: var(--brand-night-2);
   font-size: .75rem;
   font-weight: 700;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 14%);
 }
 
 .networkCenter {
-  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -333,12 +334,12 @@
 
 .networkNode[data-index="1"] {
   bottom: 0;
-  left: 8%;
+  left: 4%;
 }
 
 .networkNode[data-index="2"] {
   bottom: 0;
-  right: 8%;
+  right: 4%;
 }
 
 @media (max-width: 560px) {
