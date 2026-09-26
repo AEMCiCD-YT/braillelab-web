@@ -45,8 +45,13 @@ export default function ParticipationState() {
     return () => window.clearInterval(interval);
   }, []);
 
-  const fallbackHref = runtime.action.state === "upcoming" ? "/recursos" : runtime.action.href;
-  const fallbackLabel = runtime.action.state === "upcoming" ? "Revisar recursos 2027" : runtime.action.label;
+  const needsPreparationLink = runtime.action.state === "upcoming" || runtime.action.state === "open-pending";
+  const fallbackHref = needsPreparationLink ? "/recursos" : runtime.action.href;
+  const fallbackLabel = runtime.action.state === "open-pending"
+    ? "Revisar recursos oficiales"
+    : runtime.action.state === "upcoming"
+      ? "Revisar recursos 2027"
+      : runtime.action.label;
 
   return (
     <section className={styles.state} aria-labelledby="participation-state-title">
