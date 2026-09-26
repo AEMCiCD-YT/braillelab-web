@@ -5,7 +5,7 @@
 }
 
 .intro {
-  color: var(--muted);
+  color: var(--color-text-muted);
   margin: 0;
   max-width: 820px;
 }
@@ -17,14 +17,14 @@
 
 .item {
   background: #fff;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-border);
   border-left: 3px solid transparent;
   margin-top: 9px;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .item[open] {
-  border-left-color: var(--cyan);
+  border-left-color: var(--color-interactive);
   box-shadow: 0 10px 24px rgb(5 31 44 / 7%);
 }
 
@@ -41,7 +41,7 @@
 }
 
 .item summary::after {
-  color: var(--petrol);
+  color: var(--color-info);
   content: "+";
   font-size: 1.35rem;
   line-height: 1;
@@ -55,13 +55,13 @@
 }
 
 .item p {
-  color: var(--muted);
+  color: var(--color-text-muted);
   margin: 0;
   max-width: 850px;
   padding: 0 18px 19px;
 }
 
 .item summary:focus-visible {
-  outline: 3px solid var(--cyan);
+  outline: 3px solid var(--color-interactive);
   outline-offset: -3px;
 }
