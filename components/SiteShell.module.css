@@ -3,8 +3,8 @@
   align-items: center;
   min-width: 0;
   padding-left: 14px;
-  border-left: 3px solid var(--cyan);
-  color: var(--night);
+  border-left: 3px solid var(--color-interactive);
+  color: var(--color-brand);
   text-decoration: none;
 }
 
@@ -16,7 +16,7 @@
 
 .signature b {
   display: block;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 1.12rem;
   line-height: 1;
   letter-spacing: -.025em;
@@ -24,7 +24,7 @@
 
 .signature small {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-muted);
   font-size: .68rem;
   font-weight: 700;
   line-height: 1.25;
@@ -32,7 +32,7 @@
 }
 
 .edition {
-  color: var(--petrol);
+  color: var(--color-info);
   font-weight: 900;
 }
 
