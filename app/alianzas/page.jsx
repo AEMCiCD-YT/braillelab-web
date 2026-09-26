@@ -72,6 +72,7 @@ export default function AlianzasPage() {
           <Eyebrow tone="dark">Contacto institucional</Eyebrow>
           <h2>Conversemos sobre una colaboración con alcance definido.</h2>
           <p>Escríbenos a <a href={`mailto:${site.contact}`}>{site.contact}</a>.</p>
+          <a className="button button-primary" href={`mailto:${site.contact}`}>Contactar a BrailleLab</a>
         </div>
       </section>
     </SiteShell>
