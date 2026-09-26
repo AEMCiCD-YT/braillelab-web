@@ -279,3 +279,20 @@
     transform: none;
   }
 }
+
+.actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .actionGroup {
+    display: grid;
+  }
+
+  .actionGroup :global(.button) {
+    width: 100%;
+  }
+}
