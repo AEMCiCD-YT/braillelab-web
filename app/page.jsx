@@ -1,22 +1,261 @@
 import SiteShell, { ArrowLink, EventActionLink, EventStatusLine } from "../components/SiteShell";
-import { Eyebrow, SolidPlaceholder } from "../components/Visuals";
+import { Eyebrow } from "../components/Visuals";
 import BrailleCellDiagram from "../components/BrailleCellDiagram";
 import PhaseFlow from "../components/PhaseFlow";
+import HomeMilestones from "../components/HomeMilestones";
+import { site } from "../content/site";
+import styles from "./home.module.css";
 
 const facts = [
   ["13–31 ene.", "Inscripciones 2027"],
-  ["3 a 5", "Integrantes por equipo"],
+  ["3–5", "Integrantes por equipo"],
   ["Hasta 20", "Equipos admitidos"],
   ["12 jun.", "Demo Day · Yachay Tech"],
 ];
 
+const values = [
+  ["Accesibilidad", "Diseñar con personas usuarias, no solo para ellas."],
+  ["Abierto", "Hardware y conocimiento documentados para aprender, reparar y reproducir."],
+  ["Modular", "Construir desde una unidad funcional hacia sistemas de mayor escala."],
+  ["Local", "Desarrollar capacidad técnica y de fabricación desde Ecuador."],
+];
+
+const highlightedResources = site.resources.slice(0, 3);
+
+function AbstractSystemVisual({ compact = false }) {
+  const patterns = [
+    [0, 3, 5],
+    [1, 2, 6],
+    [0, 4, 7],
+    [2, 5, 6],
+  ];
+
+  return (
+    <div className={compact ? styles.systemVisualCompact : styles.systemVisual} aria-hidden="true">
+      <div className={styles.systemLabel}>punto</div>
+      <div className={styles.systemTrack}>
+        {patterns.map((pattern, cellIndex) => (
+          <div className={styles.systemCell} key={cellIndex}>
+            {Array.from({ length: 8 }).map((_, pointIndex) => (
+              <span
+                className={pattern.includes(pointIndex) ? styles.activePoint : styles.point}
+                key={pointIndex}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className={styles.systemLegend}>
+        <span>celda</span>
+        <span>módulo</span>
+        <span>sistema</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
-  return <SiteShell>
-    <section className="hero"><div className="hero-glow" aria-hidden="true" /><div className="wrap hero-grid"><div className="reveal"><Eyebrow>BrailleLab Ecuador presenta</Eyebrow><h1>BrailleTech <em>Challenge</em> Ecuador 2027</h1><p className="lede">Un reto para diseñar y demostrar tecnología Braille electrónica refrescable desde Ecuador.</p><div className="actions"><EventActionLink primary /><ArrowLink href="/reto">Conocer el reto</ArrowLink></div><p className="hero-note"><EventStatusLine /></p></div><SolidPlaceholder label="Diagrama o macro de prototipo" accent="night" /></div></section>
-    <section className="wrap fact-rail" aria-label="Datos esenciales">{facts.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}</section>
-    <section className="wrap challenge-intro"><div><Eyebrow>El desafío</Eyebrow><h2>Una celda. Seis puntos.<br />Muchas posibilidades.</h2><p>El requisito competitivo mínimo es una celda Braille refrescable de seis puntos funcional y controlable electrónicamente.</p><ArrowLink href="/reto">Ver alcance técnico</ArrowLink></div><BrailleCellDiagram /></section>
-    <section className="cloud-section"><div className="wrap"><Eyebrow>Recorrido 2027</Eyebrow><h2>Del diseño a la demostración pública.</h2><PhaseFlow /></div></section>
-    <section className="wrap value-section"><div><Eyebrow>Por qué importa</Eyebrow><h2>Tecnología que puede abrirse, repararse y reproducirse.</h2></div><ul>{["Accesibilidad", "Funcionalidad", "Conocimiento abierto", "Modularidad", "Reparación", "Reproducibilidad"].map((value) => <li key={value}>{value}</li>)}</ul></section>
-    <section className="dark-cta"><div className="wrap cta-content"><div><Eyebrow>Próximo paso</Eyebrow><h2>Consulta las fases y prepara a tu equipo.</h2><p>La inscripción 2027 se habilitará únicamente mediante el formulario oficial publicado por la organización.</p></div><EventActionLink primary /></div></section>
-  </SiteShell>;
+  return (
+    <SiteShell>
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={`wrap ${styles.heroGrid}`}>
+          <div className={styles.heroCopy}>
+            <Eyebrow>BrailleLab Ecuador presenta</Eyebrow>
+            <h1>BrailleTech Challenge <em>Ecuador 2027</em></h1>
+            <p className={styles.concept}>Del punto al sistema.</p>
+            <p className={styles.lede}>
+              Una competencia nacional para aprender, diseñar, construir y documentar tecnología Braille electrónica refrescable desde Ecuador.
+            </p>
+            <div className={styles.actions}>
+              <EventActionLink primary />
+              <ArrowLink href="/reto">Conocer el reto</ArrowLink>
+            </div>
+            <p className={styles.heroStatus}><EventStatusLine /></p>
+          </div>
+          <div>
+            <AbstractSystemVisual />
+            <p className={styles.visualCaption}>Retícula abstracta 2×4 como lenguaje gráfico. No representa un carácter Braille.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className={`wrap ${styles.statusBand}`} aria-label="Estado actual de la edición 2027">
+        <div>
+          <span className={styles.metaLabel}>Estado de la edición</span>
+          <strong><EventStatusLine /></strong>
+        </div>
+        <EventActionLink />
+      </section>
+
+      <section className={`wrap ${styles.factRail}`} aria-label="Datos esenciales">
+        {facts.map(([value, label]) => (
+          <article key={label}>
+            <strong>{value}</strong>
+            <span>{label}</span>
+          </article>
+        ))}
+      </section>
+
+      <section className={`wrap ${styles.challengeSection}`}>
+        <div className={styles.sectionCopy}>
+          <Eyebrow>El reto en una frase</Eyebrow>
+          <h2>Construir una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente.</h2>
+          <p>
+            La solución debe poder explicarse, probarse y documentarse. La arquitectura concreta queda en manos de cada equipo dentro de las bases y la guía técnica vigentes.
+          </p>
+          <ArrowLink href="/reto">Ver alcance técnico</ArrowLink>
+        </div>
+        <BrailleCellDiagram />
+      </section>
+
+      <section className={styles.softSection}>
+        <div className="wrap">
+          <div className={styles.sectionHeading}>
+            <div>
+              <Eyebrow>Recorrido del Challenge</Eyebrow>
+              <h2>Formación, diseño, prototipado y demostración.</h2>
+            </div>
+            <ArrowLink href="/cronograma">Ver cronograma completo</ArrowLink>
+          </div>
+          <PhaseFlow />
+        </div>
+      </section>
+
+      <section className={`wrap ${styles.systemSection}`}>
+        <div className={styles.sectionCopy}>
+          <Eyebrow>Del punto al sistema</Eyebrow>
+          <h2>La identidad visual refleja la misma lógica que persigue la ingeniería.</h2>
+          <p>
+            Un punto se integra en una celda; varias celdas pueden organizarse en módulos; y los módulos pueden escalar hacia una línea Braille. BrailleLab trabaja esa progresión como arquitectura técnica y como lenguaje visual.
+          </p>
+          <ul className={styles.values}>
+            {values.map(([title, copy]) => (
+              <li key={title}><b>{title}</b><span>{copy}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.systemPanel}>
+          <AbstractSystemVisual compact />
+          <p>Progresión conceptual, no codificación Braille textual.</p>
+        </div>
+      </section>
+
+      <section className={styles.evidenceSection}>
+        <div className={`wrap ${styles.evidenceGrid}`}>
+          <div>
+            <Eyebrow>Evidencia de proceso</Eyebrow>
+            <h2>La edición 2027 todavía está en pre-lanzamiento.</h2>
+            <p>
+              Este espacio mostrará únicamente sesiones, componentes, prototipos o validaciones reales cuando exista material autorizado para difusión. No se usarán fotografías de stock ni simulaciones presentadas como evidencia.
+            </p>
+            <ArrowLink href="/braillelab">Conocer cómo trabaja BrailleLab</ArrowLink>
+          </div>
+          <div className={styles.evidenceState} aria-label="Estado actual de evidencia pública 2027">
+            <span>2027 / evidencia pública</span>
+            <strong>En preparación</strong>
+            <ol>
+              <li>Investigación aplicada</li>
+              <li>Diseño</li>
+              <li>Prueba</li>
+              <li>Iteración</li>
+              <li>Documentación</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className={`wrap ${styles.milestonesSection}`}>
+        <div className={styles.sectionHeading}>
+          <div>
+            <Eyebrow>Próximos hitos</Eyebrow>
+            <h2>Lo siguiente, desde una única cronología.</h2>
+          </div>
+          <ArrowLink href="/cronograma">Explorar todas las fechas</ArrowLink>
+        </div>
+        <HomeMilestones />
+      </section>
+
+      <section className={styles.softSection}>
+        <div className="wrap">
+          <div className={styles.sectionHeading}>
+            <div>
+              <Eyebrow>Recursos destacados</Eyebrow>
+              <h2>Documentación 2027, cuando esté aprobada para publicación.</h2>
+            </div>
+            <ArrowLink href="/recursos">Ver todos los recursos</ArrowLink>
+          </div>
+          <div className={styles.resourceGrid}>
+            {highlightedResources.map((resource, index) => (
+              <article key={resource.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{resource.title}</h3>
+                <p>{resource.version}</p>
+                <small>{resource.href ? "Disponible" : "Publicación pendiente"}</small>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`wrap ${styles.participationSection}`}>
+        <div>
+          <Eyebrow>Participación 2027</Eyebrow>
+          <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
+          <p>
+            Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
+          </p>
+        </div>
+        <div className={styles.participationAction}>
+          <EventActionLink primary />
+          <ArrowLink href="/participar">Cómo participar</ArrowLink>
+        </div>
+      </section>
+
+      <section className={styles.coorgSection}>
+        <div className={`wrap ${styles.coorgGrid}`}>
+          <div>
+            <Eyebrow>Coorganización</Eyebrow>
+            <h2>Una iniciativa de BrailleLab Ecuador.</h2>
+          </div>
+          <div className={styles.coorgNames}>
+            <span>AEMCiCD</span>
+            <i aria-hidden="true">+</i>
+            <span>IEEE Student Branch · Universidad Yachay Tech</span>
+          </div>
+          <ArrowLink href="/alianzas">Alianzas y contacto</ArrowLink>
+        </div>
+      </section>
+
+      <section className={`wrap ${styles.demoSection}`}>
+        <div className={styles.demoDate}>
+          <span>Demo Day</span>
+          <strong>12</strong>
+          <small>junio · 2027</small>
+        </div>
+        <div className={styles.demoCopy}>
+          <Eyebrow>Universidad Yachay Tech</Eyebrow>
+          <h2>La jornada final comienza a las 10h00.</h2>
+          <p>
+            El cierre está previsto para las <b>17h00</b>. La agenda final puede extender la jornada hasta las <b>18h00</b> según patrocinadores, actividades y dinámica del evento.
+          </p>
+          <ArrowLink href="/cronograma">Ver la ruta hasta Demo Day</ArrowLink>
+        </div>
+      </section>
+
+      <section className={styles.closing}>
+        <div className={`wrap ${styles.closingGrid}`}>
+          <div>
+            <Eyebrow>BrailleLab Ecuador</Eyebrow>
+            <h2>Ingeniería abierta, accesibilidad y capacidad local.</h2>
+            <p>Para participación, alianzas o consultas institucionales, utiliza los canales oficiales del programa.</p>
+          </div>
+          <div className={styles.closingActions}>
+            <EventActionLink primary />
+            <a className="button button-secondary" href={`mailto:${site.contact}`}>{site.contact}</a>
+          </div>
+        </div>
+      </section>
+    </SiteShell>
+  );
 }
