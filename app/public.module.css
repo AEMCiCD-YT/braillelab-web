@@ -181,7 +181,7 @@
   grid-column: 2;
 }
 
-.support h2 {
+.support h3 {
   font-size: 1.4rem;
 }
 
@@ -277,5 +277,22 @@
   .metric:hover,
   .support article:hover {
     transform: none;
+  }
+}
+
+.actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .actionGroup {
+    display: grid;
+  }
+
+  .actionGroup :global(.button) {
+    width: 100%;
   }
 }

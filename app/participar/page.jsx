@@ -1,7 +1,9 @@
-import SiteShell, { EventActionLink } from "../../components/SiteShell";
+import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
+import ParticipationState from "../../components/ParticipationState";
 import { Eyebrow } from "../../components/Visuals";
 import layout from "../public.module.css";
+import styles from "./participar.module.css";
 
 export const metadata = { title: "Participar · 2027" };
 
@@ -12,10 +14,17 @@ export default function ParticiparPage() {
     ["20", "Equipos", "Capacidad máxima de admisión a la primera fase."],
   ];
 
+  const preparation = [
+    ["Forma el equipo", "Reúne entre 3 y 5 estudiantes y define una persona responsable principal."],
+    ["Verifica la IES", "La convocatoria está dirigida a estudiantes matriculados en instituciones de educación superior del Ecuador."],
+    ["Prepara los datos", "Ten lista la información de integrantes, institución, carrera y contacto principal."],
+    ["Revisa la documentación", "Consulta bases, guía técnica, cronograma y aviso de privacidad cuando estén publicados."],
+  ];
+
   const steps = [
-    ["1", "Revisa las bases", "Consulta elegibilidad, requisitos y documentos oficiales cuando se publique la versión 2027."],
-    ["2", "Prepara los datos", "Equipo, integrantes, institución, carrera y responsable principal."],
-    ["3", "Envía el formulario", "Completa la inscripción entre el 13 y el 31 de enero de 2027, una vez habilitado el formulario oficial."],
+    ["1", "Revisa las bases", "Confirma elegibilidad, requisitos y condiciones vigentes de la edición 2027."],
+    ["2", "Completa la postulación", "Usa únicamente el formulario oficial durante la ventana de inscripciones."],
+    ["3", "Espera la revisión", "La admisión se comunica después de la verificación administrativa; no equivale a ser finalista."],
   ];
 
   return (
@@ -29,6 +38,10 @@ export default function ParticiparPage() {
         La convocatoria está dirigida a estudiantes matriculados en instituciones de educación superior del Ecuador.
       </PageHero>
 
+      <div className={`wrap ${styles.stateWrap}`}>
+        <ParticipationState />
+      </div>
+
       <section className={`wrap ${layout.metrics}`}>
         {metrics.map(([value, title, copy]) => (
           <article className={layout.metric} key={title}>
@@ -39,10 +52,28 @@ export default function ParticiparPage() {
         ))}
       </section>
 
+      <section className={layout.section}>
+        <div className={`wrap ${styles.preparation}`}>
+          <div>
+            <Eyebrow>Antes de abrir</Eyebrow>
+            <h2>Lo que puedes preparar desde ahora.</h2>
+            <p>El formulario no necesita estar abierto para empezar a organizar una postulación sólida.</p>
+          </div>
+          <div className={styles.checklist}>
+            {preparation.map(([title, copy]) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className={layout.surfaceSoft}>
         <div className="wrap">
-          <Eyebrow>Proceso</Eyebrow>
-          <h2>Tres pasos para participar.</h2>
+          <Eyebrow>Proceso de inscripción</Eyebrow>
+          <h2>Tres pasos para entrar al proceso 2027.</h2>
           <div className={layout.steps}>
             {steps.map(([number, title, copy]) => (
               <article className={layout.step} key={number}>
@@ -60,11 +91,14 @@ export default function ParticiparPage() {
       <section className={layout.darkCta}>
         <div className={`wrap ${layout.ctaContent}`}>
           <div>
-            <Eyebrow tone="dark">Estado de la edición</Eyebrow>
-            <h2>La acción disponible cambia con cada etapa.</h2>
-            <p>Antes de la apertura puedes revisar el cronograma y preparar tu equipo; durante la convocatoria aparecerá el acceso oficial de inscripción.</p>
+            <Eyebrow tone="dark">Mantente en la ruta correcta</Eyebrow>
+            <h2>La siguiente acción cambia conforme avanza la edición.</h2>
+            <p>El sitio adapta el CTA según apertura, cierre y etapa del Challenge.</p>
           </div>
-          <EventActionLink primary />
+          <div className={layout.actionGroup}>
+            <EventActionLink primary />
+            <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
+          </div>
         </div>
       </section>
     </SiteShell>

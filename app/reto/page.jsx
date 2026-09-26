@@ -1,16 +1,17 @@
-import SiteShell from "../../components/SiteShell";
+import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
 import BrailleCellDiagram from "../../components/BrailleCellDiagram";
 import { Eyebrow } from "../../components/Visuals";
 import layout from "../public.module.css";
+import styles from "./reto.module.css";
 
 export const metadata = { title: "El reto · 2027" };
 
 export default function RetoPage() {
-  const cards = [
-    ["01", "Requisito mínimo", "Una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente."],
-    ["02", "Principios de diseño", "Accesible, funcional, abierto, modular, reparable y reproducible."],
-    ["03", "Posibilidades", "Multicelda, teclado, conexión a computadora, Bluetooth, batería y modularidad son posibilidades, no requisitos adicionales."],
+  const proof = [
+    ["01", "Funcionar", "La celda debe permitir activar y controlar de forma demostrable cada uno de sus seis puntos."],
+    ["02", "Responder", "El comportamiento debe ser controlable electrónicamente y explicable por el equipo."],
+    ["03", "Documentar", "La solución debe poder revisarse, probarse y comprenderse a partir de la documentación entregada."],
   ];
 
   return (
@@ -24,25 +25,52 @@ export default function RetoPage() {
         La edición 2027 aborda tecnología Braille electrónica refrescable con un enfoque funcional, abierto y reproducible.
       </PageHero>
 
-      <section className={`wrap ${layout.section} ${layout.cards}`}>
-        {cards.map(([number, title, text]) => (
-          <article className={layout.card} key={number}>
-            <span className={layout.cardIndex}>{number}</span>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </article>
-        ))}
+      <section className={`wrap ${layout.section} ${styles.summary}`}>
+        <article className={styles.minimum}>
+          <span>Requisito mínimo</span>
+          <h2>Una celda Braille refrescable de seis puntos.</h2>
+          <p>Debe ser funcional y controlable electrónicamente. Ese núcleo define la demostración técnica mínima del Challenge.</p>
+        </article>
+        <article className={styles.optional}>
+          <span>Extensiones posibles</span>
+          <h2>Escalar es posible; no es obligatorio.</h2>
+          <ul>
+            <li>Más de una celda.</li>
+            <li>Teclado o controles adicionales.</li>
+            <li>Conexión a computadora o Bluetooth.</li>
+            <li>Batería, modularidad u otras mejoras justificadas.</li>
+          </ul>
+        </article>
       </section>
 
       <section className={layout.surfaceSoft}>
-        <div className={`wrap ${layout.twoColumn}`}>
+        <div className={`wrap ${styles.proofGrid}`}>
           <BrailleCellDiagram />
           <div>
-            <Eyebrow>Seis puntos</Eyebrow>
-            <h2>Una representación clara del reto.</h2>
-            <p className={layout.bodyCopy}>
-              El equipo deberá demostrar una celda Braille refrescable de seis puntos funcionales y controlables electrónicamente. La Guía Técnica 2027 desarrollará el alcance de diseño, prueba y documentación.
-            </p>
+            <Eyebrow>Qué debe demostrar el equipo</Eyebrow>
+            <div className={styles.proofCards}>
+              {proof.map(([number, title, copy]) => (
+                <article className={styles.proofCard} key={number}>
+                  <span>{number}</span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={layout.darkCta}>
+        <div className={`wrap ${layout.ctaContent}`}>
+          <div>
+            <Eyebrow tone="dark">Siguiente paso</Eyebrow>
+            <h2>Entiende el alcance y prepara una propuesta técnicamente defendible.</h2>
+            <p>Los documentos 2027 se publicarán en Recursos cuando estén aprobados.</p>
+          </div>
+          <div className={layout.actionGroup}>
+            <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
+            <EventActionLink />
           </div>
         </div>
       </section>
