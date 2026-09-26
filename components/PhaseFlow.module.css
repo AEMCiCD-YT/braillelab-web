@@ -9,3 +9,9 @@
 .journey i { color: var(--color-info); font-style: normal; margin-left: auto; opacity: .7; }
 @media (max-width: 900px) { .journey { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .journey { grid-template-columns: 1fr; } .journey a { min-height: 86px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .journey a {
+    transition: none;
+  }
+}
