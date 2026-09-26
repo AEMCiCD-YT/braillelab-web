@@ -278,6 +278,10 @@
   .support article:hover {
     transform: none;
   }
+
+  .processList li:hover {
+    padding-inline: 0;
+  }
 }
 
 .actionGroup {
