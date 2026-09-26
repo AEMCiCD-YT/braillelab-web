@@ -296,3 +296,13 @@
     width: 100%;
   }
 }
+
+.twoColumn > *,
+.cards > *,
+.metrics > *,
+.support > *,
+.ctaContent > *,
+.actionGroup > *,
+.step > * {
+  min-width: 0;
+}
