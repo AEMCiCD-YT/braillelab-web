@@ -22,18 +22,6 @@
   --color-on-dark:#ffffff;
   --color-on-accent:var(--brand-night);
 
-  --night:var(--brand-night);
-  --night-2:var(--brand-night-2);
-  --cyan:var(--brand-cyan);
-  --petrol:var(--brand-petrol);
-  --signal:var(--brand-signal);
-  --coral:var(--brand-coral);
-  --cloud:var(--brand-cloud);
-  --paper:var(--color-surface);
-  --ink:var(--color-text);
-  --muted:var(--color-text-muted);
-  --line:var(--color-border);
-
   --type-display-xl:clamp(3rem,7.1vw,6.35rem);
   --type-display-lg:clamp(2.8rem,5.4vw,5rem);
   --type-heading-lg:clamp(2.1rem,4vw,4rem);
