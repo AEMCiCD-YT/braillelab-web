@@ -1,6 +1,6 @@
 :root {
-  --surface: #ffffff;
-  --surface-soft: #f3f7fa;
+  --surface: var(--color-surface);
+  --surface-soft: var(--color-surface-subtle);
   --shadow-soft: 0 16px 42px rgb(11 19 43 / 8%);
   --shadow-hover: 0 20px 48px rgb(11 19 43 / 14%);
 }
@@ -11,8 +11,8 @@ body {
 }
 
 ::selection {
-  background: var(--signal);
-  color: var(--night);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 nav a,
@@ -126,7 +126,7 @@ nav a {
 }
 
 .footer-grid a:hover {
-  color: var(--petrol);
+  color: var(--color-info);
 }
 
 @media (max-width: 900px) {
