@@ -51,9 +51,9 @@
   color:var(--color-text);
   background:var(--color-canvas)
 }*{box-sizing:border-box}html{scroll-behavior:smooth}body{
-  --font-display:var(--font-space-grotesk),Arial,sans-serif;
-  --font-body:var(--font-ibm-plex-sans),Arial,sans-serif;
-  --font-mono:var(--font-ibm-plex-mono),"Courier New",monospace;
+  --font-display:var(--font-space-grotesk),system-ui,sans-serif;
+  --font-body:var(--font-ibm-plex-sans),system-ui,sans-serif;
+  --font-mono:var(--font-ibm-plex-mono),ui-monospace,monospace;
   margin:0;
   font-family:var(--font-body);
   font-size:var(--type-body);
