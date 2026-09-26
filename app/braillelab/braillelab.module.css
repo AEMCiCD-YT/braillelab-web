@@ -1,0 +1,63 @@
+.evidenceGrid {
+  align-items: stretch;
+}
+
+.evidenceState {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: clamp(24px, 4vw, 34px);
+  border-left: 4px solid var(--color-info);
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+}
+
+.evidenceState > span {
+  color: var(--color-interactive);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.evidenceState h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.evidenceState > p {
+  margin: 0;
+  color: #c8d4df;
+}
+
+.evidenceState dl {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+}
+
+.evidenceState dl > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.evidenceState dt {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.evidenceState dd {
+  margin: 0;
+  color: #c8d4df;
+}
+
+@media (max-width: 560px) {
+  .evidenceState dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
