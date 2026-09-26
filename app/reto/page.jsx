@@ -9,7 +9,7 @@ export const metadata = { title: "El reto · 2027" };
 
 export default function RetoPage() {
   const proof = [
-    ["01", "Funcionar", "La celda debe activar sus seis puntos de forma demostrable."],
+    ["01", "Funcionar", "La celda debe permitir activar y controlar de forma demostrable cada uno de sus seis puntos."],
     ["02", "Responder", "El comportamiento debe ser controlable electrónicamente y explicable por el equipo."],
     ["03", "Documentar", "La solución debe poder revisarse, probarse y comprenderse a partir de la documentación entregada."],
   ];
@@ -68,7 +68,7 @@ export default function RetoPage() {
             <h2>Entiende el alcance y prepara una propuesta técnicamente defendible.</h2>
             <p>Los documentos 2027 se publicarán en Recursos cuando estén aprobados.</p>
           </div>
-          <div>
+          <div className={layout.actionGroup}>
             <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
             <EventActionLink />
           </div>
