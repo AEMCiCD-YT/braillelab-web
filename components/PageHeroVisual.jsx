@@ -107,12 +107,19 @@ function LabVisual() {
 }
 
 function AlliancesVisual() {
+  const nodes = ["Técnico", "Difusión", "Institucional"];
+
   return (
     <div className={styles.alliances}>
       <div className={styles.visualMeta}><span>COLABORAR</span><b>CON ALCANCE</b></div>
       <div className={styles.network}>
+        <svg className={styles.networkLines} viewBox="0 0 100 100" preserveAspectRatio="none">
+          <line x1="50" y1="50" x2="50" y2="18" />
+          <line x1="50" y1="50" x2="20" y2="82" />
+          <line x1="50" y1="50" x2="80" y2="82" />
+        </svg>
         <div className={styles.networkCenter}>BrailleLab</div>
-        {["Técnico", "Difusión", "Institucional"].map((label, index) => (
+        {nodes.map((label, index) => (
           <div key={label} className={styles.networkNode} data-index={index}>{label}</div>
         ))}
       </div>
