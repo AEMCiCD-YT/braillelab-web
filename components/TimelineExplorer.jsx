@@ -1,14 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { timelineEvents, timelineFilters } from "../content/timeline";
+import { useEffect, useMemo, useState } from "react";
+import { getHighlightedTimelineEvent, getTimelineState, timelineEvents, timelineFilters } from "../content/timeline";
 import styles from "./TimelineExplorer.module.css";
 
 export default function TimelineExplorer() {
   const [filter, setFilter] = useState("all");
-  const [selectedId, setSelectedId] = useState("inscripciones");
+  const [selectedId, setSelectedId] = useState(timelineEvents[0]?.id);
   const visibleEvents = useMemo(() => timelineEvents.filter((event) => filter === "all" || event.phase === filter), [filter]);
   const selected = visibleEvents.find((event) => event.id === selectedId) || visibleEvents[0];
+
+  useEffect(() => {
+    const highlighted = getHighlightedTimelineEvent(new Date());
+    if (highlighted) setSelectedId(highlighted.id);
+  }, []);
 
   function selectFilter(id) {
     setFilter(id);
@@ -22,15 +27,36 @@ export default function TimelineExplorer() {
     </div>
     <div className={styles.grid}>
       <ol className={styles.eventList} aria-label="Hitos disponibles">
-        {visibleEvents.map((event) => <li key={event.id}><button type="button" className={selected.id === event.id ? styles.selectedEvent : ""} onClick={() => setSelectedId(event.id)} aria-pressed={selected.id === event.id}><time>{event.date}</time><span>{event.title}</span><small>{event.phaseLabel}</small></button></li>)}
+        {visibleEvents.map((event) => <li key={event.id}><button type="button" className={selected?.id === event.id ? styles.selectedEvent : ""} onClick={() => setSelectedId(event.id)} aria-pressed={selected?.id === event.id}><time>{event.date}</time><span>{event.title}</span><small>{event.phaseLabel}</small></button></li>)}
       </ol>
-      <article className={styles.detail} aria-live="polite">
+      {selected && <article className={styles.detail} aria-live="polite">
         <p>Hito seleccionado</p>
         <time>{selected.date}</time>
         <h2>{selected.title}</h2>
         <p>{selected.copy}</p>
         <span>{selected.phaseLabel}</span>
-      </article>
+      </article>}
     </div>
   </section>;
+}
+
+export function TimelineStatus() {
+  const [timeline, setTimeline] = useState(null);
+
+  useEffect(() => {
+    setTimeline(getTimelineState(new Date()));
+  }, []);
+
+  const current = timeline?.currentEvent || null;
+  const next = timeline?.nextEvent || timelineEvents[0] || null;
+
+  if (current) {
+    return <div className="timeline-header" aria-live="polite"><span className="pill">Hito actual</span><h2>{current.title}</h2><p>{current.date}</p></div>;
+  }
+
+  if (next) {
+    return <div className="timeline-header" aria-live="polite"><span className="pill">Próximo hito</span><h2>{next.title}</h2><p>{next.date}</p></div>;
+  }
+
+  return <div className="timeline-header" aria-live="polite"><span className="pill">Edición 2027</span><h2>Proceso finalizado</h2><p>Consulta BrailleLab Ecuador para conocer las siguientes actividades.</p></div>;
 }
