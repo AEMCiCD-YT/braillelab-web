@@ -57,13 +57,13 @@ export default function AlianzasPage() {
       <section className={`wrap ${layout.section} ${styles.confirmed}`}>
         <div>
           <Eyebrow>Aliados confirmados</Eyebrow>
-          <h2>La web está preparada para integrar alianzas sin alterar su contenido base.</h2>
-          <p>Cuando una colaboración esté formalmente confirmada y exista autorización de difusión, podrá incorporarse aquí con su alcance correspondiente.</p>
+          <h2>Tu organización puede formar parte de BrailleTech Challenge Ecuador 2027.</h2>
+          <p>Los patrocinadores confirmados podrán contar con presencia institucional en este espacio y en las piezas correspondientes, de acuerdo con el alcance acordado.</p>
         </div>
         <aside className={styles.emptyState}>
-          <span>Estado de publicación</span>
-          <strong>Sin listado público adicional por ahora.</strong>
-          <p>No se mostrarán nombres, logotipos ni beneficios no confirmados.</p>
+          <span>Espacio para patrocinadores</span>
+          <strong>Tu logo puede estar aquí.</strong>
+          <p>Conversemos sobre patrocinio, recursos técnicos o apoyo al Demo Day 2027.</p>
         </aside>
       </section>
 
