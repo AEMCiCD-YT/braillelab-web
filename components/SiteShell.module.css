@@ -47,7 +47,7 @@
 }
 
 .contact a {
-  color: var(--petrol);
+  color: var(--color-info);
   font-size: .92rem;
   font-weight: 800;
 }
