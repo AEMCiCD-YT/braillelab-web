@@ -102,10 +102,6 @@ export default function RecursosPage() {
             </div>
           );
         })}
-
-        <p className={resourceStyles.archiveNote}>
-          La documentación 2026 no se presenta como vigente. Cualquier material histórico se mantendrá separado de los documentos operativos de 2027.
-        </p>
       </section>
 
       <section className={layout.surfaceSoft}>
