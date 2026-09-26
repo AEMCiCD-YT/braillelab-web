@@ -1,0 +1,50 @@
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--color-info);
+  font-size: var(--type-meta);
+  font-weight: 850;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.onDark {
+  color: var(--color-accent);
+}
+
+.brailleDots {
+  max-width: 264px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 30px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.brailleDots span {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+}
+
+.brailleDots span:nth-child(2),
+.brailleDots span:nth-child(5) {
+  background: var(--color-interactive);
+  color: var(--color-brand);
+}
+
+.dark {
+  border: 0;
+  background: var(--color-brand);
+}
+
+.dark span {
+  background: var(--color-on-dark);
+  color: var(--color-brand);
+}
