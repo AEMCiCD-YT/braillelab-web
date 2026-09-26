@@ -325,4 +325,8 @@
   .navLink::after {
     transition: none;
   }
+
+  .menuToggle:active {
+    transform: none;
+  }
 }
