@@ -1,8 +1,9 @@
-import SiteShell, { ArrowLink, EventActionLink, EventStatusLine } from "../components/SiteShell";
+import SiteShell, { ArrowLink, EventActionLink } from "../components/SiteShell";
 import { Eyebrow } from "../components/Visuals";
 import BrailleCellDiagram from "../components/BrailleCellDiagram";
 import PhaseFlow from "../components/PhaseFlow";
 import HomeMilestones from "../components/HomeMilestones";
+import HomeEventStatus from "../components/HomeEventStatus";
 import { site } from "../content/site";
 import styles from "./home.module.css";
 
@@ -25,9 +26,9 @@ const highlightedResources = site.resources.slice(0, 3);
 function AbstractSystemVisual({ compact = false }) {
   const patterns = [
     [0, 3, 5],
-    [1, 2, 6],
-    [0, 4, 7],
-    [2, 5, 6],
+    [1, 2, 4],
+    [0, 4, 5],
+    [1, 3, 5],
   ];
 
   return (
@@ -36,7 +37,7 @@ function AbstractSystemVisual({ compact = false }) {
       <div className={styles.systemTrack}>
         {patterns.map((pattern, cellIndex) => (
           <div className={styles.systemCell} key={cellIndex}>
-            {Array.from({ length: 8 }).map((_, pointIndex) => (
+            {Array.from({ length: 6 }).map((_, pointIndex) => (
               <span
                 className={pattern.includes(pointIndex) ? styles.activePoint : styles.point}
                 key={pointIndex}
@@ -71,30 +72,26 @@ export default function Home() {
               <EventActionLink primary />
               <ArrowLink href="/reto">Conocer el reto</ArrowLink>
             </div>
-            <p className={styles.heroStatus}><EventStatusLine /></p>
+
           </div>
           <div>
             <AbstractSystemVisual />
-            <p className={styles.visualCaption}>Retícula abstracta 2×4 como lenguaje gráfico. No representa un carácter Braille.</p>
+            <p className={styles.visualCaption}>Retícula abstracta 2×3 inspirada en la lógica de una celda Braille de seis puntos. No representa un carácter Braille.</p>
           </div>
         </div>
       </section>
 
-      <section className={`wrap ${styles.statusBand}`} aria-label="Estado actual de la edición 2027">
-        <div>
-          <span className={styles.metaLabel}>Estado de la edición</span>
-          <strong><EventStatusLine /></strong>
-        </div>
-        <EventActionLink />
-      </section>
+      <HomeEventStatus />
 
-      <section className={`wrap ${styles.factRail}`} aria-label="Datos esenciales">
-        {facts.map(([value, label]) => (
-          <article key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </article>
-        ))}
+      <section className={styles.factsSection} aria-label="Datos esenciales">
+        <div className={`wrap ${styles.factRail}`}>
+          {facts.map(([value, label]) => (
+            <article key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className={`wrap ${styles.challengeSection}`}>
@@ -127,7 +124,7 @@ export default function Home() {
           <Eyebrow>Del punto al sistema</Eyebrow>
           <h2>La identidad visual refleja la misma lógica que persigue la ingeniería.</h2>
           <p>
-            Un punto se integra en una celda; varias celdas pueden organizarse en módulos; y los módulos pueden escalar hacia una línea Braille. BrailleLab trabaja esa progresión como arquitectura técnica y como lenguaje visual.
+            Un punto se integra en una celda de seis puntos; varias celdas pueden organizarse en módulos; y los módulos pueden escalar hacia una línea Braille. BrailleLab trabaja esa progresión como arquitectura técnica y como lenguaje visual.
           </p>
           <ul className={styles.values}>
             {values.map(([title, copy]) => (
@@ -198,17 +195,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`wrap ${styles.participationSection}`}>
-        <div>
-          <Eyebrow>Participación 2027</Eyebrow>
-          <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
-          <p>
-            Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
-          </p>
-        </div>
-        <div className={styles.participationAction}>
-          <EventActionLink primary />
-          <ArrowLink href="/participar">Cómo participar</ArrowLink>
+      <section className={styles.participationShell}>
+        <div className={`wrap ${styles.participationSection}`}>
+          <div>
+            <Eyebrow>Participación 2027</Eyebrow>
+            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
+            <p>
+              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
+            </p>
+          </div>
+          <div className={styles.participationAction}>
+            <EventActionLink primary />
+            <ArrowLink href="/participar">Cómo participar</ArrowLink>
+          </div>
         </div>
       </section>
 
@@ -227,19 +226,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`wrap ${styles.demoSection}`}>
-        <div className={styles.demoDate}>
-          <span>Demo Day</span>
-          <strong>12</strong>
-          <small>junio · 2027</small>
-        </div>
-        <div className={styles.demoCopy}>
-          <Eyebrow>Universidad Yachay Tech</Eyebrow>
-          <h2>La jornada final comienza a las 10h00.</h2>
-          <p>
-            El cierre está previsto para las <b>17h00</b>. La agenda final puede extender la jornada hasta las <b>18h00</b> según patrocinadores, actividades y dinámica del evento.
-          </p>
-          <ArrowLink href="/cronograma">Ver la ruta hasta Demo Day</ArrowLink>
+      <section className={styles.demoShell}>
+        <div className={`wrap ${styles.demoSection}`}>
+          <div className={styles.demoDate}>
+            <span>Demo Day</span>
+            <strong>12</strong>
+            <small>junio · 2027</small>
+          </div>
+          <div className={styles.demoCopy}>
+            <Eyebrow>Universidad Yachay Tech</Eyebrow>
+            <h2>La jornada final comienza a las 10h00.</h2>
+            <p>
+              El cierre está previsto para las <b>17h00</b>. La agenda final puede extender la jornada hasta las <b>18h00</b> según patrocinadores, actividades y dinámica del evento.
+            </p>
+            <ArrowLink href="/cronograma">Ver la ruta hasta Demo Day</ArrowLink>
+          </div>
         </div>
       </section>
 
