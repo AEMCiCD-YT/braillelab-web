@@ -63,7 +63,7 @@ export default function SiteShell({ children }) {
   const runtime = useChallengeRuntime();
   const status = runtime?.status || {
     label: site.event.name,
-    detail: "Edición 2027 en preparación",
+    detail: "Sincronizando estado de la edición",
   };
 
   useEffect(() => {
@@ -159,8 +159,8 @@ export function EventActionLink({ primary = false }) {
 export function EventStatusLine() {
   const runtime = useChallengeRuntime();
   const status = runtime?.status || {
-    label: "Edición 2027 en preparación",
-    detail: "Predifusión nacional: 1–18 de diciembre de 2026",
+    label: site.event.shortName,
+    detail: "Sincronizando estado de la edición",
   };
   return <span aria-live="polite">{status.label} · {status.detail}</span>;
 }
