@@ -59,7 +59,7 @@ export default function CronogramaPage() {
             <Eyebrow tone="dark">Acción contextual</Eyebrow>
             <h2>Sigue el siguiente hito sin perder de vista la ruta completa.</h2>
           </div>
-          <div>
+          <div className={layout.actionGroup}>
             <EventActionLink primary />
             <ArrowLink href="/participar">Cómo participar</ArrowLink>
           </div>
