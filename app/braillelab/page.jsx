@@ -1,4 +1,4 @@
-import SiteShell from "../../components/SiteShell";
+import SiteShell, { ArrowLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
 import { Eyebrow } from "../../components/Visuals";
 import styles from "./braillelab.module.css";
@@ -14,6 +14,13 @@ const process = [
   "Documentación",
 ];
 
+const system = [
+  ["01", "Punto", "La unidad mínima: una decisión concreta de diseño y acceso."],
+  ["02", "Celda", "Seis puntos coordinados para formar una interfaz Braille funcional."],
+  ["03", "Módulo", "Una arquitectura que puede crecer sin perder claridad ni reparabilidad."],
+  ["04", "Sistema", "Conocimiento, hardware y documentación conectados para poder reproducirse."],
+];
+
 export default function BrailleLabPage() {
   return (
     <SiteShell>
@@ -26,19 +33,40 @@ export default function BrailleLabPage() {
         BrailleLab es la marca madre. BrailleTech Challenge Ecuador 2027 es una iniciativa de aprendizaje, diseño y demostración.
       </PageHero>
 
-      <section className={`wrap ${layout.twoColumn} ${layout.section}`}>
+      <section className={`wrap ${layout.section} ${styles.system}`}>
         <div>
-          <Eyebrow>Cómo trabajamos</Eyebrow>
-          <h2>Del aprendizaje a la documentación.</h2>
+          <Eyebrow>Del punto al sistema</Eyebrow>
+          <h2>Una lógica de ingeniería que también organiza la identidad de BrailleLab.</h2>
+          <p>BrailleLab no termina en una competencia: busca conectar aprendizaje, diseño, prueba y documentación en una capacidad técnica que pueda continuar más allá de una sola edición.</p>
         </div>
-        <ol className={layout.processList}>
-          {process.map((item, index) => (
-            <li key={item}><b>{String(index + 1).padStart(2, "0")}</b>{item}</li>
+        <div className={styles.systemSteps}>
+          {system.map(([number, title, copy]) => (
+            <article key={number}>
+              <span>{number}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </div>
+            </article>
           ))}
-        </ol>
+        </div>
       </section>
 
       <section className={layout.surfaceSoft}>
+        <div className={`wrap ${layout.twoColumn}`}>
+          <div>
+            <Eyebrow>Cómo trabajamos</Eyebrow>
+            <h2>Del aprendizaje a la documentación.</h2>
+          </div>
+          <ol className={layout.processList}>
+            {process.map((item, index) => (
+              <li key={item}><b>{String(index + 1).padStart(2, "0")}</b>{item}</li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className={layout.section}>
         <div className={`wrap ${layout.twoColumn} ${styles.evidenceGrid}`}>
           <aside className={styles.evidenceState} aria-labelledby="evidence-state-title">
             <span>Edición 2027 · evidencia pública</span>
@@ -57,6 +85,20 @@ export default function BrailleLabPage() {
             <p className={layout.bodyCopy}>
               Fotografías, cuadernos, componentes, sesiones y validaciones se incorporarán únicamente cuando puedan documentarse sin confundir una simulación con un prototipo ni una fase con otra.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={layout.surfaceSoft}>
+        <div className={`wrap ${styles.continuity}`}>
+          <div>
+            <Eyebrow>Continuidad</Eyebrow>
+            <h2>BrailleTech es una iniciativa anual. BrailleLab permanece.</h2>
+            <p>La edición 2027 organiza un ciclo concreto de formación, diseño, prototipado y Demo Day dentro de una línea de trabajo más amplia.</p>
+          </div>
+          <div className={styles.continuityActions}>
+            <ArrowLink href="/reto" primary>Conocer BrailleTech 2027</ArrowLink>
+            <ArrowLink href="/alianzas">Explorar alianzas</ArrowLink>
           </div>
         </div>
       </section>
