@@ -64,26 +64,26 @@ export default function SiteShell({ children }) {
   };
 
   return <>
-    <a className="skip-link" href="#main">Saltar al contenido principal</a>
-    <div className="status-bar">
-      <div className="wrap status-inner">
-        <span aria-hidden="true" />
+    <a className={styles.skipLink} href="#main">Saltar al contenido principal</a>
+    <div className={styles.statusBar}>
+      <div className={`wrap ${styles.statusInner}`}>
+        <span className={styles.statusDot} aria-hidden="true" />
         <b>{status.label}</b>
         <span>{status.detail}</span>
       </div>
     </div>
-    <header className="header wrap">
+    <header className={`wrap ${styles.header}`}>
       <BrandSignature onClick={() => setOpen(false)} />
-      <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
+      <button className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
         {open ? <X /> : <Menu />}
         <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
       </button>
-      <nav id="main-nav" className={open ? "open" : ""} aria-label="Navegación principal">
+      <nav id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
         {links.map(([href, label]) => (
           <Link
             key={href}
             href={href}
-            className={pathname === href ? "active" : ""}
+            className={pathname === href ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
             aria-current={pathname === href ? "page" : undefined}
             onClick={() => setOpen(false)}
           >
@@ -93,25 +93,25 @@ export default function SiteShell({ children }) {
       </nav>
     </header>
     <main id="main" tabIndex="-1">{children}</main>
-    <footer className="footer">
-      <div className="wrap footer-grid">
+    <footer className={styles.footer}>
+      <div className={`wrap ${styles.footerGrid}`}>
         <div>
           <BrandSignature footer />
           <p>Investigación aplicada, aprendizaje y tecnología Braille accesible.</p>
         </div>
         <div>
-          <p className="footer-title">Explora</p>
-          {links.slice(0, 4).map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}
+          <p className={styles.footerTitle}>Explora</p>
+          <div className={styles.footerLinks}>{links.slice(0, 4).map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div>
         </div>
         <div>
-          <p className="footer-title">Datos y contacto</p>
+          <p className={styles.footerTitle}>Datos y contacto</p>
           <div className={styles.contact}>
             <a href={`mailto:${site.contact}`}>{site.contact}</a>
             <Link href="/privacidad">Aviso de privacidad</Link>
           </div>
         </div>
       </div>
-      <div className="wrap footer-bottom">
+      <div className={`wrap ${styles.footerBottom}`}>
         <span>Actualizado el {site.updatedAtLabel}</span>
         <span>{site.event.name}</span>
       </div>

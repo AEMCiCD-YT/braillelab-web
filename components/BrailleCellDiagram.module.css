@@ -1,12 +1,12 @@
-.cell { background: var(--night); color: #fff; margin-inline: auto; max-width: 330px; padding: 24px; width: 100%; }
+.cell { background: var(--color-brand); color: #fff; margin-inline: auto; max-width: 330px; padding: 24px; width: 100%; }
 .header { align-items: center; display: flex; justify-content: space-between; margin-bottom: 20px; }
-.header p { color: var(--signal); font-size: .75rem; font-weight: 850; letter-spacing: .11em; margin: 0; text-transform: uppercase; }
-.header button { background: transparent; border: 0; color: #fff; cursor: pointer; font: inherit; font-size: .82rem; font-weight: 800; min-height: 44px; padding: 8px; text-decoration: underline; text-decoration-color: var(--cyan); text-underline-offset: 4px; }
+.header p { color: var(--color-accent); font-size: .75rem; font-weight: 850; letter-spacing: .11em; margin: 0; text-transform: uppercase; }
+.header button { background: transparent; border: 0; color: #fff; cursor: pointer; font: inherit; font-size: .82rem; font-weight: 800; min-height: 44px; padding: 8px; text-decoration: underline; text-decoration-color: var(--color-interactive); text-underline-offset: 4px; }
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
-.grid button { aspect-ratio: 1; background: #fff; border: 0; border-radius: 50%; color: var(--night); cursor: pointer; font-family: monospace; font-size: 1rem; font-weight: 850; min-height: 64px; transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
-.grid button[aria-pressed="true"] { background: var(--cyan); box-shadow: inset 0 0 0 5px #baf5fa; transform: scale(1.04); }
+.grid button { aspect-ratio: 1; background: #fff; border: 0; border-radius: 50%; color: var(--color-brand); cursor: pointer; font-family: var(--font-mono); font-size: 1rem; font-weight: 850; min-height: 64px; transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.grid button[aria-pressed="true"] { background: var(--color-interactive); box-shadow: inset 0 0 0 5px #baf5fa; transform: scale(1.04); }
 .grid button:hover { transform: scale(1.06); }
-.grid button:focus-visible, .header button:focus-visible { outline: 3px solid var(--signal); outline-offset: 4px; }
+.grid button:focus-visible, .header button:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .state { margin: 22px 0 7px; }
 .hint { color: #c6d4e1; font-size: .86rem; margin: 0; }
 @media (prefers-reduced-motion: reduce) { .grid button { transition: none; } }

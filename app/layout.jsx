@@ -1,6 +1,5 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import "./ui-polish.css";
 
 const displayFont = Space_Grotesk({
   subsets: ["latin"],

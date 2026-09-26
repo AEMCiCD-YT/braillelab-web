@@ -1,6 +1,8 @@
 import SiteShell from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
+import { Eyebrow } from "../../components/Visuals";
 import styles from "./braillelab.module.css";
+import layout from "../public.module.css";
 
 export const metadata = { title: "BrailleLab Ecuador" };
 
@@ -24,20 +26,20 @@ export default function BrailleLabPage() {
         BrailleLab es la marca madre. BrailleTech Challenge Ecuador 2027 es una iniciativa de aprendizaje, diseño y demostración.
       </PageHero>
 
-      <section className="wrap two-column section">
+      <section className={`wrap ${layout.twoColumn} ${layout.section}`}>
         <div>
-          <p className="eyebrow">Cómo trabajamos</p>
+          <Eyebrow>Cómo trabajamos</Eyebrow>
           <h2>Del aprendizaje a la documentación.</h2>
         </div>
-        <ol className="process-list">
+        <ol className={layout.processList}>
           {process.map((item, index) => (
             <li key={item}><b>{String(index + 1).padStart(2, "0")}</b>{item}</li>
           ))}
         </ol>
       </section>
 
-      <section className="cloud-section">
-        <div className={`wrap two-column ${styles.evidenceGrid}`}>
+      <section className={layout.surfaceSoft}>
+        <div className={`wrap ${layout.twoColumn} ${styles.evidenceGrid}`}>
           <aside className={styles.evidenceState} aria-labelledby="evidence-state-title">
             <span>Edición 2027 · evidencia pública</span>
             <h2 id="evidence-state-title">Aún no publicada</h2>
@@ -50,9 +52,9 @@ export default function BrailleLabPage() {
           </aside>
 
           <div>
-            <p className="eyebrow">Evidencia real</p>
+            <Eyebrow>Evidencia real</Eyebrow>
             <h2>El proceso se mostrará con contexto y autorización.</h2>
-            <p className="body-copy">
+            <p className={layout.bodyCopy}>
               Fotografías, cuadernos, componentes, sesiones y validaciones se incorporarán únicamente cuando puedan documentarse sin confundir una simulación con un prototipo ni una fase con otra.
             </p>
           </div>

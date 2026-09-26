@@ -25,7 +25,7 @@ Las fuentes se cargan mediante `next/font/google` y se exponen como variables CS
 
 ## Tokens semánticos
 
-Los componentes nuevos deben preferir los tokens semánticos frente a los nombres de color:
+Los componentes deben usar los tokens semánticos para color de interfaz. Los tokens `--brand-*` quedan reservados para composición de marca y casos en que el valor cromático sea parte explícita de la identidad.
 
 - `--color-canvas`: fondo general.
 - `--color-surface`: tarjetas y superficies primarias.
@@ -42,7 +42,7 @@ Los componentes nuevos deben preferir los tokens semánticos frente a los nombre
 - `--color-on-dark`: contenido sobre fondos oscuros.
 - `--color-on-accent`: contenido sobre amarillo señal.
 
-Los alias históricos `--night`, `--cyan`, `--petrol`, `--signal`, `--cloud`, `--paper`, `--ink`, `--muted` y `--line` se conservan temporalmente para evitar una migración masiva dentro del issue #4. Su consolidación corresponde al issue #7.
+Los alias históricos (`--night`, `--cyan`, `--petrol`, `--signal`, `--cloud`, `--paper`, `--ink`, `--muted`, `--line`) fueron retirados en el issue #7. No deben reintroducirse; una nueva edición cambia contenido/configuración y, cuando corresponda, valores de tokens, no crea una segunda API de colores.
 
 ## Escala tipográfica
 

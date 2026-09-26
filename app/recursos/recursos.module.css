@@ -5,7 +5,7 @@
 }
 
 .document {
-  background: var(--cloud);
+  background: var(--color-surface-subtle);
   display: flex;
   flex-direction: column;
   min-height: 270px;
@@ -13,8 +13,8 @@
 }
 
 .document > span {
-  color: var(--petrol);
-  font-family: monospace;
+  color: var(--color-info);
+  font-family: var(--font-mono);
   font-weight: 800;
 }
 
@@ -24,31 +24,31 @@
 }
 
 .document p {
-  color: var(--muted);
+  color: var(--color-text-muted);
   margin-bottom: 16px;
 }
 
 .document small {
-  color: var(--petrol);
+  color: var(--color-info);
   font-weight: 800;
   margin-top: auto;
 }
 
 .document a {
   align-items: center;
-  color: var(--night);
+  color: var(--color-brand);
   display: inline-flex;
   font-size: .9rem;
   font-weight: 800;
   gap: 8px;
   margin-top: 18px;
-  text-decoration-color: var(--cyan);
+  text-decoration-color: var(--color-interactive);
   text-decoration-thickness: 3px;
   text-underline-offset: 4px;
 }
 
 .document a:hover {
-  color: var(--petrol);
+  color: var(--color-info);
 }
 
 @media (max-width: 900px) {
