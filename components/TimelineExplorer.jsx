@@ -47,8 +47,12 @@ export function TimelineStatus() {
     setTimeline(getTimelineState(new Date()));
   }, []);
 
-  const current = timeline?.currentEvent || null;
-  const next = timeline?.nextEvent || timelineEvents[0] || null;
+  if (!timeline) {
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h2>Sincronizando cronograma</h2><p>Calculando el hito vigente.</p></div>;
+  }
+
+  const current = timeline.currentEvent || null;
+  const next = timeline.nextEvent || null;
 
   if (current) {
     return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Hito actual</span><h2>{current.title}</h2><p>{current.date}</p></div>;
