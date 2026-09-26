@@ -9,6 +9,11 @@ function buildMilestones(now) {
   const { currentEvent } = getTimelineState(now);
   const relevant = timelineEvents.filter((event) => new Date(event.endsAt).getTime() >= time);
 
+  if (!relevant.length) {
+    const lastEvent = timelineEvents[timelineEvents.length - 1];
+    return lastEvent ? [{ ...lastEvent, status: "Finalizado" }] : [];
+  }
+
   if (currentEvent) {
     return relevant.slice(0, 4).map((event) => ({
       ...event,
