@@ -29,8 +29,19 @@ function getRuntime(now) {
   const status = challengeStatus(now);
   const target = timeline.nextEvent;
 
+  let statusCopy = status.detail;
+  if (status.state === "prelaunch") {
+    statusCopy = "Preparación previa al lanzamiento público.";
+  } else if (status.state === "between") {
+    statusCopy = "El proceso se encuentra entre etapas programadas.";
+  } else if (status.state === "active" && timeline.currentEvent) {
+    statusCopy = `${timeline.currentEvent.date} · ${timeline.currentEvent.phaseLabel}`;
+  }
+
   return {
     status,
+    statusCopy,
+    currentEvent: timeline.currentEvent,
     target,
     countdown: target ? getCountdown(target.startsAt, now) : null,
   };
@@ -46,6 +57,8 @@ export default function HomeEventStatus() {
       label: "Edición 2027 en preparación",
       detail: "Próximo hito: Predifusión nacional · 1–18 dic. 2026",
     },
+    statusCopy: "Preparación previa al lanzamiento público.",
+    currentEvent: null,
     target: null,
     countdown: null,
   }), []);
@@ -74,7 +87,7 @@ export default function HomeEventStatus() {
         <div className={styles.status}>
           <span className={styles.eyebrow}>Estado de la edición</span>
           <h2 id="edition-status-title">{runtime.status.label}</h2>
-          <p>{runtime.status.detail}</p>
+          <p>{runtime.statusCopy}</p>
           <div className={styles.action}><EventActionLink /></div>
         </div>
 
@@ -101,6 +114,11 @@ export default function HomeEventStatus() {
                 ))}
               </div>
             </>
+          ) : runtime.currentEvent ? (
+            <div className={styles.complete}>
+              <strong>Última etapa en curso</strong>
+              <span>{runtime.currentEvent.title} · {runtime.currentEvent.date}</span>
+            </div>
           ) : (
             <div className={styles.complete}>
               <strong>Edición finalizada</strong>
