@@ -358,11 +358,25 @@
   }
 
   .labFlow {
-    grid-template-columns: 24px auto 62px;
+    grid-template-columns: 24px 10px 52px 10px minmax(0, 1fr);
+    gap: 5px;
+    width: 100%;
   }
 
-  .labFlow > .arrow:nth-of-type(2),
+  .arrow {
+    font-size: .72rem;
+    text-align: center;
+  }
+
   .moduleCells {
-    display: none;
+    min-width: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .moduleCells .miniCell {
+    min-width: 0;
+    gap: 3px;
+    padding: 4px;
   }
 }
