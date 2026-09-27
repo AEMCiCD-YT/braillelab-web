@@ -46,11 +46,15 @@ function BrandSignature({ footer = false, onClick }) {
       aria-label="BrailleLab Ecuador — BrailleTech Challenge Ecuador 2027"
     >
       <img
-        className={styles.signatureLogo}
-        src={brandAssets.logoHorizontal}
+        className={styles.signatureMark}
+        src={brandAssets.mark}
         alt=""
         aria-hidden="true"
       />
+      <span className={styles.signatureWordmark} aria-hidden="true">
+        <span className={styles.signatureName}><b>Braille</b><b>Lab</b></span>
+        <span className={styles.signatureCountry}>ECUADOR</span>
+      </span>
       <span className="sr-only">BrailleLab Ecuador</span>
     </Link>
   );
