@@ -4,8 +4,14 @@ import ParticipationState from "../../components/ParticipationState";
 import { Eyebrow } from "../../components/Visuals";
 import layout from "../public.module.css";
 import styles from "./participar.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "Participar · 2027" };
+export const metadata = buildMetadata({
+  path: "/participar",
+  title: "Participar · BrailleTech 2027",
+  description: "Participa en BrailleTech Challenge Ecuador 2027 con un equipo de 3 a 5 estudiantes. La ventana de inscripción está prevista del 13 al 31 de enero de 2027.",
+  keywords: ["inscripciones BrailleTech 2027", "equipos universitarios"],
+});
 
 export default function ParticiparPage() {
   const metrics = [
