@@ -5,7 +5,7 @@ function asset(path) {
 }
 
 export const brandAssets = {
-  logoHorizontal: asset("/brand/braillelab-logotipo-horizontal.svg"),
+  mark: asset("/brand/braillelab-isotipo.svg"),
   markNegative: asset("/brand/braillelab-isotipo-negativo.svg"),
   favicon: asset("/favicon.svg"),
 };
