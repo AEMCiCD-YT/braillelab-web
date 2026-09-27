@@ -1,5 +1,5 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
-import { buildMetadata, SITE_URL, siteMetadata } from "../content/metadata";
+import { buildMetadata, SITE_URL } from "../content/metadata";
 import "./globals.css";
 
 const displayFont = Space_Grotesk({
