@@ -1,4 +1,5 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
+import { buildMetadata, SITE_URL, siteMetadata } from "../content/metadata";
 import "./globals.css";
 
 const displayFont = Space_Grotesk({
@@ -22,11 +23,13 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata = {
-  title: {
-    default: "BrailleTech Challenge Ecuador 2027",
-    template: "%s · BrailleTech",
-  },
-  description: "BrailleTech Challenge Ecuador 2027, una iniciativa de BrailleLab Ecuador.",
+  metadataBase: new URL(`${SITE_URL}/`),
+  ...buildMetadata({ path: "/" }),
+};
+
+export const viewport = {
+  themeColor: "#0B132B",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }) {
