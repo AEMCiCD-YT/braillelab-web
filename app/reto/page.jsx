@@ -4,8 +4,14 @@ import BrailleCellDiagram from "../../components/BrailleCellDiagram";
 import { Eyebrow } from "../../components/Visuals";
 import layout from "../public.module.css";
 import styles from "./reto.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "El reto · 2027" };
+export const metadata = buildMetadata({
+  path: "/reto",
+  title: "El reto · BrailleTech 2027",
+  description: "Conoce el reto técnico de BrailleTech Challenge Ecuador 2027: construir y documentar una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente.",
+  keywords: ["reto técnico", "celda Braille de seis puntos"],
+});
 
 export default function RetoPage() {
   const proof = [
