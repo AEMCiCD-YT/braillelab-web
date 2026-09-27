@@ -35,7 +35,7 @@ export function buildMetadata({
   keywords = [],
 }) {
   const canonical = absoluteUrl(path);
-  const pageTitle = title === siteMetadata.defaultTitle ? title : `${title} · BrailleLab Ecuador`;
+  const pageTitle = title === siteMetadata.defaultTitle || title === siteMetadata.applicationName ? title : `${title} · BrailleLab Ecuador`;
 
   return {
     title: pageTitle,
