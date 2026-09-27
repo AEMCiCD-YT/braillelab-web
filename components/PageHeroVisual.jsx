@@ -1,4 +1,5 @@
 import styles from "./PageHeroVisual.module.css";
+import { brandAssets } from "../content/brand";
 
 const sixDots = [1, 4, 2, 5, 3, 6];
 
@@ -88,20 +89,13 @@ function ResourcesVisual() {
 
 function LabVisual() {
   return (
-    <div className={styles.lab}>
-      <div className={styles.visualMeta}><span>DEL PUNTO</span><b>AL SISTEMA</b></div>
-      <div className={styles.labFlow}>
-        <div className={styles.singlePoint} />
-        <span className={styles.arrow}>→</span>
-        <MiniCell active={[0, 2, 4]} />
-        <span className={styles.arrow}>→</span>
-        <div className={styles.moduleCells}>
-          <MiniCell active={[0, 2, 4]} />
-          <MiniCell active={[1, 3, 5]} />
-          <MiniCell active={[0, 3, 5]} />
-        </div>
-      </div>
-      <small>unidad · celda · módulo</small>
+    <div className={styles.labBrand}>
+      <img
+        src={brandAssets.markNegative}
+        alt=""
+        aria-hidden="true"
+      />
+      <small>Relieve · activación · sistema modular</small>
     </div>
   );
 }
