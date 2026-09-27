@@ -1,5 +1,7 @@
 import { absoluteUrl } from "../content/metadata";
 
+export const dynamic = "force-static";
+
 const routes = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/reto", priority: 0.9, changeFrequency: "monthly" },
