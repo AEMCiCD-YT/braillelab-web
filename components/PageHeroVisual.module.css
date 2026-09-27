@@ -406,6 +406,7 @@
 }
 
 .brandVisual {
-  background: var(--color-brand);
+  border: 0;
+  background: transparent;
   box-shadow: none;
 }
