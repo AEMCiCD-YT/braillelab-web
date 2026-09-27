@@ -6,6 +6,14 @@ import HomeMilestones from "../components/HomeMilestones";
 import HomeEventStatus from "../components/HomeEventStatus";
 import { site } from "../content/site";
 import styles from "./home.module.css";
+import { buildMetadata } from "../content/metadata";
+
+export const metadata = buildMetadata({
+  path: "/",
+  title: "BrailleTech Challenge Ecuador 2027",
+  description: "BrailleTech Challenge Ecuador 2027, una iniciativa de BrailleLab Ecuador para aprender, diseñar, construir y documentar tecnología Braille electrónica refrescable. Demo Day: 12 de junio de 2027 en Universidad Yachay Tech, desde las 10h00.",
+  keywords: ["Demo Day 2027", "celda Braille refrescable"],
+});
 
 const facts = [
   ["13–31 ene.", "Inscripciones 2027"],

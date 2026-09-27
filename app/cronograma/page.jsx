@@ -6,8 +6,14 @@ import { Eyebrow } from "../../components/Visuals";
 import { site } from "../../content/site";
 import layout from "../public.module.css";
 import styles from "./cronograma.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "Cronograma 2027" };
+export const metadata = buildMetadata({
+  path: "/cronograma",
+  title: "Cronograma · BrailleTech 2027",
+  description: "Consulta las etapas e hitos de BrailleTech Challenge Ecuador 2027. Demo Day: 12 de junio de 2027 en Universidad Yachay Tech, desde las 10h00.",
+  keywords: ["cronograma BrailleTech 2027", "Demo Day 12 junio 2027"],
+});
 
 export default function CronogramaPage() {
   return (

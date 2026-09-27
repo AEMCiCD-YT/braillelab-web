@@ -3,8 +3,14 @@ import PageHero from "../../components/PageHero";
 import { Eyebrow } from "../../components/Visuals";
 import styles from "./braillelab.module.css";
 import layout from "../public.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "BrailleLab Ecuador" };
+export const metadata = buildMetadata({
+  path: "/braillelab",
+  title: "BrailleLab Ecuador",
+  description: "BrailleLab Ecuador impulsa investigación aplicada, aprendizaje y documentación de tecnología Braille accesible, abierta y reproducible desde Ecuador.",
+  keywords: ["BrailleLab Ecuador", "investigación aplicada", "tecnología Braille accesible"],
+});
 
 const process = [
   "Investigación aplicada",

@@ -1,8 +1,14 @@
 import SiteShell from "../../components/SiteShell";
 import { Eyebrow } from "../../components/Visuals";
 import styles from "./privacidad.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "Aviso de privacidad 2027" };
+export const metadata = buildMetadata({
+  path: "/privacidad",
+  title: "Aviso de privacidad · BrailleTech 2027",
+  description: "Aviso de privacidad y tratamiento de datos personales para la inscripción y gestión de BrailleTech Challenge Ecuador 2027.",
+  keywords: ["privacidad BrailleTech 2027", "tratamiento de datos"],
+});
 
 export default function PrivacidadPage() {
   return (

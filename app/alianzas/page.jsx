@@ -4,8 +4,14 @@ import { Eyebrow } from "../../components/Visuals";
 import { site } from "../../content/site";
 import layout from "../public.module.css";
 import styles from "./alianzas.module.css";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "Aliados y contacto" };
+export const metadata = buildMetadata({
+  path: "/alianzas",
+  title: "Alianzas y patrocinio · BrailleTech 2027",
+  description: "Conoce las modalidades de patrocinio, mentoría, difusión y colaboración institucional para BrailleTech Challenge Ecuador 2027 y BrailleLab Ecuador.",
+  keywords: ["patrocinio BrailleTech 2027", "alianzas BrailleLab"],
+});
 
 const support = [
   ["Patrocinio", "Apoyo económico o en especie sujeto a acuerdo aplicable."],
