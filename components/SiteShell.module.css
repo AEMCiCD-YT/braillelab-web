@@ -54,6 +54,7 @@
 .signature {
   display: inline-flex;
   align-items: center;
+  gap: 7px;
   min-width: 0;
   color: var(--color-brand);
   text-decoration: none;
@@ -79,7 +80,7 @@
   font-size: 1.38rem;
   font-weight: 700;
   line-height: .92;
-  letter-spacing: -.045em;
+  letter-spacing: 0;
 }
 
 .signatureName b {
@@ -96,7 +97,7 @@
   font-family: var(--font-body);
   font-size: .58rem;
   font-weight: 300;
-  letter-spacing: .34em;
+  letter-spacing: .70em;
 }
 
 .nav {
@@ -314,7 +315,7 @@
 
   .signatureCountry {
     font-size: .5rem;
-    letter-spacing: .28em;
+    letter-spacing: .62em;
   }
 
   .footerGrid {
