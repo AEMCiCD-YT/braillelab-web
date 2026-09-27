@@ -405,7 +405,7 @@
   text-transform: uppercase;
 }
 
-.visual:has(.labBrand) {
+.brandVisual {
   background: var(--color-brand);
   box-shadow: none;
 }
