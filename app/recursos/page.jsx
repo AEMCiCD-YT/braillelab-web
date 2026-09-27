@@ -6,8 +6,14 @@ import Faq from "../../components/Faq";
 import resourceStyles from "./recursos.module.css";
 import layout from "../public.module.css";
 import { ArrowUpRight } from "lucide-react";
+import { buildMetadata } from "../../content/metadata";
 
-export const metadata = { title: "Recursos 2027" };
+export const metadata = buildMetadata({
+  path: "/recursos",
+  title: "Recursos · BrailleTech 2027",
+  description: "Consulta las bases, guía técnica, cronograma, rúbrica y protocolos oficiales de BrailleTech Challenge Ecuador 2027 conforme se aprueben para publicación.",
+  keywords: ["bases BrailleTech 2027", "guía técnica BrailleTech"],
+});
 
 const descriptions = {
   bases: "Elegibilidad, alcance y reglas de participación.",
