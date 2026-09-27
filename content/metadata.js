@@ -2,8 +2,9 @@ const DEFAULT_SITE_URL = "https://aemcicd-yt.github.io/braillelab-web";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
 
+export const PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export const SOCIAL_IMAGE = `${SITE_URL}/social/braillelab-brailletech-2027.png`;
-export const FAVICON_URL = `${SITE_URL}/favicon.svg`;
+export const FAVICON_URL = `${PUBLIC_BASE_PATH}/favicon.svg`;
 
 export function absoluteUrl(path = "/") {
   const normalized = path === "/" ? "/" : `/${String(path).replace(/^\/+|\/+$/g, "")}/`;
