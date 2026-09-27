@@ -132,7 +132,11 @@ export default function PageHeroVisual({ variant = "lab", accent = "cyan" }) {
   }[variant] || <LabVisual />;
 
   return (
-    <div className={styles.visual} data-accent={accent} aria-hidden="true">
+    <div
+      className={variant === "lab" ? `${styles.visual} ${styles.brandVisual}` : styles.visual}
+      data-accent={accent}
+      aria-hidden="true"
+    >
       {visual}
     </div>
   );
