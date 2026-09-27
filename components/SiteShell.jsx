@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { challengeAction, challengeStatus, site } from "../content/site";
 import styles from "./SiteShell.module.css";
 
@@ -57,14 +57,39 @@ function BrandSignature({ footer = false, onClick }) {
 export default function SiteShell({ children }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const navRef = useRef(null);
+  const mainRef = useRef(null);
   const runtime = useChallengeRuntime();
   const status = runtime?.status || {
     label: site.event.name,
-    detail: "Edición 2027 en preparación",
+    detail: "Sincronizando estado de la edición",
   };
 
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const firstLink = navRef.current?.querySelector("a");
+    window.requestAnimationFrame(() => firstLink?.focus());
+
+    function handleKeyDown(event) {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  function handleSkip(event) {
+    event.preventDefault();
+    mainRef.current?.focus();
+    mainRef.current?.scrollIntoView({ block: "start" });
+  }
+
   return <>
-    <a className={styles.skipLink} href="#main">Saltar al contenido principal</a>
+    <a className={styles.skipLink} href="#main" onClick={handleSkip}>Saltar al contenido principal</a>
     <div className={styles.statusBar}>
       <div className={`wrap ${styles.statusInner}`}>
         <span className={styles.statusDot} aria-hidden="true" />
@@ -74,11 +99,11 @@ export default function SiteShell({ children }) {
     </div>
     <header className={`wrap ${styles.header}`}>
       <BrandSignature onClick={() => setOpen(false)} />
-      <button className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
-        {open ? <X /> : <Menu />}
+      <button ref={menuButtonRef} className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
+        {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
       </button>
-      <nav id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
+      <nav ref={navRef} id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
         {links.map(([href, label]) => (
           <Link
             key={href}
@@ -92,7 +117,7 @@ export default function SiteShell({ children }) {
         ))}
       </nav>
     </header>
-    <main id="main" tabIndex="-1">{children}</main>
+    <main ref={mainRef} id="main" tabIndex="-1">{children}</main>
     <footer className={styles.footer}>
       <div className={`wrap ${styles.footerGrid}`}>
         <div>
@@ -110,10 +135,6 @@ export default function SiteShell({ children }) {
             <Link href="/privacidad">Aviso de privacidad</Link>
           </div>
         </div>
-      </div>
-      <div className={`wrap ${styles.footerBottom}`}>
-        <span>Actualizado el {site.updatedAtLabel}</span>
-        <span>{site.event.name}</span>
       </div>
     </footer>
   </>;
@@ -134,8 +155,8 @@ export function EventActionLink({ primary = false }) {
 export function EventStatusLine() {
   const runtime = useChallengeRuntime();
   const status = runtime?.status || {
-    label: "Edición 2027 en preparación",
-    detail: "Predifusión nacional: 1–18 de diciembre de 2026",
+    label: site.event.shortName,
+    detail: "Sincronizando estado de la edición",
   };
   return <span aria-live="polite">{status.label} · {status.detail}</span>;
 }

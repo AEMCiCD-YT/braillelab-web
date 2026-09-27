@@ -54,19 +54,21 @@ function pad(value) {
 export default function HomeEventStatus() {
   const initial = useMemo(() => ({
     status: {
-      label: "Edición 2027 en preparación",
-      detail: "Próximo hito: Predifusión nacional · 1–18 dic. 2026",
+      label: "BrailleTech Challenge Ecuador 2027",
+      detail: "Sincronizando estado de la edición",
     },
-    statusCopy: "Preparación previa al lanzamiento público.",
+    statusCopy: "Sincronizando el estado y el próximo hito.",
     currentEvent: null,
     target: null,
     countdown: null,
   }), []);
   const [runtime, setRuntime] = useState(initial);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     function refresh() {
       setRuntime(getRuntime(new Date()));
+      setReady(true);
     }
 
     refresh();
@@ -97,10 +99,15 @@ export default function HomeEventStatus() {
               <span>Cuenta regresiva</span>
               <strong>{runtime.target ? runtime.target.title : "Edición 2027"}</strong>
             </div>
-            <small>{runtime.target ? runtime.target.date : "Proceso finalizado"}</small>
+            <small>{!ready ? "Sincronizando…" : runtime.target ? runtime.target.date : runtime.currentEvent ? runtime.currentEvent.date : "Proceso finalizado"}</small>
           </div>
 
-          {runtime.target ? (
+          {!ready ? (
+            <div className={styles.complete}>
+              <strong>Sincronizando cronograma</strong>
+              <span>Calculando el próximo hito de la edición 2027.</span>
+            </div>
+          ) : runtime.target ? (
             <>
               <p className="sr-only">
                 Cuenta regresiva al próximo hito: {runtime.target.title}, {runtime.target.date}.

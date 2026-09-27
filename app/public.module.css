@@ -278,6 +278,10 @@
   .support article:hover {
     transform: none;
   }
+
+  .processList li:hover {
+    padding-inline: 0;
+  }
 }
 
 .actionGroup {
@@ -295,4 +299,14 @@
   .actionGroup :global(.button) {
     width: 100%;
   }
+}
+
+.twoColumn > *,
+.cards > *,
+.metrics > *,
+.support > *,
+.ctaContent > *,
+.actionGroup > *,
+.step > * {
+  min-width: 0;
 }

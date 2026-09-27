@@ -65,3 +65,9 @@
   outline: 3px solid var(--color-interactive);
   outline-offset: -3px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}

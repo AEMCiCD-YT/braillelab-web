@@ -53,6 +53,10 @@
     padding-block: 64px 76px;
   }
 
+  .article h1 {
+    font-size: clamp(2.25rem, 12vw, 3rem);
+  }
+
   .article section {
     padding: 26px 0;
   }

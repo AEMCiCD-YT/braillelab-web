@@ -26,6 +26,14 @@
   gap: 8px;
 }
 
+.statusInner > * {
+  min-width: 0;
+}
+
+.statusInner > span:last-child {
+  overflow-wrap: anywhere;
+}
+
 .statusDot {
   width: 8px;
   height: 8px;
@@ -165,8 +173,10 @@
 }
 
 .footerLinks a {
-  display: block;
-  margin: 8px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
   color: var(--color-info);
   font-size: .92rem;
   font-weight: 800;
@@ -175,8 +185,12 @@
 }
 
 .footerLinks a:hover,
-.contact a:hover {
+.footerLinks a:focus-visible,
+.contact a:hover,
+.contact a:focus-visible {
   color: var(--color-info);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .contact {
@@ -186,19 +200,13 @@
 }
 
 .contact a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   color: var(--color-info);
   font-size: .92rem;
   font-weight: 800;
   touch-action: manipulation;
-}
-
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  padding: 19px 0;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: .78rem;
 }
 
 @media (max-width: 900px) {
@@ -216,6 +224,8 @@
 
   .navOpen {
     display: grid;
+    max-height: calc(100vh - 124px);
+    overflow-y: auto;
     box-shadow: var(--shadow-soft);
   }
 
@@ -294,14 +304,14 @@
   .footerGrid > div:first-child {
     grid-column: auto;
   }
-
-  .footerBottom {
-    display: block;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .navLink::after {
     transition: none;
+  }
+
+  .menuToggle:active {
+    transform: none;
   }
 }

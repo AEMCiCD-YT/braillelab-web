@@ -29,10 +29,10 @@ function getRuntime(now) {
 
 export default function ParticipationState() {
   const [runtime, setRuntime] = useState({
-    action: { label: "Preparar participación", href: "/recursos", external: false, state: "upcoming" },
-    status: "Inscripciones: 13–31 de enero de 2027",
-    label: "Próximamente",
-    copy: "Puedes formar tu equipo y preparar la información antes de la apertura del formulario oficial.",
+    action: { label: "Revisar recursos 2027", href: "/recursos", external: false, state: "upcoming" },
+    status: "BrailleTech Challenge Ecuador 2027",
+    label: "Estado de inscripción",
+    copy: "Sincronizando la ventana oficial de participación.",
   });
 
   useEffect(() => {

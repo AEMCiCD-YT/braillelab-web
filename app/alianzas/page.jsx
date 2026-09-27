@@ -56,7 +56,7 @@ export default function AlianzasPage() {
 
       <section className={`wrap ${layout.section} ${styles.confirmed}`}>
         <div>
-          <Eyebrow>Aliados confirmados</Eyebrow>
+          <Eyebrow>Patrocinio 2027</Eyebrow>
           <h2>Tu organización puede formar parte de BrailleTech Challenge Ecuador 2027.</h2>
           <p>Los patrocinadores confirmados podrán contar con presencia institucional en este espacio y en las piezas correspondientes, de acuerdo con el alcance acordado.</p>
         </div>
@@ -66,17 +66,12 @@ export default function AlianzasPage() {
             <span>Espacio para patrocinadores</span>
             <strong>Tu logo puede estar aquí.</strong>
             <p>Conversemos sobre patrocinio, recursos técnicos o apoyo al Demo Day 2027.</p>
+            <div className={styles.sponsorContact}>
+              <a href={`mailto:${site.contact}`}>{site.contact}</a>
+              <a className="button button-primary" href={`mailto:${site.contact}`}>Contactar a BrailleLab</a>
+            </div>
           </div>
         </aside>
-      </section>
-
-      <section className={layout.darkCta}>
-        <div className="wrap">
-          <Eyebrow tone="dark">Contacto institucional</Eyebrow>
-          <h2>Conversemos sobre una colaboración con alcance definido.</h2>
-          <p>Escríbenos a <a href={`mailto:${site.contact}`}>{site.contact}</a>.</p>
-          <a className="button button-primary" href={`mailto:${site.contact}`}>Contactar a BrailleLab</a>
-        </div>
       </section>
     </SiteShell>
   );

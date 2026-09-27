@@ -65,7 +65,7 @@
   letter-spacing: .08em;
 }
 
-.sponsorSlot > span {
+.sponsorSlot > div > span {
   color: var(--color-info);
   font-family: var(--font-mono);
   font-size: .7rem;
@@ -97,5 +97,35 @@
 
   .logoPlaceholder {
     width: min(180px, 100%);
+  }
+}
+
+.coorg > *,
+.confirmed > *,
+.sponsorSlot > * {
+  min-width: 0;
+}
+
+.sponsorContact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.sponsorContact > a:first-child {
+  color: var(--color-info);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .sponsorContact {
+    display: grid;
+  }
+
+  .sponsorContact :global(.button) {
+    width: 100%;
   }
 }

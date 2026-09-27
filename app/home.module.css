@@ -701,3 +701,14 @@
     display: none;
   }
 }
+
+.heroGrid > *,
+.challengeSection > *,
+.systemSection > *,
+.evidenceGrid > *,
+.participationSection > *,
+.coorgGrid > *,
+.demoSection > *,
+.closingGrid > * {
+  min-width: 0;
+}

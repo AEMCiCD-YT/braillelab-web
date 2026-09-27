@@ -27,13 +27,8 @@ function buildMilestones(now) {
   }));
 }
 
-const fallback = timelineEvents.slice(0, 4).map((event, index) => ({
-  ...event,
-  status: index === 0 ? "Próximo" : "Después",
-}));
-
 export default function HomeMilestones() {
-  const [milestones, setMilestones] = useState(fallback);
+  const [milestones, setMilestones] = useState(null);
 
   useEffect(() => {
     function refresh() {
@@ -44,6 +39,10 @@ export default function HomeMilestones() {
     const interval = window.setInterval(refresh, 60_000);
     return () => window.clearInterval(interval);
   }, []);
+
+  if (!milestones) {
+    return <p className={styles.loading} role="status">Sincronizando próximos hitos de la edición 2027…</p>;
+  }
 
   return (
     <ol className={styles.list} aria-label="Próximos hitos de BrailleTech Challenge Ecuador 2027">

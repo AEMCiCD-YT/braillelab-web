@@ -14,4 +14,8 @@
   .journey a {
     transition: none;
   }
+
+  .journey a:hover {
+    padding-left: 0;
+  }
 }
