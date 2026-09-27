@@ -54,40 +54,50 @@
 .signature {
   display: inline-flex;
   align-items: center;
+  gap: 7px;
   min-width: 0;
-  padding-left: 14px;
-  border-left: 3px solid var(--color-interactive);
   color: var(--color-brand);
   text-decoration: none;
   touch-action: manipulation;
 }
 
-.signatureCopy {
+.signatureMark {
+  width: 52px;
+  height: 49px;
+  flex: 0 0 auto;
+}
+
+.signatureWordmark {
   min-width: 0;
   display: grid;
-  gap: 4px;
+  gap: 2px;
 }
 
-.signature b {
-  display: block;
+.signatureName {
+  display: flex;
+  align-items: baseline;
   font-family: var(--font-display);
-  font-size: 1.12rem;
-  line-height: 1;
-  letter-spacing: -.025em;
-}
-
-.signature small {
-  display: block;
-  color: var(--color-text-muted);
-  font-size: .68rem;
+  font-size: 1.38rem;
   font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: .015em;
+  line-height: .92;
+  letter-spacing: 0;
 }
 
-.edition {
-  color: var(--color-info);
-  font-weight: 900;
+.signatureName b {
+  font-weight: 700;
+}
+
+.signatureName b:last-child {
+  color: var(--color-interactive);
+}
+
+.signatureCountry {
+  padding-left: 1px;
+  color: var(--color-brand);
+  font-family: var(--font-body);
+  font-size: .58rem;
+  font-weight: 300;
+  letter-spacing: .70em;
 }
 
 .nav {
@@ -162,6 +172,19 @@
 
 .footerSignature {
   margin-bottom: 14px;
+}
+
+.footerSignature .signatureMark {
+  width: 62px;
+  height: 58px;
+}
+
+.footerSignature .signatureName {
+  font-size: 1.62rem;
+}
+
+.footerSignature .signatureCountry {
+  font-size: .64rem;
 }
 
 .footerTitle {
@@ -281,18 +304,18 @@
     top: 72px;
   }
 
-  .signature {
-    padding-left: 10px;
-    border-left-width: 2px;
+  .signatureMark {
+    width: 42px;
+    height: 39px;
   }
 
-  .signature b {
-    font-size: 1rem;
+  .signatureName {
+    font-size: 1.08rem;
   }
 
-  .signature small {
-    max-width: 205px;
-    font-size: .62rem;
+  .signatureCountry {
+    font-size: .5rem;
+    letter-spacing: .62em;
   }
 
   .footerGrid {

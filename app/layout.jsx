@@ -10,7 +10,7 @@ const displayFont = Space_Grotesk({
 
 const bodyFont = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-ibm-plex-sans",
   display: "swap",
 });

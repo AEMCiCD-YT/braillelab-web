@@ -5,6 +5,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { challengeAction, challengeStatus, site } from "../content/site";
+import { brandAssets } from "../content/brand";
 import styles from "./SiteShell.module.css";
 
 const links = [
@@ -44,12 +45,17 @@ function BrandSignature({ footer = false, onClick }) {
       onClick={onClick}
       aria-label="BrailleLab Ecuador — BrailleTech Challenge Ecuador 2027"
     >
-      <span className={styles.signatureCopy}>
-        <b>BrailleLab Ecuador</b>
-        <small>
-          BrailleTech Challenge Ecuador <span className={styles.edition}>2027</span>
-        </small>
+      <img
+        className={styles.signatureMark}
+        src={brandAssets.mark}
+        alt=""
+        aria-hidden="true"
+      />
+      <span className={styles.signatureWordmark} aria-hidden="true">
+        <span className={styles.signatureName}><b>Braille</b><b>Lab</b></span>
+        <span className={styles.signatureCountry}>ECUADOR</span>
       </span>
+      <span className="sr-only">BrailleLab Ecuador</span>
     </Link>
   );
 }
