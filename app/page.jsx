@@ -230,7 +230,7 @@ export default function Home() {
             <i aria-hidden="true">+</i>
             <span>IEEE Student Branch · Universidad Yachay Tech</span>
           </div>
-          <ArrowLink href="/alianzas">Alianzas y contacto</ArrowLink>
+          <ArrowLink href="/alianzas">Apoya y colabora</ArrowLink>
         </div>
       </section>
 
