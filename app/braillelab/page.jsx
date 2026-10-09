@@ -104,7 +104,7 @@ export default function BrailleLabPage() {
           </div>
           <div className={styles.continuityActions}>
             <ArrowLink href="/reto" primary>Conocer BrailleTech 2027</ArrowLink>
-            <ArrowLink href="/alianzas">Explorar alianzas</ArrowLink>
+            <ArrowLink href="/alianzas">Apoya y colabora</ArrowLink>
           </div>
         </div>
       </section>

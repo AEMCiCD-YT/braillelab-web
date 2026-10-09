@@ -14,7 +14,8 @@ const links = [
   ["/cronograma", "Cronograma"],
   ["/recursos", "Recursos"],
   ["/braillelab", "BrailleLab"],
-  ["/alianzas", "Aliados"],
+  ["/alianzas", "Apoya y colabora"],
+  ["/transparencia", "Transparencia"],
 ];
 
 function useChallengeRuntime() {
@@ -132,7 +133,7 @@ export default function SiteShell({ children }) {
         </div>
         <div>
           <p className={styles.footerTitle}>Explora</p>
-          <div className={styles.footerLinks}>{links.slice(0, 4).map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div>
+          <div className={styles.footerLinks}>{[...links.slice(0, 4), links[5], links[6]].map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div>
         </div>
         <div>
           <p className={styles.footerTitle}>Datos y contacto</p>

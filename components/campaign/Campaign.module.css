@@ -1,0 +1,167 @@
+.progress {
+  display: grid;
+  gap: 22px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.goalRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.label {
+  display: block;
+  color: var(--color-info);
+  font-family: var(--font-mono);
+  font-size: var(--type-meta);
+  font-weight: 800;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.bigFigure {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+}
+
+.bar {
+  height: 14px;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-info);
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.figures > div {
+  padding: 16px;
+  border-left: 4px solid var(--color-interactive);
+  background: var(--color-surface-subtle);
+}
+
+.figures dt {
+  font-size: var(--type-small);
+  font-weight: 700;
+}
+
+.figures dd {
+  margin: 6px 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.figures small,
+.muted,
+.meta {
+  color: var(--color-text-muted);
+  font-size: var(--type-small);
+}
+
+.meta {
+  margin: 0;
+}
+
+.meta a,
+.dataNotice a,
+.instructionsPending a {
+  color: var(--color-info);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+.dataNotice {
+  margin: 0;
+  padding: 16px 18px;
+  border-left: 4px solid var(--color-info);
+  background: var(--color-surface-subtle);
+}
+
+.dataNoticeAlert {
+  border-left-color: var(--color-alert);
+}
+
+.dataNoticeAlert p {
+  margin: 0 0 12px;
+}
+
+.instructions,
+.instructionsPending {
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.instructionsPending {
+  border-left: 4px solid var(--color-accent);
+}
+
+.instructionsPending p {
+  margin: 8px 0 0;
+}
+
+.instructionsText {
+  margin: 10px 0 14px;
+  font-family: var(--font-mono);
+  font-size: var(--type-body);
+  white-space: pre-line;
+}
+
+.supporters {
+  display: grid;
+  gap: 22px;
+}
+
+.institutions,
+.people {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.institutions li,
+.people li {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+}
+
+.institutions img {
+  max-width: 100%;
+  max-height: 72px;
+  object-fit: contain;
+}
+
+.institutions span,
+.people span {
+  color: var(--color-text-muted);
+  font-size: var(--type-small);
+}
+
+@media (max-width: 560px) {
+  .goalRow {
+    grid-template-columns: 1fr;
+  }
+}
