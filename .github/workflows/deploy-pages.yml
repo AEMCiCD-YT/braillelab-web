@@ -35,8 +35,8 @@ jobs:
 
       - name: Build static site
         env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-          NEXT_PUBLIC_SITE_URL: https://aemcicd-yt.github.io/braillelab-web
+          # Served from its own domain (public/CNAME), so there is no base path.
+          NEXT_PUBLIC_SITE_URL: https://braillelab.org
           # Public API of AEMCiCD Platform (repository variable). Empty = the page shows "not connected"
           # and keeps the contribution form closed; it never invents figures or transfer instructions.
           NEXT_PUBLIC_PLATFORM_API_URL: ${{ vars.PLATFORM_API_URL }}

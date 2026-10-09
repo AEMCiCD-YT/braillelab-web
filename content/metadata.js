@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://aemcicd-yt.github.io/braillelab-web";
+const DEFAULT_SITE_URL = "https://braillelab.org";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
 

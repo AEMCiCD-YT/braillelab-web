@@ -46,13 +46,13 @@ Variables del repositorio en GitHub, usadas por `deploy-pages.yml`:
 
 | Variable | Uso |
 |---|---|
-| `PLATFORM_API_URL` | Origen de la API, por ejemplo `https://api.example.org`. Vacía = estado «sin configurar» |
+| `PLATFORM_API_URL` | Origen de la API, por ejemplo `https://api.aemcicd.org`. Vacía = estado «sin configurar» |
 
 Opcional en el build: `NEXT_PUBLIC_CAMPAIGN_SLUG` (por defecto `braillelab-ecuador-2027`).
 
 En la plataforma, antes de recibir avisos reales:
 
-- `PUBLIC_WEB_ORIGINS` debe incluir `https://aemcicd-yt.github.io`.
+- `PUBLIC_WEB_ORIGINS` debe incluir `https://braillelab.org` y `https://aemcicd.org`.
 - `CONTRIBUTION_PRIVACY_NOTICE_VERSION` debe ser `aportes-2027-v0.1`, o la versión que se publique aquí.
 - Reglas editoriales aprobadas en la pestaña «Publicación».
 - Campaña `ACTIVE` con cuenta e instrucciones configuradas en privado.
