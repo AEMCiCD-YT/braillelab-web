@@ -46,8 +46,8 @@
 
 .names span {
   padding: 18px 20px;
-  border-left: 4px solid var(--color-interactive);
-  background: var(--color-surface-subtle);
+  border: var(--card-border);
+  background: var(--card-surface);
   font-weight: 800;
 }
 
@@ -65,8 +65,8 @@
   align-content: start;
   gap: 10px;
   padding: 24px;
-  border: 1px solid rgb(11 19 43 / 13%);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .budget article > span {
@@ -97,8 +97,8 @@
 .milestone {
   margin-top: 22px;
   padding: 18px 22px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface-subtle);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .milestone summary {

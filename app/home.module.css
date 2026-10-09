@@ -81,11 +81,10 @@
   align-content: center;
   gap: 18px;
   padding: clamp(26px, 4vw, 46px);
-  border: 1px solid rgb(255 255 255 / 16%);
+  border: var(--panel-border);
   background:
     linear-gradient(135deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 2%)),
     var(--brand-night-2);
-  box-shadow: 0 28px 70px rgb(0 0 0 / 18%);
 }
 
 .systemLabel {
@@ -175,8 +174,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 0;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .factRail article {
@@ -377,7 +376,7 @@
 
 .evidenceState {
   padding: 30px;
-  border: 1px solid rgb(255 255 255 / 15%);
+  border: var(--panel-border);
   background: var(--brand-night-2);
 }
 
@@ -437,8 +436,8 @@
   display: flex;
   flex-direction: column;
   padding: 26px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .resourceGrid article > span {

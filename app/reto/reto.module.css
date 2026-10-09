@@ -37,8 +37,8 @@
 
 .optional {
   padding: 34px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface-subtle);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .optional > span {
@@ -74,9 +74,8 @@
 
 .proofCard {
   padding: 20px;
-  border-left: 4px solid var(--color-interactive);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  border-left: var(--step-rule);
+  background: var(--card-surface);
 }
 
 .proofCard > span {

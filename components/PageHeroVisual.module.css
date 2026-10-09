@@ -4,11 +4,10 @@
   display: grid;
   align-items: stretch;
   padding: clamp(22px, 3vw, 32px);
-  border: 1px solid rgb(255 255 255 / 14%);
+  border: var(--panel-border);
   background:
     linear-gradient(145deg, rgb(255 255 255 / 7%), transparent 52%),
     var(--brand-night-2);
-  box-shadow: 0 24px 60px rgb(0 0 0 / 18%);
   color: var(--color-on-dark);
 }
 
