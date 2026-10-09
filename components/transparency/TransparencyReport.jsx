@@ -125,7 +125,7 @@ function StateNotice({ state, lastValid, onRetry }) {
   if (state === "unconfigured") {
     return (
       <p className={styles.notice} role="status">
-        Esta página todavía no está conectada a la plataforma de la asociación. Consultas: <a href={`mailto:${site.contact}`}>{site.contact}</a>.
+        Esta página todavía no está conectada a la plataforma de la asociación. Consultas: <a href={`mailto:${site.contacts.general}`}>{site.contacts.general}</a>.
       </p>
     );
   }

@@ -127,7 +127,7 @@ export default function ContributionNoticeForm() {
         <strong>{reason}</strong>
         <p>
           No envíes comprobantes por otros medios. Si ya transferiste o tienes preguntas, escribe a{" "}
-          <a href={`mailto:${site.contact}?subject=${encodeURIComponent("Aporte BrailleLab 2027")}`}>{site.contact}</a>.
+          <a href={`mailto:${site.contacts.partnerships}?subject=${encodeURIComponent("Aporte BrailleLab 2027")}`}>{site.contacts.partnerships}</a>.
         </p>
         {config.state === "unavailable" && (
           <button type="button" className="button button-secondary" onClick={config.reload}>Reintentar</button>
@@ -306,7 +306,7 @@ function NoticeForm({ config, onConfigOutdated }) {
           del banco. El aporte cuenta solo cuando se verifica en la cuenta institucional.
         </p>
         {receipt.message && <p className={styles.serverMessage}>{receipt.message}</p>}
-        <p>Guarda el identificador por si necesitas consultar con la asociación ({site.contact}).</p>
+        <p>Guarda el identificador por si necesitas consultar con la asociación ({site.contacts.partnerships}).</p>
         <button type="button" className="button button-secondary" onClick={startOver}>Reportar otra transferencia</button>
       </div>
     );

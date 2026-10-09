@@ -31,7 +31,13 @@ export const site = {
     url: process.env.NEXT_PUBLIC_BRAILLETECH_REGISTRATION_URL || "",
     privacyUrl: "/privacidad",
   },
-  contact: "asoemc@yachaytech.edu.ec",
+  // Buzones compartidos de braillelab.org, uno por función.
+  contacts: {
+    general: "info@braillelab.org",
+    participants: "brailletech@braillelab.org",
+    partnerships: "alianzas@braillelab.org",
+    privacy: "privacidad@braillelab.org",
+  },
   resources: [
     { id: "bases", title: "Bases y Reglamento 2027", version: "Edición 2027", href: null },
     { id: "guia", title: "Guía Técnica 2027", version: "Edición 2027", href: null },

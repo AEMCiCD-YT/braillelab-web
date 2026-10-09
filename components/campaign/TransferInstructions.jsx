@@ -21,7 +21,7 @@ export default function TransferInstructions() {
         <strong>{paused ? "La recepción de aportes no está activa." : "Las instrucciones de transferencia aún no están publicadas."}</strong>
         <p>
           No transfieras a datos que recibas por otros medios sin confirmarlos. Cuando la cuenta institucional y la campaña estén
-          habilitadas, las instrucciones autorizadas aparecerán aquí. Consultas: <a href={`mailto:${site.contact}`}>{site.contact}</a>.
+          habilitadas, las instrucciones autorizadas aparecerán aquí. Consultas: <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>.
         </p>
       </div>
     );

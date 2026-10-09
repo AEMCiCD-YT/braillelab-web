@@ -278,7 +278,7 @@ export default function Home() {
               Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
             </p>
             <p className={styles.closingContact}>
-              Alianzas y consultas institucionales: <a href={`mailto:${site.contact}`}>{site.contact}</a>
+              Alianzas y consultas institucionales: <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>
             </p>
           </div>
           <div className={styles.closingActions}>
