@@ -28,6 +28,11 @@
 
 .visualMeta span,
 .visualMeta b,
+.visualMeta .letterTag {
+  font-size: .78rem;
+  text-transform: none;
+}
+
 .visual small {
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -80,17 +85,13 @@
   box-shadow: inset 0 0 0 6px rgb(255 255 255 / 3%);
 }
 
-.sixCell span[data-dot="1"],
-.sixCell span[data-dot="4"],
-.sixCell span[data-dot="5"] {
+.sixCell span[data-active] {
   border-color: var(--visual-accent);
   background: var(--visual-accent);
   box-shadow: 0 0 0 8px rgb(0 175 199 / 10%);
 }
 
-.visual[data-accent="signal"] .sixCell span[data-dot="1"],
-.visual[data-accent="signal"] .sixCell span[data-dot="4"],
-.visual[data-accent="signal"] .sixCell span[data-dot="5"] {
+.visual[data-accent="signal"] .sixCell span[data-active] {
   box-shadow: 0 0 0 8px rgb(244 197 66 / 10%);
 }
 

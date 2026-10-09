@@ -1,12 +1,12 @@
 import styles from "./PageHeroVisual.module.css";
 import { brandAssets } from "../content/brand";
+import { brailleGridOrder, letterDots } from "../content/braille";
 
-const sixDots = [1, 4, 2, 5, 3, 6];
-
-function SixPointCell() {
+function SixPointCell({ letter }) {
+  const dots = letterDots(letter);
   return (
     <div className={styles.sixCell}>
-      {sixDots.map((dot) => <span key={dot} data-dot={dot} />)}
+      {brailleGridOrder.map((dot) => <span key={dot} data-active={dots.includes(dot) || undefined} />)}
     </div>
   );
 }
@@ -24,8 +24,8 @@ function MiniCell({ active = [0, 2, 5] }) {
 function ChallengeVisual() {
   return (
     <div className={styles.challenge}>
-      <div className={styles.visualMeta}><span>CELDA</span><b>6 PUNTOS</b></div>
-      <SixPointCell />
+      <div className={styles.visualMeta}><span>CELDA · 6 PUNTOS</span><b className={styles.letterTag}>«r» de reto</b></div>
+      <SixPointCell letter="r" />
       <div className={styles.signalLine}><i /><i /><i /></div>
       <small>control electrónico</small>
     </div>
