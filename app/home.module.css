@@ -91,7 +91,7 @@
   width: fit-content;
   color: var(--color-accent);
   font-family: var(--font-mono);
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -153,7 +153,7 @@
   gap: 14px;
   color: #d7e0e8;
   font-family: var(--font-mono);
-  font-size: .7rem;
+  font-size: .75rem;
   text-transform: uppercase;
 }
 
@@ -226,7 +226,7 @@
 .progression li > span {
   color: var(--color-accent);
   font-family: var(--font-mono);
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -334,7 +334,7 @@
 .evidenceState > span {
   color: var(--color-interactive);
   font-family: var(--font-mono);
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -498,7 +498,7 @@
 
 @media (max-width: 640px) {
   .hero {
-    padding: 70px 0 58px;
+    padding: 48px 0 44px;
   }
 
   .heroCopy h1 {
@@ -506,8 +506,13 @@
   }
 
   .systemVisual {
-    min-height: 270px;
-    padding: 20px;
+    min-height: 0;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .heroGrid {
+    gap: 36px;
   }
 
   .progression li {
@@ -531,19 +536,16 @@
     padding: 9px;
   }
 
-  .factRail,
   .resourceGrid {
     grid-template-columns: 1fr;
   }
 
-  .factRail article,
-  .factRail article:nth-child(2) {
-    border-right: 0;
-    border-bottom: 1px solid var(--color-border);
+  .factRail article {
+    padding: 18px 16px;
   }
 
-  .factRail article:last-child {
-    border-bottom: 0;
+  .factRail strong {
+    font-size: 1.5rem;
   }
 
   .values li {

@@ -76,7 +76,7 @@
 .groupHeader span {
   color: var(--color-info);
   font-family: var(--font-mono);
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -100,7 +100,7 @@
   background: #eef8f4;
   color: var(--color-info);
   font-family: var(--font-mono);
-  font-size: .66rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .04em;
   text-transform: uppercase;

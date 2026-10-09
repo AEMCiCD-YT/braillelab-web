@@ -11,16 +11,6 @@ function SixPointCell({ letter }) {
   );
 }
 
-function MiniCell({ active = [0, 2, 5] }) {
-  return (
-    <div className={styles.miniCell}>
-      {Array.from({ length: 6 }).map((_, index) => (
-        <span key={index} className={active.includes(index) ? styles.active : undefined} />
-      ))}
-    </div>
-  );
-}
-
 function ChallengeVisual() {
   return (
     <div className={styles.challenge}>

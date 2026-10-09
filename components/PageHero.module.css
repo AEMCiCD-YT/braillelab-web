@@ -44,11 +44,11 @@
 
 @media (max-width: 560px) {
   .hero {
-    padding: 48px 0 52px;
+    padding: 40px 0 44px;
   }
 
   .grid {
-    gap: 30px;
+    gap: 26px;
   }
 
   .title {

@@ -18,7 +18,7 @@
   padding: 5px 10px;
   background: var(--color-accent);
   color: var(--color-on-accent);
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 850;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -158,6 +158,21 @@
 @media (max-width: 760px) {
   .explorer {
     padding-top: 32px;
+  }
+
+  /* Una sola fila desplazable en lugar de tres filas de botones. */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .filters button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
   }
 
   .grid {
