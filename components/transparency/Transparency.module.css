@@ -83,7 +83,11 @@
   letter-spacing: -.03em;
 }
 
-.cards small {
+.cards dd.cardNote {
+  margin: 0;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
   color: var(--color-text-muted);
   font-size: var(--type-small);
 }

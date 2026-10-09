@@ -83,35 +83,35 @@ export default function CampaignProgress() {
                 <div>
                   <dt>Efectivo recibido y verificado (neto)</dt>
                   <dd>{usd(cash.netReceived)}</dd>
-                  <small>
+                  <dd className={styles.figureNote}>
                     Bruto {usd(cash.grossIncome)}
                     {cash.refunds !== "0.00" && ` · devoluciones ${usd(cash.refunds)}`}
                     {cash.reversals !== "0.00" && ` · reversos ${usd(cash.reversals)}`}
-                  </small>
+                  </dd>
                 </div>
                 <div>
                   <dt>Avance hacia la meta total</dt>
                   <dd>{percent(cash.goalProgressBasisPoints)}</dd>
-                  <small>Solo cuenta efectivo verificado en el banco.</small>
+                  <dd className={styles.figureNote}>Solo cuenta efectivo verificado en el banco.</dd>
                 </div>
                 {execution && (
                   <div>
                     <dt>Gasto pagado</dt>
                     <dd>{usd(execution.paid)}</dd>
-                    <small>Comprometido pendiente {usd(execution.committedPending)}</small>
+                    <dd className={styles.figureNote}>Comprometido pendiente {usd(execution.committedPending)}</dd>
                   </div>
                 )}
                 {inKind && (
                   <div>
                     <dt>Aportes en especie (aparte del efectivo)</dt>
                     <dd>{usd(inKind.substituted)}</dd>
-                    <small>Costo del presupuesto cubierto con bienes aceptados y valorados.</small>
+                    <dd className={styles.figureNote}>Costo del presupuesto cubierto con bienes aceptados y valorados.</dd>
                   </div>
                 )}
                 <div>
                   <dt>Necesidad pendiente</dt>
                   <dd>{usd(data.pendingMonetaryNeed)}</dd>
-                  <small>Meta − efectivo verificado − costo cubierto en especie.</small>
+                  <dd className={styles.figureNote}>Meta − efectivo verificado − costo cubierto en especie.</dd>
                 </div>
               </dl>
               {data.dataState === "empty" && <p className={styles.muted}>Todavía no hay aportes verificados.</p>}

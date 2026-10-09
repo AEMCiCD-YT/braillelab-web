@@ -154,7 +154,7 @@ function Card({ label, value, note }) {
     <div>
       <dt>{label}</dt>
       <dd>{usd(value)}</dd>
-      <small>{note}</small>
+      <dd className={styles.cardNote}>{note}</dd>
     </div>
   );
 }

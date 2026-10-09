@@ -68,7 +68,7 @@
   font-weight: 700;
 }
 
-.figures small,
+.figures .figureNote,
 .muted,
 .meta {
   color: var(--color-text-muted);
@@ -164,4 +164,11 @@
   .goalRow {
     grid-template-columns: 1fr;
   }
+}
+
+.figures dd.figureNote {
+  margin: 0;
+  font-family: inherit;
+  font-size: var(--type-small);
+  font-weight: 400;
 }
