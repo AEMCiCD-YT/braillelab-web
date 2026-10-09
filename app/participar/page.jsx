@@ -102,7 +102,7 @@ export default function ParticiparPage() {
             <p>El botón principal se actualiza con cada etapa del Challenge; cuando abra la convocatoria, llevará al formulario oficial.</p>
           </div>
           <div className={layout.actionGroup}>
-            <EventActionLink primary />
+            <EventActionLink primary avoid={["/recursos"]} />
             <ArrowLink href="/recursos">Revisar recursos</ArrowLink>
           </div>
         </div>

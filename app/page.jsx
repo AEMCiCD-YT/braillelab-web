@@ -282,7 +282,7 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.closingActions}>
-            <EventActionLink primary />
+            <EventActionLink primary avoid={["/participar"]} />
             <ArrowLink href="/participar">Cómo participar</ArrowLink>
           </div>
         </div>

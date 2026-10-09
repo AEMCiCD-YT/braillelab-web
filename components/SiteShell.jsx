@@ -18,6 +18,11 @@ const links = [
   ["/transparencia", "Transparencia"],
 ];
 
+// Con trailingSlash la ruta llega como "/reto/"; los enlaces usan "/reto".
+function useCurrentPath() {
+  return usePathname()?.replace(/(.)\/$/, "$1");
+}
+
 function useChallengeRuntime() {
   const [runtime, setRuntime] = useState(null);
 
@@ -62,7 +67,7 @@ function BrandSignature({ footer = false, onClick }) {
 }
 
 export default function SiteShell({ children }) {
-  const pathname = usePathname()?.replace(/(.)\/$/, "$1");
+  const pathname = useCurrentPath();
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const navRef = useRef(null);
@@ -155,9 +160,15 @@ export function ArrowLink({ href, children, primary = false, external = false })
   return <Link href={href} className={className}>{children}<ArrowUpRight size={18} aria-hidden="true" /></Link>;
 }
 
-export function EventActionLink({ primary = false }) {
+const scheduleAction = { label: "Consultar cronograma", href: "/cronograma", external: false };
+
+// La acción cambia con la etapa; si apunta a la página actual o al destino del botón
+// vecino (`avoid`), se muestra `fallback` para no repetir el mismo enlace.
+export function EventActionLink({ primary = false, avoid = [], fallback = scheduleAction }) {
+  const pathname = useCurrentPath();
   const runtime = useChallengeRuntime();
-  const action = runtime?.action || { label: "Consultar cronograma", href: "/cronograma", external: false };
+  let action = runtime?.action || scheduleAction;
+  if (!action.external && (action.href === pathname || avoid.includes(action.href))) action = fallback;
   return <ArrowLink href={action.href} primary={primary} external={action.external}>{action.label}</ArrowLink>;
 }
 
