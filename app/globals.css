@@ -10,6 +10,7 @@
   --color-canvas:#ffffff;
   --color-surface:#ffffff;
   --color-surface-subtle:var(--brand-cloud);
+  --color-surface-soft:linear-gradient(135deg,#f5f8fb 0%,#eef6f7 100%);
   --color-text:var(--brand-night);
   --color-text-muted:#52606f;
   --color-border:#d4dee7;
@@ -25,6 +26,7 @@
   --type-display-xl:clamp(3rem,7.1vw,6.35rem);
   --type-display-lg:clamp(2.8rem,5.4vw,5rem);
   --type-heading-lg:clamp(2.1rem,4vw,4rem);
+  --type-heading-sm:clamp(1.45rem,2.4vw,2rem);
   --type-heading-md:1.55rem;
   --type-body-lg:clamp(1.1rem,2vw,1.38rem);
   --type-body:1rem;
@@ -44,6 +46,7 @@
   --shadow-soft:0 16px 42px rgb(11 19 43 / 8%);
   --shadow-hover:0 20px 48px rgb(11 19 43 / 14%);
   --wrap:min(1160px,calc(100% - 48px));
+  --section-space:104px;
 
   color:var(--color-text);
   background:var(--color-canvas);
@@ -175,6 +178,7 @@ button:focus-visible {
 @media (max-width:560px) {
   :root {
     --wrap:min(100% - 32px,1160px);
+    --section-space:76px;
   }
 }
 

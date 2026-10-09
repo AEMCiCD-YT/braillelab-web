@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { challengeStatus } from "../content/site";
 import { getTimelineState } from "../content/timeline";
+import { Eyebrow } from "./Visuals";
 import styles from "./HomeEventStatus.module.css";
 
 const SECOND = 1000;
@@ -83,55 +84,53 @@ export default function HomeEventStatus() {
   ];
 
   return (
-    <section className={styles.section} aria-labelledby="edition-status-title">
-      <div className={`wrap ${styles.grid}`}>
-        <div className={styles.status}>
-          <span className={styles.eyebrow}>Estado de la edición</span>
-          <h2 id="edition-status-title">{runtime.status.label}</h2>
-          <p>{runtime.statusCopy}</p>
-        </div>
-
-        <div className={styles.countdown}>
-          <div className={styles.countdownHeader}>
-            <div>
-              <span>Cuenta regresiva</span>
-              <strong>{runtime.target ? runtime.target.title : "Edición 2027"}</strong>
-            </div>
-            <small>{!ready ? "Sincronizando…" : runtime.target ? runtime.target.date : runtime.currentEvent ? runtime.currentEvent.date : "Proceso finalizado"}</small>
-          </div>
-
-          {!ready ? (
-            <div className={styles.complete}>
-              <strong>Sincronizando cronograma</strong>
-              <span>Calculando el próximo hito de la edición 2027.</span>
-            </div>
-          ) : runtime.target ? (
-            <>
-              <p className="sr-only">
-                Cuenta regresiva al próximo hito: {runtime.target.title}, {runtime.target.date}.
-              </p>
-              <div className={styles.units} aria-hidden="true">
-                {values.map(([label, value]) => (
-                  <div className={styles.unit} key={label}>
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : runtime.currentEvent ? (
-            <div className={styles.complete}>
-              <strong>Última etapa en curso</strong>
-              <span>{runtime.currentEvent.title} · {runtime.currentEvent.date}</span>
-            </div>
-          ) : (
-            <div className={styles.complete}>
-              <strong>Edición finalizada</strong>
-              <span>Consulta BrailleLab Ecuador para conocer la continuidad del programa.</span>
-            </div>
-          )}
-        </div>
+    <div className={styles.grid}>
+      <div className={styles.status}>
+        <Eyebrow>Estado de la edición</Eyebrow>
+        <h2>{runtime.status.label}</h2>
+        <p>{runtime.statusCopy}</p>
       </div>
-    </section>
+
+      <div className={styles.countdown}>
+        <div className={styles.countdownHeader}>
+          <div>
+            <span>Cuenta regresiva</span>
+            <strong>{runtime.target ? runtime.target.title : "Edición 2027"}</strong>
+          </div>
+          <small>{!ready ? "Sincronizando…" : runtime.target ? runtime.target.date : runtime.currentEvent ? runtime.currentEvent.date : "Proceso finalizado"}</small>
+        </div>
+
+        {!ready ? (
+          <div className={styles.complete}>
+            <strong>Sincronizando cronograma</strong>
+            <span>Calculando el próximo hito de la edición 2027.</span>
+          </div>
+        ) : runtime.target ? (
+          <>
+            <p className="sr-only">
+              Cuenta regresiva al próximo hito: {runtime.target.title}, {runtime.target.date}.
+            </p>
+            <div className={styles.units} aria-hidden="true">
+              {values.map(([label, value]) => (
+                <div className={styles.unit} key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : runtime.currentEvent ? (
+          <div className={styles.complete}>
+            <strong>Última etapa en curso</strong>
+            <span>{runtime.currentEvent.title} · {runtime.currentEvent.date}</span>
+          </div>
+        ) : (
+          <div className={styles.complete}>
+            <strong>Edición finalizada</strong>
+            <span>Consulta BrailleLab Ecuador para conocer la continuidad del programa.</span>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

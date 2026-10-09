@@ -12,7 +12,10 @@ export default function TimelineExplorer() {
 
   useEffect(() => {
     const highlighted = getHighlightedTimelineEvent(new Date());
-    if (highlighted) setSelectedId(highlighted.id);
+    if (highlighted) {
+      setFilter(highlighted.phase);
+      setSelectedId(highlighted.id);
+    }
   }, []);
 
   function selectFilter(id) {
@@ -33,11 +36,11 @@ export default function TimelineExplorer() {
         <p>Hito seleccionado</p>
         {selected ? <>
           <time>{selected.date}</time>
-          <h2>{selected.title}</h2>
+          <h3>{selected.title}</h3>
           <p>{selected.copy}</p>
           <span>{selected.phaseLabel}</span>
         </> : <>
-          <h2>Sincronizando cronograma</h2>
+          <h3>Sincronizando cronograma</h3>
           <p>Calculando el hito relevante de la edición 2027.</p>
         </>}
       </article>
@@ -59,19 +62,19 @@ export function TimelineStatus() {
   }, []);
 
   if (!timeline) {
-    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h2>Sincronizando cronograma</h2><p>Calculando el hito vigente.</p></div>;
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h3>Sincronizando cronograma</h3><p>Calculando el hito vigente.</p></div>;
   }
 
   const current = timeline.currentEvent || null;
   const next = timeline.nextEvent || null;
 
   if (current) {
-    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Hito actual</span><h2>{current.title}</h2><p>{current.date}</p></div>;
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Hito actual</span><h3>{current.title}</h3><p>{current.date}</p></div>;
   }
 
   if (next) {
-    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Próximo hito</span><h2>{next.title}</h2><p>{next.date}</p></div>;
+    return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Próximo hito</span><h3>{next.title}</h3><p>{next.date}</p></div>;
   }
 
-  return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h2>Proceso finalizado</h2><p>Consulta BrailleLab Ecuador para conocer las siguientes actividades.</p></div>;
+  return <div className={styles.statusHeader} aria-live="polite"><span className={styles.pill}>Edición 2027</span><h3>Proceso finalizado</h3><p>Consulta BrailleLab Ecuador para conocer las siguientes actividades.</p></div>;
 }

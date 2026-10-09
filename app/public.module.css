@@ -1,36 +1,8 @@
-.section {
-  padding: 104px 0;
-  scroll-margin-top: 120px;
-}
-
-.surfaceSoft {
-  padding: 104px 0;
-  scroll-margin-top: 120px;
-  background: linear-gradient(135deg, #f5f8fb 0%, #eef6f7 100%);
-}
-
-.surfaceSoft h2,
-.darkCta h2 {
-  margin-bottom: 20px;
-  font-size: var(--type-heading-lg);
-}
-
-.twoColumn {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
-  align-items: center;
-}
-
-.bodyCopy {
-  color: var(--color-text-muted);
-}
-
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  margin-top: 74px;
+  margin-top: 18px;
 }
 
 .metric {
@@ -47,7 +19,7 @@
   letter-spacing: -.06em;
 }
 
-.metric h2 {
+.metric h3 {
   margin: 13px 0 6px;
   font-size: 1.25rem;
 }
@@ -60,13 +32,13 @@
 .steps {
   display: grid;
   gap: 15px;
-  margin-top: 42px;
 }
 
 .step {
   display: flex;
   gap: 20px;
   padding: 20px;
+  border: var(--card-border);
   border-left: var(--step-rule);
   background: var(--card-surface);
 }
@@ -118,65 +90,15 @@
   font-family: var(--font-mono);
 }
 
-.darkCta {
-  padding: 90px 0;
-  background: var(--color-brand);
-  color: var(--color-on-dark);
-}
-
-.ctaContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-}
-
-.ctaContent h2 {
-  max-width: 680px;
-}
-
-.ctaContent p,
-.darkCta > div > p {
-  margin-bottom: 0;
-  color: #cad5e0;
-}
-
-.timelinePage {
-  padding: 90px 0;
-}
-
 @media (max-width: 900px) {
-  .twoColumn {
-    grid-template-columns: 1fr;
-    gap: 42px;
-  }
-
   .metrics {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .section,
-  .surfaceSoft {
-    padding: 76px 0;
-  }
-
   .metrics {
     grid-template-columns: 1fr;
-  }
-
-  .ctaContent {
-    display: block;
-  }
-
-  .ctaContent :global(.button) {
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .timelinePage {
-    padding: 70px 0;
   }
 }
 
@@ -190,27 +112,7 @@
   }
 }
 
-.actionGroup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-@media (max-width: 560px) {
-  .actionGroup {
-    display: grid;
-  }
-
-  .actionGroup :global(.button) {
-    width: 100%;
-  }
-}
-
-.twoColumn > *,
 .metrics > *,
-.ctaContent > *,
-.actionGroup > *,
 .step > * {
   min-width: 0;
 }

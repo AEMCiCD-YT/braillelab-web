@@ -54,10 +54,10 @@ export default function ParticipationState() {
       : runtime.action.label;
 
   return (
-    <section className={styles.state} aria-labelledby="participation-state-title">
+    <div className={styles.state}>
       <div className={styles.copy}>
         <span>{runtime.label}</span>
-        <h2 id="participation-state-title">{runtime.status}</h2>
+        <h3>{runtime.status}</h3>
         <p>{runtime.copy}</p>
       </div>
       <div className={styles.window}>
@@ -75,6 +75,6 @@ export default function ParticipationState() {
       <div className={styles.action}>
         <ArrowLink href={fallbackHref} primary external={runtime.action.external}>{fallbackLabel}</ArrowLink>
       </div>
-    </section>
+    </div>
   );
 }
