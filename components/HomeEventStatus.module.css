@@ -36,10 +36,6 @@
   color: var(--color-text-muted);
 }
 
-.action {
-  margin-top: 18px;
-}
-
 .countdown {
   min-width: 0;
   padding: 20px;
@@ -134,10 +130,6 @@
   .grid {
     grid-template-columns: 1fr;
   }
-
-  .action :global(.button) {
-    width: fit-content;
-  }
 }
 
 @media (max-width: 520px) {
@@ -165,9 +157,5 @@
 
   .unit {
     min-height: 72px;
-  }
-
-  .action :global(.button) {
-    width: 100%;
   }
 }

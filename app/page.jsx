@@ -5,6 +5,7 @@ import PhaseFlow from "../components/PhaseFlow";
 import HomeMilestones from "../components/HomeMilestones";
 import HomeEventStatus from "../components/HomeEventStatus";
 import { site } from "../content/site";
+import { brailleGridOrder, letterDots } from "../content/braille";
 import styles from "./home.module.css";
 import { buildMetadata } from "../content/metadata";
 
@@ -31,33 +32,65 @@ const values = [
 
 const highlightedResources = site.resources.slice(0, 3);
 
-function AbstractSystemVisual({ compact = false }) {
-  const patterns = [
-    [0, 3, 5],
-    [1, 2, 4],
-    [0, 4, 5],
-    [1, 3, 5],
+function cellPoints(letter) {
+  const dots = letterDots(letter);
+  return brailleGridOrder.map((dot) => dots.includes(dot));
+}
+
+function MiniCell({ letter }) {
+  return (
+    <div className={styles.miniCell}>
+      {cellPoints(letter).map((active, pointIndex) => (
+        <span className={active ? styles.activePoint : styles.point} key={pointIndex} />
+      ))}
+    </div>
+  );
+}
+
+function BrailleWord({ word }) {
+  return [...word].map((letter, index) => <MiniCell letter={letter} key={index} />);
+}
+
+function ProgressionVisual() {
+  const steps = [
+    ["Punto", null, <span className={styles.singlePoint} key="point" />],
+    ["Celda", "b", <BrailleWord word="b" key="cell" />],
+    ["Módulo", "lab", <BrailleWord word="lab" key="module" />],
+    ["Sistema", "ecuador", <BrailleWord word="ecuador" key="system" />],
   ];
 
   return (
-    <div className={compact ? styles.systemVisualCompact : styles.systemVisual} aria-hidden="true">
-      <div className={styles.systemLabel}>punto</div>
+    <ol className={styles.progression} aria-hidden="true">
+      {steps.map(([label, word, visual], index) => (
+        <li key={label}>
+          <span>
+            {String(index + 1).padStart(2, "0")} · {label}
+            {word ? <em>«{word}»</em> : null}
+          </span>
+          <div>{visual}</div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+const heroWord = "tech";
+
+function AbstractSystemVisual() {
+  return (
+    <div className={styles.systemVisual} aria-hidden="true">
+      <div className={styles.systemLabel}>Braille · seis puntos</div>
       <div className={styles.systemTrack}>
-        {patterns.map((pattern, cellIndex) => (
+        {[...heroWord].map((letter, cellIndex) => (
           <div className={styles.systemCell} key={cellIndex}>
-            {Array.from({ length: 6 }).map((_, pointIndex) => (
-              <span
-                className={pattern.includes(pointIndex) ? styles.activePoint : styles.point}
-                key={pointIndex}
-              />
+            {cellPoints(letter).map((active, pointIndex) => (
+              <span className={active ? styles.activePoint : styles.point} key={pointIndex} />
             ))}
           </div>
         ))}
       </div>
       <div className={styles.systemLegend}>
-        <span>celda</span>
-        <span>módulo</span>
-        <span>sistema</span>
+        {[...heroWord].map((letter, index) => <span key={index}>{letter}</span>)}
       </div>
     </div>
   );
@@ -84,7 +117,7 @@ export default function Home() {
           </div>
           <div>
             <AbstractSystemVisual />
-            <p className={styles.visualCaption}>Retícula abstracta 2×3 inspirada en la lógica de una celda Braille de seis puntos. No representa un carácter Braille.</p>
+            <p className={styles.visualCaption}>La palabra «tech» escrita en Braille de seis puntos.</p>
           </div>
         </div>
       </section>
@@ -141,8 +174,8 @@ export default function Home() {
           </ul>
         </div>
         <div className={styles.systemPanel}>
-          <AbstractSystemVisual compact />
-          <p>Progresión conceptual, no codificación Braille textual.</p>
+          <ProgressionVisual />
+          <p>Cada fila está escrita en Braille: «b», «lab» y «ecuador».</p>
         </div>
       </section>
 
@@ -203,22 +236,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.participationShell}>
-        <div className={`wrap ${styles.participationSection}`}>
-          <div>
-            <Eyebrow>Participación 2027</Eyebrow>
-            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
-            <p>
-              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
-            </p>
-          </div>
-          <div className={styles.participationAction}>
-            <EventActionLink primary />
-            <ArrowLink href="/participar">Cómo participar</ArrowLink>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.coorgSection}>
         <div className={`wrap ${styles.coorgGrid}`}>
           <div>
@@ -255,13 +272,18 @@ export default function Home() {
       <section className={styles.closing}>
         <div className={`wrap ${styles.closingGrid}`}>
           <div>
-            <Eyebrow tone="dark">BrailleLab Ecuador</Eyebrow>
-            <h2>Ingeniería abierta, accesibilidad y capacidad local.</h2>
-            <p>Para participación, alianzas o consultas institucionales, utiliza los canales oficiales del programa.</p>
+            <Eyebrow tone="dark">Participación 2027</Eyebrow>
+            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
+            <p>
+              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
+            </p>
+            <p className={styles.closingContact}>
+              Alianzas y consultas institucionales: <a href={`mailto:${site.contact}`}>{site.contact}</a>
+            </p>
           </div>
           <div className={styles.closingActions}>
-            <EventActionLink primary />
-            <a className="button button-secondary" href={`mailto:${site.contact}`}>{site.contact}</a>
+            <EventActionLink primary avoid={["/participar"]} />
+            <ArrowLink href="/participar">Cómo participar</ArrowLink>
           </div>
         </div>
       </section>

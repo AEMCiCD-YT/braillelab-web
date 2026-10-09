@@ -2,8 +2,8 @@
   display: grid;
   gap: 22px;
   padding: clamp(22px, 4vw, 34px);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .goalRow {
@@ -52,8 +52,8 @@
 
 .figures > div {
   padding: 16px;
-  border-left: 4px solid var(--color-interactive);
-  background: var(--color-surface-subtle);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .figures dt {
@@ -105,8 +105,8 @@
 .instructions,
 .instructionsPending {
   padding: 22px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .instructionsPending {
@@ -145,7 +145,8 @@
   gap: 6px;
   align-content: start;
   padding: 16px;
-  border: 1px solid var(--color-border);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .institutions img {

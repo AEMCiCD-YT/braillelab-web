@@ -35,6 +35,12 @@
   --tracking-display:-.045em;
   --tracking-meta:.12em;
 
+  /* Tres tipos de tarjeta: informativa, paso/secuencia y panel oscuro. */
+  --card-border:1px solid var(--color-border);
+  --card-surface:var(--color-surface);
+  --step-rule:3px solid var(--color-interactive);
+  --panel-border:1px solid rgb(255 255 255 / 14%);
+
   --shadow-soft:0 16px 42px rgb(11 19 43 / 8%);
   --shadow-hover:0 20px 48px rgb(11 19 43 / 14%);
   --wrap:min(1160px,calc(100% - 48px));

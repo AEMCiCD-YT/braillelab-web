@@ -44,6 +44,18 @@ Los componentes deben usar los tokens semánticos para color de interfaz. Los to
 
 Los alias históricos (`--night`, `--cyan`, `--petrol`, `--signal`, `--cloud`, `--paper`, `--ink`, `--muted`, `--line`) fueron retirados en el issue #7. No deben reintroducirse; una nueva edición cambia contenido/configuración y, cuando corresponda, valores de tokens, no crea una segunda API de colores.
 
+## Tarjetas y contenedores
+
+Las tarjetas usan solo tres tipos, con esquinas rectas:
+
+| Tipo | Tokens | Uso |
+| --- | --- | --- |
+| Informativa | `--card-border`, `--card-surface` | cifras, documentos, modalidades, listas de datos. Sin sombra ni elevación al pasar el cursor, porque no son enlaces. |
+| Paso / secuencia | `--step-rule` (arriba o a la izquierda), `--card-surface` | contenido con orden: fases, pasos, criterios numerados, FAQ abierta. |
+| Panel oscuro | `--panel-border` sobre Azul noche | visuales del hero, estados y datos destacados. |
+
+Los avisos (filete de 4px amarillo, petróleo o coral sobre fondo claro) no son tarjetas: comunican estado o advertencia. Las sombras se reservan para elementos flotantes, como el menú móvil y la cuenta regresiva.
+
 ## Escala tipográfica
 
 - `--type-display-xl`: hero principal.

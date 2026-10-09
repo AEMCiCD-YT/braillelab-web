@@ -74,7 +74,7 @@
   width: 100%;
   min-height: 70px;
   display: grid;
-  grid-template-columns: 126px 1fr auto;
+  grid-template-columns: 178px 1fr auto;
   gap: 14px;
   align-items: center;
   padding: 14px 12px;
@@ -96,6 +96,7 @@
 .eventList time {
   color: var(--color-info);
   font-family: var(--font-mono);
+  font-size: .9rem;
   font-weight: 800;
 }
 
@@ -107,6 +108,11 @@
   color: var(--color-text-muted);
   font-size: .75rem;
   text-align: right;
+}
+
+/* Visible only on mobile, where the detail panel would sit below the whole list. */
+.eventList .inlineDetail {
+  display: none;
 }
 
 .detail {
@@ -159,7 +165,7 @@
   }
 
   .detail {
-    position: static;
+    display: none;
   }
 
   .eventList button {
@@ -179,5 +185,14 @@
   .eventList span {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+
+  .eventList .inlineDetail {
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 4;
+    padding-top: 4px;
+    color: var(--color-text-muted);
+    font-weight: 400;
   }
 }

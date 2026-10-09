@@ -125,7 +125,7 @@ export default function RecursosPage() {
             <h2>Consulta solo versiones 2027 publicadas por los canales oficiales.</h2>
           </div>
           <div className={layout.actionGroup}>
-            <EventActionLink primary />
+            <EventActionLink primary avoid={["/cronograma"]} fallback={{ label: "Preparar participación", href: "/participar" }} />
             <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
           </div>
         </div>

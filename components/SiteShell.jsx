@@ -18,6 +18,11 @@ const links = [
   ["/transparencia", "Transparencia"],
 ];
 
+// Con trailingSlash la ruta llega como "/reto/"; los enlaces usan "/reto".
+function useCurrentPath() {
+  return usePathname()?.replace(/(.)\/$/, "$1");
+}
+
 function useChallengeRuntime() {
   const [runtime, setRuntime] = useState(null);
 
@@ -48,7 +53,7 @@ function BrandSignature({ footer = false, onClick }) {
     >
       <img
         className={styles.signatureMark}
-        src={brandAssets.mark}
+        src={brandAssets.markNegative}
         alt=""
         aria-hidden="true"
       />
@@ -62,7 +67,7 @@ function BrandSignature({ footer = false, onClick }) {
 }
 
 export default function SiteShell({ children }) {
-  const pathname = usePathname();
+  const pathname = useCurrentPath();
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const navRef = useRef(null);
@@ -104,26 +109,28 @@ export default function SiteShell({ children }) {
         <span>{status.detail}</span>
       </div>
     </div>
-    <header className={`wrap ${styles.header}`}>
-      <BrandSignature onClick={() => setOpen(false)} />
-      <button ref={menuButtonRef} className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
-        {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
-      </button>
-      <nav ref={navRef} id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
-        {links.map(([href, label]) => (
-          <Link
-            key={href}
-            href={href}
-            className={pathname === href ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
-            aria-current={pathname === href ? "page" : undefined}
-            onClick={() => setOpen(false)}
-          >
-            {label}
-          </Link>
-        ))}
-      </nav>
-    </header>
+    <div className={styles.headerBar}>
+      <header className={`wrap ${styles.header}`}>
+        <BrandSignature onClick={() => setOpen(false)} />
+        <button ref={menuButtonRef} className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
+        </button>
+        <nav ref={navRef} id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
+          {links.map(([href, label]) => (
+            <Link
+              key={href}
+              href={href}
+              className={pathname === href ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
+              aria-current={pathname === href ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </header>
+    </div>
     <main ref={mainRef} id="main" tabIndex="-1">{children}</main>
     <footer className={styles.footer}>
       <div className={`wrap ${styles.footerGrid}`}>
@@ -153,9 +160,15 @@ export function ArrowLink({ href, children, primary = false, external = false })
   return <Link href={href} className={className}>{children}<ArrowUpRight size={18} aria-hidden="true" /></Link>;
 }
 
-export function EventActionLink({ primary = false }) {
+const scheduleAction = { label: "Consultar cronograma", href: "/cronograma", external: false };
+
+// La acción cambia con la etapa; si apunta a la página actual o al destino del botón
+// vecino (`avoid`), se muestra `fallback` para no repetir el mismo enlace.
+export function EventActionLink({ primary = false, avoid = [], fallback = scheduleAction }) {
+  const pathname = useCurrentPath();
   const runtime = useChallengeRuntime();
-  const action = runtime?.action || { label: "Consultar cronograma", href: "/cronograma", external: false };
+  let action = runtime?.action || scheduleAction;
+  if (!action.external && (action.href === pathname || avoid.includes(action.href))) action = fallback;
   return <ArrowLink href={action.href} primary={primary} external={action.external}>{action.label}</ArrowLink>;
 }
 

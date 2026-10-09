@@ -5,7 +5,8 @@
 }
 
 .document {
-  background: var(--color-surface-subtle);
+  border: var(--card-border);
+  background: var(--card-surface);
   display: flex;
   flex-direction: column;
   min-height: 270px;
@@ -115,8 +116,8 @@
 .order article {
   min-height: 150px;
   padding: 20px;
-  border-top: 3px solid var(--color-interactive);
-  background: var(--color-surface);
+  border-top: var(--step-rule);
+  background: var(--card-surface);
 }
 
 .order span {

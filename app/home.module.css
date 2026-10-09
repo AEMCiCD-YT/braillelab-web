@@ -74,19 +74,17 @@
   line-height: 1.45;
 }
 
-.systemVisual,
-.systemVisualCompact {
+.systemVisual {
   position: relative;
   min-height: 390px;
   display: grid;
   align-content: center;
   gap: 18px;
   padding: clamp(26px, 4vw, 46px);
-  border: 1px solid rgb(255 255 255 / 16%);
+  border: var(--panel-border);
   background:
     linear-gradient(135deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 2%)),
     var(--brand-night-2);
-  box-shadow: 0 28px 70px rgb(0 0 0 / 18%);
 }
 
 .systemLabel {
@@ -151,20 +149,19 @@
 
 .systemLegend {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(62px, 1fr));
+  gap: 14px;
   color: #d7e0e8;
   font-family: var(--font-mono);
   font-size: .7rem;
   text-transform: uppercase;
 }
 
-.systemLegend span:nth-child(2) {
+.systemLegend span {
+  font-size: .95rem;
+  font-weight: 700;
   text-align: center;
-}
-
-.systemLegend span:last-child {
-  text-align: right;
+  text-transform: none;
 }
 
 .factsSection {
@@ -176,8 +173,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 0;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .factRail article {
@@ -222,7 +219,6 @@
 .sectionCopy h2,
 .sectionHeading h2,
 .evidenceGrid h2,
-.participationSection h2,
 .coorgGrid h2,
 .demoCopy h2,
 .closingGrid h2 {
@@ -232,7 +228,6 @@
 
 .sectionCopy > p,
 .evidenceGrid > div > p,
-.participationSection > div > p,
 .demoCopy > p,
 .closingGrid > div > p {
   max-width: 700px;
@@ -270,12 +265,69 @@
   color: var(--color-on-dark);
 }
 
-.systemPanel .systemVisualCompact {
-  min-height: 280px;
-  padding: 18px;
-  border: 0;
-  box-shadow: none;
-  background: transparent;
+.progression {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progression li {
+  min-height: 74px;
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+.progression li > span {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.progression em {
+  display: block;
+  margin-top: 4px;
+  color: #c6d4e1;
+  font-size: .78rem;
+  font-style: normal;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+.progression li > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.miniCell {
+  width: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid rgb(255 255 255 / 12%);
+}
+
+.progression li:nth-child(2) .miniCell {
+  width: 46px;
+  gap: 5px;
+  padding: 6px;
+}
+
+.singlePoint {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-interactive);
+  box-shadow: 0 0 0 5px rgb(0 175 199 / 14%);
 }
 
 .systemPanel > p {
@@ -333,7 +385,7 @@
 
 .evidenceState {
   padding: 30px;
-  border: 1px solid rgb(255 255 255 / 15%);
+  border: var(--panel-border);
   background: var(--brand-night-2);
 }
 
@@ -393,8 +445,8 @@
   display: flex;
   flex-direction: column;
   padding: 26px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .resourceGrid article > span {
@@ -420,25 +472,6 @@
   font-weight: 700;
 }
 
-.participationShell {
-  background: #eef8f4;
-  border-block: 1px solid rgb(0 124 131 / 10%);
-}
-
-.participationSection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 50px;
-  align-items: center;
-  padding: 110px 0;
-}
-
-.participationAction {
-  display: grid;
-  gap: 12px;
-  min-width: 230px;
-}
-
 .coorgSection {
   padding: 72px 0;
   border-block: 1px solid var(--color-border);
@@ -447,9 +480,13 @@
 
 .coorgGrid {
   display: grid;
-  grid-template-columns: minmax(240px, .8fr) minmax(360px, 1.2fr) auto;
-  gap: 42px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px 42px;
   align-items: center;
+}
+
+.coorgGrid > div:first-child {
+  grid-column: 1 / -1;
 }
 
 .coorgGrid h2 {
@@ -461,6 +498,9 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  min-height: 50px;
+  padding-left: 18px;
+  border-left: 3px solid var(--color-info);
   color: var(--color-brand);
   font-weight: 800;
 }
@@ -530,6 +570,17 @@
   color: #cad6df;
 }
 
+.closingGrid > div > .closingContact {
+  margin-top: 22px;
+  font-size: .95rem;
+}
+
+.closingContact a {
+  color: var(--color-interactive);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
 .closingActions {
   display: grid;
   gap: 12px;
@@ -577,12 +628,10 @@
     grid-column: 1 / -1;
   }
 
-  .participationSection,
   .closingGrid {
     grid-template-columns: 1fr;
   }
 
-  .participationAction,
   .closingActions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     min-width: 0;
@@ -612,7 +661,18 @@
     padding: 20px;
   }
 
-  .systemTrack {
+  .progression li {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-block: 14px;
+  }
+
+  .progression .miniCell {
+    width: 27px;
+  }
+
+  .systemTrack,
+  .systemLegend {
     grid-template-columns: repeat(4, minmax(48px, 1fr));
     gap: 8px;
   }
@@ -640,8 +700,7 @@
   .challengeSection,
   .systemSection,
   .demoSection,
-  .milestonesSection,
-  .participationSection {
+  .milestonesSection {
     padding-block: 78px;
   }
 
@@ -672,7 +731,6 @@
     grid-column: auto;
   }
 
-  .participationAction,
   .closingActions {
     grid-template-columns: 1fr;
   }
@@ -706,7 +764,6 @@
 .challengeSection > *,
 .systemSection > *,
 .evidenceGrid > *,
-.participationSection > *,
 .coorgGrid > *,
 .demoSection > *,
 .closingGrid > * {

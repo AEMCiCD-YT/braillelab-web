@@ -76,7 +76,7 @@ export default function RetoPage() {
           </div>
           <div className={layout.actionGroup}>
             <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
-            <EventActionLink />
+            <EventActionLink avoid={["/recursos"]} />
           </div>
         </div>
       </section>

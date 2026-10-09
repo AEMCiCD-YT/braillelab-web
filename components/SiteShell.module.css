@@ -42,6 +42,12 @@
   background: var(--color-accent);
 }
 
+.headerBar {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+}
+
 .header {
   height: 88px;
   position: relative;
@@ -56,7 +62,7 @@
   align-items: center;
   gap: 7px;
   min-width: 0;
-  color: var(--color-brand);
+  color: var(--color-on-dark);
   text-decoration: none;
   touch-action: manipulation;
 }
@@ -93,7 +99,7 @@
 
 .signatureCountry {
   padding-left: 1px;
-  color: var(--color-brand);
+  color: #c6d4e1;
   font-family: var(--font-body);
   font-size: .58rem;
   font-weight: 300;
@@ -140,7 +146,7 @@
   padding: 12px;
   border: 0;
   background: transparent;
-  color: var(--color-brand);
+  color: var(--color-on-dark);
   touch-action: manipulation;
 }
 
@@ -154,8 +160,9 @@
 }
 
 .footer {
-  border-top: 1px solid var(--color-border);
-  background: #fbfcfd;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  background: var(--color-brand);
+  color: var(--color-on-dark);
 }
 
 .footerGrid {
@@ -166,7 +173,7 @@
 }
 
 .footerGrid p {
-  color: var(--color-text-muted);
+  color: #c6d4e1;
   font-size: .92rem;
 }
 
@@ -188,7 +195,7 @@
 }
 
 .footerTitle {
-  color: var(--color-brand);
+  color: var(--color-on-dark);
   font-size: .8rem;
   font-weight: 850;
   letter-spacing: var(--tracking-meta);
@@ -200,7 +207,7 @@
   display: flex;
   align-items: center;
   margin: 2px 0;
-  color: var(--color-info);
+  color: var(--color-interactive);
   font-size: .92rem;
   font-weight: 800;
   text-decoration: none;
@@ -211,7 +218,7 @@
 .footerLinks a:focus-visible,
 .contact a:hover,
 .contact a:focus-visible {
-  color: var(--color-info);
+  color: var(--color-interactive);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -226,7 +233,7 @@
   min-height: 44px;
   display: flex;
   align-items: center;
-  color: var(--color-info);
+  color: var(--color-interactive);
   font-size: .92rem;
   font-weight: 800;
   touch-action: manipulation;
@@ -241,15 +248,16 @@
     right: 0;
     left: 0;
     padding: 18px;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
+    border-block: 1px solid rgb(255 255 255 / 12%);
+    background: var(--brand-night-2);
   }
 
   .navOpen {
     display: grid;
     max-height: calc(100vh - 124px);
     overflow-y: auto;
-    box-shadow: var(--shadow-soft);
+    border-bottom: 2px solid var(--color-interactive);
+    box-shadow: 0 28px 48px rgb(0 0 0 / 45%);
   }
 
   .navLink {

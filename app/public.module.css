@@ -26,40 +26,6 @@
   color: var(--color-text-muted);
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.card {
-  min-height: 230px;
-  padding: 28px;
-  border: 1px solid rgb(11 19 43 / 13%);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-
-.card:hover {
-  border-color: rgb(0 124 131 / 48%);
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-3px);
-}
-
-.cardIndex {
-  color: var(--color-info);
-  font-family: var(--font-mono);
-  font-weight: 800;
-}
-
-.card h2 {
-  margin: 26px 0 10px;
-  font-size: var(--type-heading-md);
-}
-
-.card p {
-  color: var(--color-text-muted);
-}
-
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -69,14 +35,8 @@
 
 .metric {
   padding: 26px;
-  border: 1px solid rgb(11 19 43 / 13%);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-
-.metric:hover {
-  border-color: rgb(0 124 131 / 48%);
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-3px);
+  border: var(--card-border);
+  background: var(--card-surface);
 }
 
 .metric > b {
@@ -107,8 +67,8 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  border-left: 4px solid var(--color-interactive);
-  background: var(--color-surface);
+  border-left: var(--step-rule);
+  background: var(--card-surface);
 }
 
 .step > b {
@@ -158,37 +118,6 @@
   font-family: var(--font-mono);
 }
 
-.support {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.support article {
-  min-height: 190px;
-  padding: 26px;
-  border: 1px solid rgb(11 19 43 / 13%);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-
-.support article:hover {
-  border-color: rgb(0 124 131 / 48%);
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-3px);
-}
-
-.support article:last-child {
-  grid-column: 2;
-}
-
-.support h3 {
-  font-size: 1.4rem;
-}
-
-.support p {
-  color: var(--color-text-muted);
-}
-
 .darkCta {
   padding: 90px 0;
   background: var(--color-brand);
@@ -222,14 +151,8 @@
     gap: 42px;
   }
 
-  .cards,
-  .metrics,
-  .support {
+  .metrics {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .support article:last-child {
-    grid-column: auto;
   }
 }
 
@@ -239,16 +162,8 @@
     padding: 76px 0;
   }
 
-  .cards,
-  .metrics,
-  .support {
+  .metrics {
     grid-template-columns: 1fr;
-  }
-
-  .card:hover,
-  .metric:hover,
-  .support article:hover {
-    transform: none;
   }
 
   .ctaContent {
@@ -266,17 +181,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card,
-  .metric,
-  .processList li,
-  .support article {
+  .processList li {
     transition: none;
-  }
-
-  .card:hover,
-  .metric:hover,
-  .support article:hover {
-    transform: none;
   }
 
   .processList li:hover {
@@ -302,9 +208,7 @@
 }
 
 .twoColumn > *,
-.cards > *,
 .metrics > *,
-.support > *,
 .ctaContent > *,
 .actionGroup > *,
 .step > * {

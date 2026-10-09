@@ -14,16 +14,10 @@ function buildMilestones(now) {
     return lastEvent ? [{ ...lastEvent, status: "Finalizado" }] : [];
   }
 
-  if (currentEvent) {
-    return relevant.slice(0, 4).map((event) => ({
-      ...event,
-      status: event.id === currentEvent.id ? "Ahora" : "Próximo",
-    }));
-  }
-
+  const nextIndex = currentEvent ? 1 : 0;
   return relevant.slice(0, 4).map((event, index) => ({
     ...event,
-    status: index === 0 ? "Próximo" : "Después",
+    status: currentEvent?.id === event.id ? "Ahora" : index === nextIndex ? "Próximo" : "Después",
   }));
 }
 
@@ -49,7 +43,7 @@ export default function HomeMilestones() {
       {milestones.map((event) => (
         <li key={event.id} className={styles.item}>
           <div className={styles.meta}>
-            <span>{event.status}</span>
+            <span data-status={event.status}>{event.status}</span>
             <time>{event.date}</time>
           </div>
           <div>

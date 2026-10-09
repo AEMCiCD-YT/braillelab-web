@@ -66,7 +66,7 @@ export default function CronogramaPage() {
             <h2>Sigue el siguiente hito sin perder de vista la ruta completa.</h2>
           </div>
           <div className={layout.actionGroup}>
-            <EventActionLink primary />
+            <EventActionLink primary avoid={["/participar"]} fallback={{ label: "Revisar recursos", href: "/recursos" }} />
             <ArrowLink href="/participar">Cómo participar</ArrowLink>
           </div>
         </div>

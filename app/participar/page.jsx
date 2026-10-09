@@ -99,11 +99,11 @@ export default function ParticiparPage() {
           <div>
             <Eyebrow tone="dark">Mantente en la ruta correcta</Eyebrow>
             <h2>La siguiente acción cambia conforme avanza la edición.</h2>
-            <p>El sitio adapta el CTA según apertura, cierre y etapa del Challenge.</p>
+            <p>El botón principal se actualiza con cada etapa del Challenge; cuando abra la convocatoria, llevará al formulario oficial.</p>
           </div>
           <div className={layout.actionGroup}>
-            <EventActionLink primary />
-            <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
+            <EventActionLink primary avoid={["/recursos"]} />
+            <ArrowLink href="/recursos">Revisar recursos</ArrowLink>
           </div>
         </div>
       </section>

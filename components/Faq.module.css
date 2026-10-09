@@ -16,16 +16,13 @@
 }
 
 .item {
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-left: 3px solid transparent;
+  background: var(--card-surface);
+  border: var(--card-border);
   margin-top: 9px;
-  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .item[open] {
-  border-left-color: var(--color-interactive);
-  box-shadow: 0 10px 24px rgb(5 31 44 / 7%);
+  border-left: var(--step-rule);
 }
 
 .item summary {
@@ -64,10 +61,4 @@
 .item summary:focus-visible {
   outline: 3px solid var(--color-interactive);
   outline-offset: -3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .item {
-    transition: none;
-  }
 }

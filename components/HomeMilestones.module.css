@@ -37,6 +37,12 @@
   text-transform: uppercase;
 }
 
+.meta span[data-status="Después"] {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  color: var(--color-text-muted);
+}
+
 .meta time {
   color: var(--color-info);
   font-family: var(--font-mono);

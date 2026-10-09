@@ -18,7 +18,7 @@ export const metadata = buildMetadata({
 export default function TransparenciaPage() {
   return (
     <SiteShell>
-      <PageHero eyebrow="Transparencia · campaña 2027" title="Lo recaudado, lo utilizado y lo que falta." visual="resources" accent="petrol">
+      <PageHero eyebrow="Transparencia · campaña 2027" title="Lo recaudado, lo utilizado y lo que falta." visual="transparency" accent="petrol">
         Cifras de la campaña BrailleLab Ecuador 2027 tomadas de los registros verificados de Tesorería de AEMCiCD. Se actualizan sin
         cambios en este sitio y nunca incluyen comprobantes originales ni datos personales.
       </PageHero>
