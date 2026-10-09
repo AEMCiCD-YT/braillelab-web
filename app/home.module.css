@@ -221,7 +221,6 @@
 .sectionCopy h2,
 .sectionHeading h2,
 .evidenceGrid h2,
-.participationSection h2,
 .coorgGrid h2,
 .demoCopy h2,
 .closingGrid h2 {
@@ -231,7 +230,6 @@
 
 .sectionCopy > p,
 .evidenceGrid > div > p,
-.participationSection > div > p,
 .demoCopy > p,
 .closingGrid > div > p {
   max-width: 700px;
@@ -466,25 +464,6 @@
   font-weight: 700;
 }
 
-.participationShell {
-  background: #eef8f4;
-  border-block: 1px solid rgb(0 124 131 / 10%);
-}
-
-.participationSection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 50px;
-  align-items: center;
-  padding: 110px 0;
-}
-
-.participationAction {
-  display: grid;
-  gap: 12px;
-  min-width: 230px;
-}
-
 .coorgSection {
   padding: 72px 0;
   border-block: 1px solid var(--color-border);
@@ -493,9 +472,13 @@
 
 .coorgGrid {
   display: grid;
-  grid-template-columns: minmax(240px, .8fr) minmax(360px, 1.2fr) auto;
-  gap: 42px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px 42px;
   align-items: center;
+}
+
+.coorgGrid > div:first-child {
+  grid-column: 1 / -1;
 }
 
 .coorgGrid h2 {
@@ -507,6 +490,9 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  min-height: 50px;
+  padding-left: 18px;
+  border-left: 3px solid var(--color-info);
   color: var(--color-brand);
   font-weight: 800;
 }
@@ -576,6 +562,17 @@
   color: #cad6df;
 }
 
+.closingGrid > div > .closingContact {
+  margin-top: 22px;
+  font-size: .95rem;
+}
+
+.closingContact a {
+  color: var(--color-interactive);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
 .closingActions {
   display: grid;
   gap: 12px;
@@ -623,12 +620,10 @@
     grid-column: 1 / -1;
   }
 
-  .participationSection,
   .closingGrid {
     grid-template-columns: 1fr;
   }
 
-  .participationAction,
   .closingActions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     min-width: 0;
@@ -686,8 +681,7 @@
   .challengeSection,
   .systemSection,
   .demoSection,
-  .milestonesSection,
-  .participationSection {
+  .milestonesSection {
     padding-block: 78px;
   }
 
@@ -718,7 +712,6 @@
     grid-column: auto;
   }
 
-  .participationAction,
   .closingActions {
     grid-template-columns: 1fr;
   }
@@ -752,7 +745,6 @@
 .challengeSection > *,
 .systemSection > *,
 .evidenceGrid > *,
-.participationSection > *,
 .coorgGrid > *,
 .demoSection > *,
 .closingGrid > * {

@@ -110,6 +110,11 @@
   text-align: right;
 }
 
+/* Visible only on mobile, where the detail panel would sit below the whole list. */
+.eventList .inlineDetail {
+  display: none;
+}
+
 .detail {
   position: sticky;
   top: 22px;
@@ -160,7 +165,7 @@
   }
 
   .detail {
-    position: static;
+    display: none;
   }
 
   .eventList button {
@@ -180,5 +185,14 @@
   .eventList span {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+
+  .eventList .inlineDetail {
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 4;
+    padding-top: 4px;
+    color: var(--color-text-muted);
+    font-weight: 400;
   }
 }

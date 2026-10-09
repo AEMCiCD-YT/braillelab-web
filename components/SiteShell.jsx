@@ -48,7 +48,7 @@ function BrandSignature({ footer = false, onClick }) {
     >
       <img
         className={styles.signatureMark}
-        src={brandAssets.mark}
+        src={brandAssets.markNegative}
         alt=""
         aria-hidden="true"
       />
@@ -62,7 +62,7 @@ function BrandSignature({ footer = false, onClick }) {
 }
 
 export default function SiteShell({ children }) {
-  const pathname = usePathname();
+  const pathname = usePathname()?.replace(/(.)\/$/, "$1");
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const navRef = useRef(null);
@@ -104,26 +104,28 @@ export default function SiteShell({ children }) {
         <span>{status.detail}</span>
       </div>
     </div>
-    <header className={`wrap ${styles.header}`}>
-      <BrandSignature onClick={() => setOpen(false)} />
-      <button ref={menuButtonRef} className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
-        {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
-      </button>
-      <nav ref={navRef} id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
-        {links.map(([href, label]) => (
-          <Link
-            key={href}
-            href={href}
-            className={pathname === href ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
-            aria-current={pathname === href ? "page" : undefined}
-            onClick={() => setOpen(false)}
-          >
-            {label}
-          </Link>
-        ))}
-      </nav>
-    </header>
+    <div className={styles.headerBar}>
+      <header className={`wrap ${styles.header}`}>
+        <BrandSignature onClick={() => setOpen(false)} />
+        <button ref={menuButtonRef} className={styles.menuToggle} type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-nav">
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          <span className="sr-only">{open ? "Cerrar" : "Abrir"} navegación</span>
+        </button>
+        <nav ref={navRef} id="main-nav" className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav} aria-label="Navegación principal">
+          {links.map(([href, label]) => (
+            <Link
+              key={href}
+              href={href}
+              className={pathname === href ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
+              aria-current={pathname === href ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </header>
+    </div>
     <main ref={mainRef} id="main" tabIndex="-1">{children}</main>
     <footer className={styles.footer}>
       <div className={`wrap ${styles.footerGrid}`}>

@@ -27,7 +27,7 @@ export default function TimelineExplorer() {
     </div>
     <div className={styles.grid}>
       <ol className={styles.eventList} aria-label="Hitos disponibles">
-        {visibleEvents.map((event) => <li key={event.id}><button type="button" className={selected?.id === event.id ? styles.selectedEvent : ""} onClick={() => setSelectedId(event.id)} aria-pressed={selected?.id === event.id}><time>{event.date}</time><span>{event.title}</span><small>{event.phaseLabel}</small></button></li>)}
+        {visibleEvents.map((event) => <li key={event.id}><button type="button" className={selected?.id === event.id ? styles.selectedEvent : ""} onClick={() => setSelectedId(event.id)} aria-pressed={selected?.id === event.id}><time>{event.date}</time><span>{event.title}</span><small>{event.phaseLabel}</small>{selected?.id === event.id ? <span className={styles.inlineDetail}>{event.copy}</span> : null}</button></li>)}
       </ol>
       <article className={styles.detail} aria-live="polite">
         <p>Hito seleccionado</p>

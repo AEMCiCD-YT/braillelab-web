@@ -233,22 +233,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.participationShell}>
-        <div className={`wrap ${styles.participationSection}`}>
-          <div>
-            <Eyebrow>Participación 2027</Eyebrow>
-            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
-            <p>
-              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
-            </p>
-          </div>
-          <div className={styles.participationAction}>
-            <EventActionLink primary />
-            <ArrowLink href="/participar">Cómo participar</ArrowLink>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.coorgSection}>
         <div className={`wrap ${styles.coorgGrid}`}>
           <div>
@@ -285,13 +269,18 @@ export default function Home() {
       <section className={styles.closing}>
         <div className={`wrap ${styles.closingGrid}`}>
           <div>
-            <Eyebrow tone="dark">BrailleLab Ecuador</Eyebrow>
-            <h2>Ingeniería abierta, accesibilidad y capacidad local.</h2>
-            <p>Para participación, alianzas o consultas institucionales, utiliza los canales oficiales del programa.</p>
+            <Eyebrow tone="dark">Participación 2027</Eyebrow>
+            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
+            <p>
+              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
+            </p>
+            <p className={styles.closingContact}>
+              Alianzas y consultas institucionales: <a href={`mailto:${site.contact}`}>{site.contact}</a>
+            </p>
           </div>
           <div className={styles.closingActions}>
             <EventActionLink primary />
-            <a className="button button-secondary" href={`mailto:${site.contact}`}>{site.contact}</a>
+            <ArrowLink href="/participar">Cómo participar</ArrowLink>
           </div>
         </div>
       </section>
