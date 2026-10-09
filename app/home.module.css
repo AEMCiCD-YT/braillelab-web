@@ -149,20 +149,19 @@
 
 .systemLegend {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(62px, 1fr));
+  gap: 14px;
   color: #d7e0e8;
   font-family: var(--font-mono);
   font-size: .7rem;
   text-transform: uppercase;
 }
 
-.systemLegend span:nth-child(2) {
+.systemLegend span {
+  font-size: .95rem;
+  font-weight: 700;
   text-align: center;
-}
-
-.systemLegend span:last-child {
-  text-align: right;
+  text-transform: none;
 }
 
 .factsSection {
@@ -291,10 +290,20 @@
   text-transform: uppercase;
 }
 
+.progression em {
+  display: block;
+  margin-top: 4px;
+  color: #c6d4e1;
+  font-size: .78rem;
+  font-style: normal;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
 .progression li > div {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
 }
 
@@ -652,7 +661,18 @@
     padding: 20px;
   }
 
-  .systemTrack {
+  .progression li {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-block: 14px;
+  }
+
+  .progression .miniCell {
+    width: 27px;
+  }
+
+  .systemTrack,
+  .systemLegend {
     grid-template-columns: repeat(4, minmax(48px, 1fr));
     gap: 8px;
   }

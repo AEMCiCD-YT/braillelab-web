@@ -5,6 +5,7 @@ import PhaseFlow from "../components/PhaseFlow";
 import HomeMilestones from "../components/HomeMilestones";
 import HomeEventStatus from "../components/HomeEventStatus";
 import { site } from "../content/site";
+import { brailleGridOrder, letterDots } from "../content/braille";
 import styles from "./home.module.css";
 import { buildMetadata } from "../content/metadata";
 
@@ -31,29 +32,41 @@ const values = [
 
 const highlightedResources = site.resources.slice(0, 3);
 
-function MiniCell({ pattern }) {
+function cellPoints(letter) {
+  const dots = letterDots(letter);
+  return brailleGridOrder.map((dot) => dots.includes(dot));
+}
+
+function MiniCell({ letter }) {
   return (
     <div className={styles.miniCell}>
-      {Array.from({ length: 6 }).map((_, pointIndex) => (
-        <span className={pattern.includes(pointIndex) ? styles.activePoint : styles.point} key={pointIndex} />
+      {cellPoints(letter).map((active, pointIndex) => (
+        <span className={active ? styles.activePoint : styles.point} key={pointIndex} />
       ))}
     </div>
   );
 }
 
+function BrailleWord({ word }) {
+  return [...word].map((letter, index) => <MiniCell letter={letter} key={index} />);
+}
+
 function ProgressionVisual() {
   const steps = [
-    ["Punto", <span className={styles.singlePoint} key="point" />],
-    ["Celda", <MiniCell pattern={[0, 3, 5]} key="cell" />],
-    ["Módulo", [[1, 2, 4], [0, 4, 5], [1, 3, 5]].map((pattern, index) => <MiniCell pattern={pattern} key={index} />)],
-    ["Sistema", Array.from({ length: 8 }).map((_, index) => <MiniCell pattern={[index % 6, (index + 3) % 6]} key={index} />)],
+    ["Punto", null, <span className={styles.singlePoint} key="point" />],
+    ["Celda", "b", <BrailleWord word="b" key="cell" />],
+    ["Módulo", "lab", <BrailleWord word="lab" key="module" />],
+    ["Sistema", "ecuador", <BrailleWord word="ecuador" key="system" />],
   ];
 
   return (
     <ol className={styles.progression} aria-hidden="true">
-      {steps.map(([label, visual], index) => (
+      {steps.map(([label, word, visual], index) => (
         <li key={label}>
-          <span>{String(index + 1).padStart(2, "0")} · {label}</span>
+          <span>
+            {String(index + 1).padStart(2, "0")} · {label}
+            {word ? <em>«{word}»</em> : null}
+          </span>
           <div>{visual}</div>
         </li>
       ))}
@@ -61,33 +74,23 @@ function ProgressionVisual() {
   );
 }
 
-function AbstractSystemVisual() {
-  const patterns = [
-    [0, 3, 5],
-    [1, 2, 4],
-    [0, 4, 5],
-    [1, 3, 5],
-  ];
+const heroWord = "tech";
 
+function AbstractSystemVisual() {
   return (
     <div className={styles.systemVisual} aria-hidden="true">
-      <div className={styles.systemLabel}>punto</div>
+      <div className={styles.systemLabel}>Braille · seis puntos</div>
       <div className={styles.systemTrack}>
-        {patterns.map((pattern, cellIndex) => (
+        {[...heroWord].map((letter, cellIndex) => (
           <div className={styles.systemCell} key={cellIndex}>
-            {Array.from({ length: 6 }).map((_, pointIndex) => (
-              <span
-                className={pattern.includes(pointIndex) ? styles.activePoint : styles.point}
-                key={pointIndex}
-              />
+            {cellPoints(letter).map((active, pointIndex) => (
+              <span className={active ? styles.activePoint : styles.point} key={pointIndex} />
             ))}
           </div>
         ))}
       </div>
       <div className={styles.systemLegend}>
-        <span>celda</span>
-        <span>módulo</span>
-        <span>sistema</span>
+        {[...heroWord].map((letter, index) => <span key={index}>{letter}</span>)}
       </div>
     </div>
   );
@@ -114,7 +117,7 @@ export default function Home() {
           </div>
           <div>
             <AbstractSystemVisual />
-            <p className={styles.visualCaption}>Retícula abstracta 2×3 inspirada en la lógica de una celda Braille de seis puntos. No representa un carácter Braille.</p>
+            <p className={styles.visualCaption}>La palabra «tech» escrita en Braille de seis puntos.</p>
           </div>
         </div>
       </section>
@@ -172,7 +175,7 @@ export default function Home() {
         </div>
         <div className={styles.systemPanel}>
           <ProgressionVisual />
-          <p>Progresión conceptual, no codificación Braille textual.</p>
+          <p>Cada fila está escrita en Braille: «b», «lab» y «ecuador».</p>
         </div>
       </section>
 
