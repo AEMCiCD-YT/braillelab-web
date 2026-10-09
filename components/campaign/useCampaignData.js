@@ -21,7 +21,7 @@ export function useCampaignData(path = "") {
     }
     const controller = new AbortController();
     setResult((current) => ({ state: "loading", data: current.data }));
-    fetch(url, { signal: controller.signal, credentials: "omit", headers: { Accept: "application/json" } })
+    fetch(url, { signal: controller.signal, credentials: "omit", cache: "no-cache", headers: { Accept: "application/json" } })
       .then(async (response) => {
         if (response.ok) {
           setResult({ state: "ready", data: await response.json() });

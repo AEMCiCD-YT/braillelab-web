@@ -10,6 +10,7 @@ const routes = [
   { path: "/recursos", priority: 0.9, changeFrequency: "weekly" },
   { path: "/braillelab", priority: 0.8, changeFrequency: "monthly" },
   { path: "/alianzas", priority: 0.9, changeFrequency: "weekly", lastModified: "2026-10-08T00:00:00-05:00" },
+  { path: "/transparencia", priority: 0.8, changeFrequency: "weekly", lastModified: "2026-10-08T00:00:00-05:00" },
   { path: "/privacidad", priority: 0.4, changeFrequency: "yearly", lastModified: "2026-10-08T00:00:00-05:00" },
 ];
 

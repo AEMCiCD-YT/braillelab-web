@@ -40,7 +40,6 @@ jobs:
           # Public API of AEMCiCD Platform (repository variable). Empty = the page shows "not connected"
           # and keeps the contribution form closed; it never invents figures or transfer instructions.
           NEXT_PUBLIC_PLATFORM_API_URL: ${{ vars.PLATFORM_API_URL }}
-          NEXT_PUBLIC_TRANSPARENCY_PAGE: ${{ vars.TRANSPARENCY_PAGE_ENABLED }}
         run: npm run build
 
       - name: Upload Pages artifact

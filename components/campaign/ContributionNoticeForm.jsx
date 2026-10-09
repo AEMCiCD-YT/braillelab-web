@@ -94,7 +94,7 @@ function useFormConfig() {
       return;
     }
     setConfig({ state: "loading", data: null });
-    fetch(url, { credentials: "omit" })
+    fetch(url, { credentials: "omit", cache: "no-cache" })
       .then(async (response) => {
         if (!response.ok) throw new Error(String(response.status));
         setConfig({ state: "ready", data: await response.json() });

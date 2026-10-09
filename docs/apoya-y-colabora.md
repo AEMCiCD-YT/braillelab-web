@@ -47,7 +47,6 @@ Variables del repositorio en GitHub, usadas por `deploy-pages.yml`:
 | Variable | Uso |
 |---|---|
 | `PLATFORM_API_URL` | Origen de la API, por ejemplo `https://api.example.org`. Vacía = estado «sin configurar» |
-| `TRANSPARENCY_PAGE_ENABLED` | `true` cuando exista `/transparencia/` (braillelab-web#23) |
 
 Opcional en el build: `NEXT_PUBLIC_CAMPAIGN_SLUG` (por defecto `braillelab-ecuador-2027`).
 
@@ -59,6 +58,8 @@ En la plataforma, antes de recibir avisos reales:
 - Campaña `ACTIVE` con cuenta e instrucciones configuradas en privado.
 
 El aviso de privacidad de aportes está en borrador hasta que la asociación lo apruebe (aemcicd-platform#22).
+
+La página de transparencia detallada está documentada en [transparencia.md](transparencia.md).
 
 ## Verificación
 

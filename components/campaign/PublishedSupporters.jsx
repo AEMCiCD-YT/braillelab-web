@@ -18,7 +18,7 @@ export default function PublishedSupporters() {
     if (!published) return undefined;
     const controller = new AbortController();
     setResult({ state: "loading", items: [] });
-    fetch(campaignApi("/supporters"), { signal: controller.signal, credentials: "omit" })
+    fetch(campaignApi("/supporters"), { signal: controller.signal, credentials: "omit", cache: "no-cache" })
       .then(async (response) => {
         if (!response.ok) throw new Error(String(response.status));
         const body = await response.json();

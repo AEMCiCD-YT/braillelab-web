@@ -14,8 +14,14 @@ export function campaignApi(path = "") {
   return `${PLATFORM_API_URL}/api/public/v1/campaigns/${encodeURIComponent(CAMPAIGN_SLUG)}${path}`;
 }
 
-/** La página /transparencia/ (braillelab-web#23) se enlaza cuando exista. */
-export const TRANSPARENCY_PAGE = process.env.NEXT_PUBLIC_TRANSPARENCY_PAGE === "true" ? "/transparencia" : null;
+/** Página de transparencia detallada (braillelab-web#23). */
+export const TRANSPARENCY_PAGE = "/transparencia";
+
+/** Convierte un enlace relativo de la API pública (p. ej. documentos) en una URL absoluta. */
+export function platformUrl(path) {
+  if (!PLATFORM_API_URL || typeof path !== "string" || !path.startsWith("/api/public/")) return null;
+  return `${PLATFORM_API_URL}${path}`;
+}
 
 /**
  * Versión del aviso de privacidad de aportes publicada en /privacidad/. El formulario solo se
@@ -108,6 +114,17 @@ const formatter = new Intl.NumberFormat("es-EC", { style: "currency", currency: 
 export function usd(amount) {
   if (amount === null || amount === undefined) return "No disponible";
   return formatter.format(Number(amount));
+}
+
+export function dateLabel(isoDate) {
+  if (!isoDate) return "fecha no disponible";
+  const [year, month, day] = isoDate.slice(0, 10).split("-").map(Number);
+  return new Intl.DateTimeFormat("es-EC", { dateStyle: "medium", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+export function monthLabel(month) {
+  const [year, value] = month.split("-").map(Number);
+  return new Intl.DateTimeFormat("es-EC", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, value - 1, 1)));
 }
 
 export function dateTimeLabel(iso) {
