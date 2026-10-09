@@ -2,9 +2,8 @@ import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShel
 import PageHero from "../../components/PageHero";
 import PhaseFlow from "../../components/PhaseFlow";
 import TimelineExplorer, { TimelineStatus } from "../../components/TimelineExplorer";
-import { Eyebrow } from "../../components/Visuals";
+import Section from "../../components/Section";
 import { site } from "../../content/site";
-import layout from "../public.module.css";
 import styles from "./cronograma.module.css";
 import { buildMetadata } from "../../content/metadata";
 
@@ -22,55 +21,57 @@ export default function CronogramaPage() {
         La ruta C fue seleccionada para la planificación 2027. Las fechas se actualizarán si existe un ajuste formal antes de su publicación definitiva.
       </PageHero>
 
-      <section className={styles.overview}>
-        <div className="wrap">
-          <div className={styles.overviewHeader}>
-            <Eyebrow>Estructura del proceso</Eyebrow>
-            <h2>Cuatro momentos para leer el recorrido completo.</h2>
-            <p>La cronología detallada conserva todos los hitos, mientras esta vista resume la progresión desde formación y diseño hasta Demo Day.</p>
-          </div>
-          <PhaseFlow />
-        </div>
-      </section>
+      <Section
+        id="estructura"
+        eyebrow="Estructura del proceso"
+        title="Cuatro momentos para leer el recorrido completo."
+        lede="Esta vista resume la progresión desde formación y diseño hasta Demo Day; la cronología de abajo conserva todos los hitos."
+      >
+        <PhaseFlow />
+      </Section>
 
-      <section className={`wrap ${layout.timelinePage}`}>
+      <Section
+        id="cronologia"
+        tone="soft"
+        eyebrow="Cronología 2027"
+        title="Todos los hitos, por fase."
+        lede="La lista se abre en la fase del hito vigente; usa los filtros para ver otra fase o todo el proceso."
+      >
         <TimelineStatus />
         <TimelineExplorer />
-      </section>
+      </Section>
 
-      <section className={layout.surfaceSoft}>
-        <div className={`wrap ${styles.demo}`}>
-          <div className={styles.date}>
-            <span>Demo Day</span>
-            <strong>12</strong>
-            <small>junio · 2027</small>
+      <Section
+        id="demo-day"
+        layout="split"
+        eyebrow="Jornada final"
+        title="Demo Day · 12 de junio de 2027."
+        lede={`${site.event.venue}. Inicio previsto a las 10h00 y cierre a las 17h00; la jornada puede extenderse hasta las 18h00 según la agenda final, patrocinadores y dinámica del evento.`}
+        intro={(
+          <div className={styles.demoFacts}>
+            <span>10h00 · inicio</span>
+            <span>17h00 · cierre previsto</span>
+            <span>18h00 · extensión posible</span>
           </div>
-          <div className={styles.demoCopy}>
-            <Eyebrow>Jornada final</Eyebrow>
-            <h2>{site.event.venue}</h2>
-            <p>Inicio previsto a las 10h00 y cierre previsto a las 17h00.</p>
-            <p>La jornada puede extenderse hasta las 18h00 según la agenda final, patrocinadores y dinámica del evento.</p>
-            <div className={styles.demoFacts}>
-              <span>10h00 · inicio</span>
-              <span>17h00 · cierre previsto</span>
-              <span>18h00 · extensión posible</span>
-            </div>
-          </div>
+        )}
+      >
+        <div className={styles.date} aria-hidden="true">
+          <span>Demo Day</span>
+          <strong>12</strong>
+          <small>junio · 2027</small>
         </div>
-      </section>
+      </Section>
 
-      <section className={layout.darkCta}>
-        <div className={`wrap ${layout.ctaContent}`}>
-          <div>
-            <Eyebrow tone="dark">Acción contextual</Eyebrow>
-            <h2>Sigue el siguiente hito sin perder de vista la ruta completa.</h2>
-          </div>
-          <div className={layout.actionGroup}>
-            <EventActionLink primary avoid={["/participar"]} fallback={{ label: "Revisar recursos", href: "/recursos" }} />
-            <ArrowLink href="/participar">Cómo participar</ArrowLink>
-          </div>
-        </div>
-      </section>
+      <Section
+        id="siguiente-hito"
+        tone="soft"
+        eyebrow="Acción contextual"
+        title="Sigue el siguiente hito sin perder de vista la ruta completa."
+        action={<>
+          <EventActionLink primary avoid={["/participar"]} fallback={{ label: "Revisar recursos", href: "/recursos" }} />
+          <ArrowLink href="/participar">Cómo participar</ArrowLink>
+        </>}
+      />
     </SiteShell>
   );
 }

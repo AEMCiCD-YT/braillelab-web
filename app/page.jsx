@@ -1,6 +1,7 @@
 import SiteShell, { ArrowLink, EventActionLink } from "../components/SiteShell";
 import { Eyebrow } from "../components/Visuals";
 import BrailleCellDiagram from "../components/BrailleCellDiagram";
+import Section from "../components/Section";
 import PhaseFlow from "../components/PhaseFlow";
 import HomeMilestones from "../components/HomeMilestones";
 import HomeEventStatus from "../components/HomeEventStatus";
@@ -122,10 +123,9 @@ export default function Home() {
         </div>
       </section>
 
-      <HomeEventStatus />
-
-      <section className={styles.factsSection} aria-label="Datos esenciales">
-        <div className={`wrap ${styles.factRail}`}>
+      <Section id="estado" tone="soft">
+        <HomeEventStatus />
+        <div className={styles.factRail} aria-label="Datos esenciales">
           {facts.map(([value, label]) => (
             <article key={label}>
               <strong>{value}</strong>
@@ -133,51 +133,50 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className={`wrap ${styles.challengeSection}`}>
-        <div className={styles.sectionCopy}>
-          <Eyebrow>El reto en una frase</Eyebrow>
-          <h2>Construir una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente.</h2>
-          <p>
-            La solución debe poder explicarse, probarse y documentarse. La arquitectura concreta queda en manos de cada equipo dentro de las bases y la guía técnica vigentes.
-          </p>
-          <ArrowLink href="/reto">Ver alcance técnico</ArrowLink>
-        </div>
+      <Section
+        id="reto"
+        layout="split"
+        eyebrow="El reto en una frase"
+        title="Construir una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente."
+        lede="La solución debe poder explicarse, probarse y documentarse. La arquitectura concreta queda en manos de cada equipo dentro de las bases y la guía técnica vigentes."
+        action={<ArrowLink href="/reto">Ver alcance técnico</ArrowLink>}
+      >
         <BrailleCellDiagram />
-      </section>
+      </Section>
 
-      <section className={styles.softSection}>
-        <div className="wrap">
-          <div className={styles.sectionHeading}>
-            <div>
-              <Eyebrow>Recorrido del Challenge</Eyebrow>
-              <h2>Formación, diseño, prototipado y demostración.</h2>
-            </div>
-            <ArrowLink href="/cronograma">Ver cronograma completo</ArrowLink>
-          </div>
-          <PhaseFlow />
-        </div>
-      </section>
+      <Section
+        id="recorrido"
+        tone="soft"
+        eyebrow="Recorrido del Challenge"
+        title="Formación, diseño, prototipado y demostración."
+        action={<ArrowLink href="/cronograma">Ver cronograma completo</ArrowLink>}
+      >
+        <PhaseFlow />
+        <h3 className={styles.subheading}>Próximos hitos</h3>
+        <HomeMilestones />
+      </Section>
 
-      <section className={`wrap ${styles.systemSection}`}>
-        <div className={styles.sectionCopy}>
-          <Eyebrow>Del punto al sistema</Eyebrow>
-          <h2>La identidad visual refleja la misma lógica que persigue la ingeniería.</h2>
-          <p>
-            Un punto se integra en una celda de seis puntos; varias celdas pueden organizarse en módulos; y los módulos pueden escalar hacia una línea Braille. BrailleLab trabaja esa progresión como arquitectura técnica y como lenguaje visual.
-          </p>
+      <Section
+        id="sistema"
+        layout="split"
+        eyebrow="Del punto al sistema"
+        title="La identidad visual refleja la misma lógica que persigue la ingeniería."
+        lede="Un punto se integra en una celda de seis puntos; varias celdas pueden organizarse en módulos; y los módulos pueden escalar hacia una línea Braille. BrailleLab trabaja esa progresión como arquitectura técnica y como lenguaje visual."
+        intro={(
           <ul className={styles.values}>
             {values.map(([title, copy]) => (
               <li key={title}><b>{title}</b><span>{copy}</span></li>
             ))}
           </ul>
-        </div>
+        )}
+      >
         <div className={styles.systemPanel}>
           <ProgressionVisual />
           <p>Cada fila está escrita en Braille: «b», «lab» y «ecuador».</p>
         </div>
-      </section>
+      </Section>
 
       <section className={styles.evidenceSection}>
         <div className={`wrap ${styles.evidenceGrid}`}>
@@ -203,90 +202,55 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`wrap ${styles.milestonesSection}`}>
-        <div className={styles.sectionHeading}>
-          <div>
-            <Eyebrow>Próximos hitos</Eyebrow>
-            <h2>Lo siguiente, desde una única cronología.</h2>
-          </div>
-          <ArrowLink href="/cronograma">Explorar todas las fechas</ArrowLink>
+      <Section
+        id="recursos"
+        eyebrow="Recursos destacados"
+        title="Documentación 2027, cuando esté aprobada para publicación."
+        action={<ArrowLink href="/recursos">Ver todos los recursos</ArrowLink>}
+      >
+        <div className={styles.resourceGrid}>
+          {highlightedResources.map((resource, index) => (
+            <article key={resource.id}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{resource.title}</h3>
+              <p>{resource.version}</p>
+              <small>{resource.href ? "Disponible" : "Publicación pendiente"}</small>
+            </article>
+          ))}
         </div>
-        <HomeMilestones />
-      </section>
+      </Section>
 
-      <section className={styles.softSection}>
-        <div className="wrap">
-          <div className={styles.sectionHeading}>
-            <div>
-              <Eyebrow>Recursos destacados</Eyebrow>
-              <h2>Documentación 2027, cuando esté aprobada para publicación.</h2>
-            </div>
-            <ArrowLink href="/recursos">Ver todos los recursos</ArrowLink>
-          </div>
-          <div className={styles.resourceGrid}>
-            {highlightedResources.map((resource, index) => (
-              <article key={resource.id}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{resource.title}</h3>
-                <p>{resource.version}</p>
-                <small>{resource.href ? "Disponible" : "Publicación pendiente"}</small>
-              </article>
-            ))}
-          </div>
+      <Section
+        id="demo-day"
+        tone="soft"
+        layout="split"
+        eyebrow="Universidad Yachay Tech"
+        title="La jornada final comienza a las 10h00."
+        lede={<>El cierre está previsto para las <b>17h00</b>. La agenda final puede extender la jornada hasta las <b>18h00</b> según patrocinadores, actividades y dinámica del evento.</>}
+        action={<ArrowLink href="/cronograma">Ver la ruta hasta Demo Day</ArrowLink>}
+      >
+        <div className={styles.demoDate} aria-hidden="true">
+          <span>Demo Day</span>
+          <strong>12</strong>
+          <small>junio · 2027</small>
         </div>
-      </section>
+      </Section>
 
-      <section className={styles.coorgSection}>
-        <div className={`wrap ${styles.coorgGrid}`}>
-          <div>
-            <Eyebrow>Coorganización</Eyebrow>
-            <h2>Una iniciativa de BrailleLab Ecuador.</h2>
-          </div>
-          <div className={styles.coorgNames}>
-            <span>AEMCiCD</span>
-            <i aria-hidden="true">+</i>
-            <span>IEEE Student Branch · Universidad Yachay Tech</span>
-          </div>
-          <ArrowLink href="/alianzas">Apoya y colabora</ArrowLink>
-        </div>
-      </section>
-
-      <section className={styles.demoShell}>
-        <div className={`wrap ${styles.demoSection}`}>
-          <div className={styles.demoDate}>
-            <span>Demo Day</span>
-            <strong>12</strong>
-            <small>junio · 2027</small>
-          </div>
-          <div className={styles.demoCopy}>
-            <Eyebrow>Universidad Yachay Tech</Eyebrow>
-            <h2>La jornada final comienza a las 10h00.</h2>
-            <p>
-              El cierre está previsto para las <b>17h00</b>. La agenda final puede extender la jornada hasta las <b>18h00</b> según patrocinadores, actividades y dinámica del evento.
-            </p>
-            <ArrowLink href="/cronograma">Ver la ruta hasta Demo Day</ArrowLink>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.closing}>
-        <div className={`wrap ${styles.closingGrid}`}>
-          <div>
-            <Eyebrow tone="dark">Participación 2027</Eyebrow>
-            <h2>Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.</h2>
-            <p>
-              Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.
-            </p>
-            <p className={styles.closingContact}>
-              Alianzas y consultas institucionales: <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>
-            </p>
-          </div>
-          <div className={styles.closingActions}>
-            <EventActionLink primary avoid={["/participar"]} />
-            <ArrowLink href="/participar">Cómo participar</ArrowLink>
-          </div>
-        </div>
-      </section>
+      <Section
+        id="participacion"
+        eyebrow="Participación 2027"
+        title="Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero."
+        lede="Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada."
+        intro={(
+          <p className={styles.closingContact}>
+            Alianzas y consultas institucionales: <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>
+          </p>
+        )}
+        action={<>
+          <EventActionLink primary avoid={["/participar"]} />
+          <ArrowLink href="/participar">Cómo participar</ArrowLink>
+        </>}
+      />
     </SiteShell>
   );
 }

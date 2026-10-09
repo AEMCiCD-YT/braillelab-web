@@ -1,8 +1,7 @@
 import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
 import BrailleCellDiagram from "../../components/BrailleCellDiagram";
-import { Eyebrow } from "../../components/Visuals";
-import layout from "../public.module.css";
+import Section from "../../components/Section";
 import styles from "./reto.module.css";
 import { buildMetadata } from "../../content/metadata";
 
@@ -31,55 +30,62 @@ export default function RetoPage() {
         La edición 2027 aborda tecnología Braille electrónica refrescable con un enfoque funcional, abierto y reproducible.
       </PageHero>
 
-      <section className={`wrap ${layout.section} ${styles.summary}`}>
-        <article className={styles.minimum}>
-          <span>Requisito mínimo</span>
-          <h2>Una celda Braille refrescable de seis puntos.</h2>
-          <p>Debe ser funcional y controlable electrónicamente. Ese núcleo define la demostración técnica mínima del Challenge.</p>
-        </article>
-        <article className={styles.optional}>
-          <span>Extensiones posibles</span>
-          <h2>Escalar es posible; no es obligatorio.</h2>
-          <ul>
-            <li>Más de una celda.</li>
-            <li>Teclado o controles adicionales.</li>
-            <li>Conexión a computadora o Bluetooth.</li>
-            <li>Batería, modularidad u otras mejoras justificadas.</li>
-          </ul>
-        </article>
-      </section>
+      <Section
+        id="alcance"
+        eyebrow="Alcance técnico"
+        title="Lo mínimo es una celda; escalar es opcional."
+        lede="La arquitectura concreta queda en manos de cada equipo, dentro de las bases y la guía técnica vigentes."
+      >
+        <div className={styles.summary}>
+          <article className={styles.minimum}>
+            <span>Requisito mínimo</span>
+            <h3>Una celda Braille refrescable de seis puntos.</h3>
+            <p>Debe ser funcional y controlable electrónicamente. Ese núcleo define la demostración técnica mínima del Challenge.</p>
+          </article>
+          <article className={styles.optional}>
+            <span>Extensiones posibles</span>
+            <h3>Escalar es posible; no es obligatorio.</h3>
+            <ul>
+              <li>Más de una celda.</li>
+              <li>Teclado o controles adicionales.</li>
+              <li>Conexión a computadora o Bluetooth.</li>
+              <li>Batería, modularidad u otras mejoras justificadas.</li>
+            </ul>
+          </article>
+        </div>
+      </Section>
 
-      <section className={layout.surfaceSoft}>
-        <div className={`wrap ${styles.proofGrid}`}>
+      <Section
+        id="demostracion"
+        tone="soft"
+        eyebrow="Qué debe demostrar el equipo"
+        title="Funcionar, responder y documentar."
+        lede="Prueba la lógica de la celda: activa puntos y observa qué letra forman."
+      >
+        <div className={styles.proofGrid}>
           <BrailleCellDiagram />
-          <div>
-            <Eyebrow>Qué debe demostrar el equipo</Eyebrow>
-            <div className={styles.proofCards}>
-              {proof.map(([number, title, copy]) => (
-                <article className={styles.proofCard} key={number}>
-                  <span>{number}</span>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </article>
-              ))}
-            </div>
+          <div className={styles.proofCards}>
+            {proof.map(([number, title, copy]) => (
+              <article className={styles.proofCard} key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className={layout.darkCta}>
-        <div className={`wrap ${layout.ctaContent}`}>
-          <div>
-            <Eyebrow tone="dark">Siguiente paso</Eyebrow>
-            <h2>Entiende el alcance y prepara una propuesta técnicamente defendible.</h2>
-            <p>Los documentos 2027 se publicarán en Recursos cuando estén aprobados.</p>
-          </div>
-          <div className={layout.actionGroup}>
-            <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
-            <EventActionLink avoid={["/recursos"]} />
-          </div>
-        </div>
-      </section>
+      <Section
+        id="siguiente-paso"
+        eyebrow="Siguiente paso"
+        title="Entiende el alcance y prepara una propuesta técnicamente defendible."
+        lede="Los documentos 2027 se publicarán en Recursos cuando estén aprobados."
+        action={<>
+          <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
+          <EventActionLink avoid={["/recursos"]} />
+        </>}
+      />
     </SiteShell>
   );
 }

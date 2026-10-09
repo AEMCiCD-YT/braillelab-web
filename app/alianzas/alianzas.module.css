@@ -1,27 +1,6 @@
-.purpose,
-.coorg {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: clamp(34px, 7vw, 84px);
-  align-items: start;
-}
-
-.purpose h2,
-.coorg h2 {
-  margin-bottom: 12px;
-  font-size: var(--type-heading-lg);
-}
-
-.purposeCopy p,
-.coorg p,
-.lede {
+.purposeCopy p {
   color: var(--color-text-muted);
   font-size: var(--type-body-lg);
-}
-
-.lede {
-  max-width: 760px;
-  margin-bottom: 28px;
 }
 
 .note {
@@ -33,7 +12,7 @@
   font-size: var(--type-small);
 }
 
-.coorg a {
+.inlineLink {
   color: var(--color-info);
   font-weight: 800;
   text-underline-offset: 4px;
@@ -138,12 +117,6 @@
   grid-template-columns: .85fr 1.15fr;
   gap: clamp(30px, 5vw, 64px);
   align-items: start;
-  scroll-margin-top: 24px;
-}
-
-.contribute h2 {
-  margin-bottom: 18px;
-  font-size: var(--type-heading-lg);
 }
 
 .steps {
@@ -158,13 +131,6 @@
   font-size: var(--type-heading-md);
 }
 
-.supportersSection {
-  display: grid;
-  gap: 8px;
-}
-
-.purpose > *,
-.coorg > *,
 .contribute > * {
   min-width: 0;
 }
@@ -176,13 +142,6 @@
   }
 
   .contribute {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 760px) {
-  .purpose,
-  .coorg {
     grid-template-columns: 1fr;
   }
 }

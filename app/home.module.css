@@ -164,15 +164,10 @@
   text-transform: none;
 }
 
-.factsSection {
-  padding: 54px 0 62px;
-  background: var(--color-surface-subtle);
-}
-
 .factRail {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 0;
+  margin-top: 40px;
   border: var(--card-border);
   background: var(--card-surface);
 }
@@ -204,59 +199,6 @@
   margin-top: 7px;
   color: var(--color-text-muted);
   font-size: var(--type-small);
-}
-
-.challengeSection,
-.systemSection,
-.demoSection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr);
-  gap: clamp(54px, 8vw, 104px);
-  align-items: center;
-  padding: 118px 0;
-}
-
-.sectionCopy h2,
-.sectionHeading h2,
-.evidenceGrid h2,
-.coorgGrid h2,
-.demoCopy h2,
-.closingGrid h2 {
-  margin-bottom: 18px;
-  font-size: var(--type-heading-lg);
-}
-
-.sectionCopy > p,
-.evidenceGrid > div > p,
-.demoCopy > p,
-.closingGrid > div > p {
-  max-width: 700px;
-  color: var(--color-text-muted);
-  font-size: 1.04rem;
-}
-
-.sectionCopy :global(.button) {
-  margin-top: 12px;
-}
-
-.softSection {
-  padding: 100px 0;
-  background: #eef4f7;
-}
-
-.sectionHeading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 34px;
-}
-
-.sectionHeading > div {
-  max-width: 760px;
-}
-
-.sectionHeading h2 {
-  margin-bottom: 0;
 }
 
 .systemPanel {
@@ -339,7 +281,7 @@
 .values {
   display: grid;
   gap: 0;
-  margin: 36px 0 0;
+  margin-bottom: 0;
   padding: 0;
   border-top: 1px solid var(--color-border);
   list-style: none;
@@ -362,7 +304,7 @@
 }
 
 .evidenceSection {
-  padding: 106px 0;
+  padding: var(--section-space) 0;
   background: var(--color-brand);
   color: var(--color-on-dark);
 }
@@ -429,15 +371,10 @@
   font-size: .76rem;
 }
 
-.milestonesSection {
-  padding: 110px 0;
-}
-
 .resourceGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  margin-top: 40px;
 }
 
 .resourceGrid article {
@@ -472,53 +409,6 @@
   font-weight: 700;
 }
 
-.coorgSection {
-  padding: 72px 0;
-  border-block: 1px solid var(--color-border);
-  background: #fbfcfd;
-}
-
-.coorgGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 28px 42px;
-  align-items: center;
-}
-
-.coorgGrid > div:first-child {
-  grid-column: 1 / -1;
-}
-
-.coorgGrid h2 {
-  margin-bottom: 0;
-  font-size: clamp(1.9rem, 3.4vw, 3.1rem);
-}
-
-.coorgNames {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-height: 50px;
-  padding-left: 18px;
-  border-left: 3px solid var(--color-info);
-  color: var(--color-brand);
-  font-weight: 800;
-}
-
-.coorgNames i {
-  color: var(--color-interactive);
-  font-family: var(--font-mono);
-  font-style: normal;
-}
-
-.demoShell {
-  background: #fff8df;
-}
-
-.demoSection {
-  padding-block: 112px;
-}
-
 .demoDate {
   min-height: 360px;
   display: grid;
@@ -549,54 +439,31 @@
   font-weight: 800;
 }
 
-.demoCopy b {
-  color: var(--color-brand);
-}
-
-.closing {
-  padding: 92px 0;
-  background: var(--color-brand);
-  color: var(--color-on-dark);
-}
-
-.closingGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 52px;
-  align-items: center;
-}
-
-.closingGrid > div > p {
-  color: #cad6df;
-}
-
-.closingGrid > div > .closingContact {
-  margin-top: 22px;
-  font-size: .95rem;
-}
-
 .closingContact a {
   color: var(--color-interactive);
   font-weight: 800;
   text-underline-offset: 4px;
 }
 
-.closingActions {
-  display: grid;
-  gap: 12px;
-  min-width: 250px;
+.evidenceGrid h2 {
+  margin-bottom: 18px;
+  font-size: var(--type-heading-lg);
 }
 
-.closingActions :global(.button-secondary) {
-  color: var(--color-on-dark);
+.subheading {
+  margin: 56px 0 0;
+  font-size: var(--type-heading-sm);
+}
+
+.closingContact {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+  font-size: .95rem;
 }
 
 @media (max-width: 940px) {
   .heroGrid,
-  .challengeSection,
-  .systemSection,
-  .evidenceGrid,
-  .demoSection {
+  .evidenceGrid {
     grid-template-columns: 1fr;
   }
 
@@ -626,24 +493,6 @@
 
   .resourceGrid article:last-child {
     grid-column: 1 / -1;
-  }
-
-  .closingGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .closingActions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-width: 0;
-  }
-
-  .coorgGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .coorgNames {
-    justify-content: flex-start;
   }
 }
 
@@ -697,31 +546,6 @@
     border-bottom: 0;
   }
 
-  .challengeSection,
-  .systemSection,
-  .demoSection,
-  .milestonesSection {
-    padding-block: 78px;
-  }
-
-  .softSection,
-  .evidenceSection {
-    padding-block: 76px;
-  }
-
-  .factsSection {
-    padding-block: 36px 44px;
-  }
-
-  .sectionHeading {
-    display: grid;
-    align-items: flex-start;
-  }
-
-  .sectionHeading :global(.button) {
-    width: 100%;
-  }
-
   .values li {
     grid-template-columns: 1fr;
     gap: 5px;
@@ -731,26 +555,8 @@
     grid-column: auto;
   }
 
-  .closingActions {
-    grid-template-columns: 1fr;
-  }
-
-  .coorgNames {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .coorgNames i {
-    display: none;
-  }
-
   .demoDate {
     min-height: 260px;
-  }
-
-  .closing {
-    padding-block: 72px;
   }
 }
 
@@ -761,11 +567,6 @@
 }
 
 .heroGrid > *,
-.challengeSection > *,
-.systemSection > *,
-.evidenceGrid > *,
-.coorgGrid > *,
-.demoSection > *,
-.closingGrid > * {
+.evidenceGrid > * {
   min-width: 0;
 }

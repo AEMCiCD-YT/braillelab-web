@@ -54,13 +54,26 @@ Las tarjetas usan solo tres tipos, con esquinas rectas:
 | Paso / secuencia | `--step-rule` (arriba o a la izquierda), `--card-surface` | contenido con orden: fases, pasos, criterios numerados, FAQ abierta. |
 | Panel oscuro | `--panel-border` sobre Azul noche | visuales del hero, estados y datos destacados. |
 
-Los avisos (filete de 4px amarillo, petróleo o coral sobre fondo claro) no son tarjetas: comunican estado o advertencia. Las sombras se reservan para elementos flotantes, como el menú móvil y la cuenta regresiva.
+Los avisos (filete de 4px amarillo, petróleo o coral sobre fondo claro) no son tarjetas: comunican estado o advertencia. Las sombras se reservan para elementos flotantes, como el menú móvil.
+
+## Secciones
+
+Todas las páginas se componen con `components/Section.jsx`, el patrón de «Apoya y colabora»:
+
+- **Encabezado:** etiqueta (`eyebrow`), título (`title`, siempre `--type-heading-lg`), entrada (`lede`) y acción opcional (`action`) a la derecha.
+- **Tono:** `plain` (blanco) o `soft` (`--color-surface-soft`). Después del hero, los tonos se alternan estrictamente.
+- **Espaciado:** `--section-space` arriba y abajo (104px; 76px en móvil).
+- **Disposición:** `stack` (encabezado arriba, contenido debajo) o `split` (encabezado a la izquierda y contenido a la derecha; `intro` añade contenido bajo la entrada).
+- **Cierre de página:** una `Section` con `action`, sin banda oscura, porque el pie ya es Azul noche.
+
+El Azul noche queda para el hero, el pie y como máximo una banda de contraste por página (en la home, «Evidencia de proceso»). Dentro de una sección, los subtítulos usan `--type-heading-sm`.
 
 ## Escala tipográfica
 
 - `--type-display-xl`: hero principal.
 - `--type-display-lg`: hero de páginas internas.
 - `--type-heading-lg`: encabezados grandes de sección.
+- `--type-heading-sm`: subtítulos dentro de una sección (grupos de documentos, FAQ, hitos).
 - `--type-heading-md`: encabezados de cards.
 - `--type-body-lg`: ledes.
 - `--type-body`: lectura general.

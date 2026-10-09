@@ -3,9 +3,9 @@
   border-bottom: 2px solid var(--color-brand);
 }
 
-.statusHeader h2 {
+.statusHeader h3 {
   margin: 12px 0 4px;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: var(--type-heading-sm);
 }
 
 .statusHeader p {
@@ -25,7 +25,7 @@
 }
 
 .explorer {
-  padding: 62px 0 104px;
+  padding-top: 40px;
 }
 
 .filters {
@@ -141,7 +141,7 @@
   font-weight: 800;
 }
 
-.detail h2 {
+.detail h3 {
   margin: 0 0 16px;
   font-size: clamp(2rem, 3vw, 3rem);
 }
@@ -157,7 +157,7 @@
 
 @media (max-width: 760px) {
   .explorer {
-    padding: 44px 0 76px;
+    padding-top: 32px;
   }
 
   .grid {

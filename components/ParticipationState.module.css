@@ -16,7 +16,7 @@
   text-transform: uppercase;
 }
 
-.copy h2 {
+.copy h3 {
   margin: 8px 0;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
 }

@@ -1,10 +1,9 @@
 import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
-import { Eyebrow } from "../../components/Visuals";
+import Section from "../../components/Section";
 import { assetPath, site } from "../../content/site";
 import Faq from "../../components/Faq";
 import resourceStyles from "./recursos.module.css";
-import layout from "../public.module.css";
 import { ArrowUpRight } from "lucide-react";
 import { buildMetadata } from "../../content/metadata";
 
@@ -76,30 +75,19 @@ export default function RecursosPage() {
         La documentación 2027 se encuentra en preparación y se habilitará públicamente cuando cada versión esté aprobada.
       </PageHero>
 
-      <section className={layout.surfaceSoft}>
-        <div className="wrap">
-          <Eyebrow>Orden de lectura recomendado</Eyebrow>
-          <h2>Empieza por reglas, sigue con diseño y termina con operación.</h2>
-          <div className={resourceStyles.order}>
-            {groups.map((group, index) => (
-              <article key={group.id}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{group.title}</h3>
-                <p>{group.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={`wrap ${layout.section}`} aria-label="Documentos de la edición 2027">
+      <Section
+        id="documentos"
+        eyebrow="Documentos 2027"
+        title="Empieza por reglas, sigue con diseño y termina con operación."
+        lede="Cada grupo indica en qué etapa conviene leerlo. Los documentos se habilitan cuando su versión 2027 está aprobada para publicación."
+      >
         {groups.map((group) => {
           const documents = group.ids.map((id) => site.resources.find((item) => item.id === id)).filter(Boolean);
           return (
-            <div className={resourceStyles.group} key={group.id}>
+            <div className={resourceStyles.group} id={group.id} key={group.id}>
               <div className={resourceStyles.groupHeader}>
                 <span>{group.label}</span>
-                <h2>{group.title}</h2>
+                <h3>{group.title}</h3>
                 <p>{group.copy}</p>
               </div>
               <div className={resourceStyles.library}>
@@ -108,28 +96,27 @@ export default function RecursosPage() {
             </div>
           );
         })}
-      </section>
+      </Section>
 
-      <section className={layout.surfaceSoft}>
-        <div className="wrap">
-          <Eyebrow>Preguntas frecuentes</Eyebrow>
-          <h2>Respuestas para preparar la edición 2027.</h2>
-          <Faq />
-        </div>
-      </section>
+      <Section
+        id="preguntas-frecuentes"
+        tone="soft"
+        eyebrow="Preguntas frecuentes"
+        title="Respuestas para preparar la edición 2027."
+        lede="Información para preparar la inscripción. Las Bases y Reglamento, la Guía Técnica, la Rúbrica y el Cronograma Oficial desarrollan el alcance completo de la competencia."
+      >
+        <Faq />
+      </Section>
 
-      <section className={layout.darkCta}>
-        <div className={`wrap ${layout.ctaContent}`}>
-          <div>
-            <Eyebrow tone="dark">Usa la documentación según tu etapa</Eyebrow>
-            <h2>Consulta solo versiones 2027 publicadas por los canales oficiales.</h2>
-          </div>
-          <div className={layout.actionGroup}>
-            <EventActionLink primary avoid={["/cronograma"]} fallback={{ label: "Preparar participación", href: "/participar" }} />
-            <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
-          </div>
-        </div>
-      </section>
+      <Section
+        id="siguiente-paso"
+        eyebrow="Usa la documentación según tu etapa"
+        title="Consulta solo versiones 2027 publicadas por los canales oficiales."
+        action={<>
+          <EventActionLink primary avoid={["/cronograma"]} fallback={{ label: "Preparar participación", href: "/participar" }} />
+          <ArrowLink href="/cronograma">Ver cronograma</ArrowLink>
+        </>}
+      />
     </SiteShell>
   );
 }
