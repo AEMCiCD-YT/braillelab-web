@@ -18,6 +18,18 @@ const links = [
   ["/transparencia", "Transparencia"],
 ];
 
+const footerGroups = [
+  ["BrailleTech 2027", links.slice(0, 4)],
+  ["BrailleLab", links.slice(4)],
+];
+
+const footerContacts = [
+  ["Información general", site.contacts.general],
+  ["Participantes BrailleTech", site.contacts.participants],
+  ["Alianzas y aportes", site.contacts.partnerships],
+  ["Datos personales", site.contacts.privacy],
+];
+
 // Con trailingSlash la ruta llega como "/reto/"; los enlaces usan "/reto".
 function useCurrentPath() {
   return usePathname()?.replace(/(.)\/$/, "$1");
@@ -73,6 +85,8 @@ export default function SiteShell({ children }) {
   const navRef = useRef(null);
   const mainRef = useRef(null);
   const runtime = useChallengeRuntime();
+  // Solo se destaca en la barra cuando el formulario oficial de inscripción está abierto.
+  const registration = runtime?.action?.state === "open" && runtime.action.external ? runtime.action : null;
   const status = runtime?.status || {
     label: site.event.name,
     detail: "Sincronizando estado de la edición",
@@ -128,27 +142,43 @@ export default function SiteShell({ children }) {
               {label}
             </Link>
           ))}
+          {registration ? (
+            <a className={`button button-primary ${styles.navCta}`} href={registration.href}>
+              {registration.label}<ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          ) : null}
         </nav>
       </header>
     </div>
     <main ref={mainRef} id="main" tabIndex="-1">{children}</main>
     <footer className={styles.footer}>
       <div className={`wrap ${styles.footerGrid}`}>
-        <div>
+        <div className={styles.footerBrand}>
           <BrandSignature footer />
           <p>Investigación aplicada, aprendizaje y tecnología Braille accesible.</p>
+          <p className={styles.footerCoorg}>BrailleTech Challenge Ecuador 2027 es una iniciativa de BrailleLab Ecuador, coorganizada por AEMCiCD e IEEE Student Branch — Universidad Yachay Tech.</p>
         </div>
-        <div>
-          <p className={styles.footerTitle}>Explora</p>
-          <div className={styles.footerLinks}>{[...links.slice(0, 4), links[5], links[6]].map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div>
-        </div>
-        <div>
-          <p className={styles.footerTitle}>Datos y contacto</p>
-          <div className={styles.contact}>
-            <a href={`mailto:${site.contact}`}>{site.contact}</a>
-            <Link href="/privacidad">Aviso de privacidad</Link>
+        {footerGroups.map(([title, items]) => (
+          <div key={title}>
+            <p className={styles.footerTitle}>{title}</p>
+            <div className={styles.footerLinks}>{items.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</div>
           </div>
+        ))}
+        <div>
+          <p className={styles.footerTitle}>Contacto</p>
+          <dl className={styles.contact}>
+            {footerContacts.map(([label, email]) => (
+              <div key={email}>
+                <dt>{label}</dt>
+                <dd><a href={`mailto:${email}`}>{email}</a></dd>
+              </div>
+            ))}
+          </dl>
         </div>
+      </div>
+      <div className={`wrap ${styles.footerBottom}`}>
+        <span suppressHydrationWarning>© {new Date().getFullYear()} BrailleLab Ecuador</span>
+        <Link href="/privacidad">Aviso de privacidad</Link>
       </div>
     </footer>
   </>;

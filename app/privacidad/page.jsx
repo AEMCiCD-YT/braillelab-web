@@ -3,6 +3,7 @@ import { Eyebrow } from "../../components/Visuals";
 import styles from "./privacidad.module.css";
 import { buildMetadata } from "../../content/metadata";
 import { CONTRIBUTION_PRIVACY_VERSION } from "../../content/campaign";
+import { site } from "../../content/site";
 
 export const metadata = buildMetadata({
   path: "/privacidad",
@@ -28,7 +29,7 @@ export default function PrivacidadPage() {
         <section>
           <h2>1. Responsable y contacto</h2>
           <p>La Asociación de Estudiantes de Matemática, Ciencias Computacionales y Ciencia de Datos de la Universidad Yachay Tech (AEMCiCD), en el marco de BrailleLab Ecuador y de la coorganización con IEEE Student Branch — Universidad Yachay Tech, es responsable de las decisiones sobre la finalidad y medios esenciales del tratamiento.</p>
-          <p>Consultas, derechos o actualización: <a href="mailto:asoemc@yachaytech.edu.ec">asoemc@yachaytech.edu.ec</a>.</p>
+          <p>Consultas, derechos o actualización: <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a>.</p>
         </section>
 
         <section>
@@ -51,13 +52,13 @@ export default function PrivacidadPage() {
 
         <section>
           <h2>5. Derechos, menores y cambios</h2>
-          <p>Las personas pueden solicitar información, acceso, actualización, rectificación, eliminación, oposición o suspensión del tratamiento cuando corresponda. Escribe a <a href="mailto:asoemc@yachaytech.edu.ec">asoemc@yachaytech.edu.ec</a> con el asunto <code>Datos personales — BrailleTech</code>.</p>
+          <p>Las personas pueden solicitar información, acceso, actualización, rectificación, eliminación, oposición o suspensión del tratamiento cuando corresponda. Escribe a <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a> con el asunto <code>Datos personales — BrailleTech</code>.</p>
           <p>Si una persona inscrita es menor de edad, la organización evaluará el caso y solicitará la participación o autorización de su representante legal cuando corresponda. Los cambios relevantes de este aviso se comunicarán antes de aplicar finalidades incompatibles.</p>
         </section>
         <section id="aportes" aria-labelledby="aportes-title">
           <h2 id="aportes-title">6. Avisos de aporte a la campaña BrailleLab Ecuador 2027</h2>
           <p><strong>Versión {CONTRIBUTION_PRIVACY_VERSION} · borrador pendiente de aprobación por la asociación.</strong> El formulario de aviso solo se habilita cuando la plataforma usa esta misma versión.</p>
-          <p><strong>Responsable.</strong> AEMCiCD, titular de la cuenta institucional que recibe los aportes. Consultas: <a href="mailto:asoemc@yachaytech.edu.ec">asoemc@yachaytech.edu.ec</a>, asunto <code>Datos personales — Aportes BrailleLab</code>.</p>
+          <p><strong>Responsable.</strong> AEMCiCD, titular de la cuenta institucional que recibe los aportes. Consultas: <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a>, asunto <code>Datos personales — Aportes BrailleLab</code>.</p>
           <p><strong>Datos.</strong> Nombre y correo de contacto; monto, fecha y referencia bancaria de la transferencia (o el motivo de no tenerla); destino elegido; el comprobante que adjuntas; y, solo si lo marcas, el nombre público y la autorización para mostrar el monto. No pedimos documento de identidad, número de cuenta de origen ni usuario institucional.</p>
           <p><strong>Finalidades.</strong> Identificar tu transferencia y verificarla en el banco, responderte sobre su estado, llevar la contabilidad y la rendición de cuentas de la campaña, y publicar tu reconocimiento únicamente si lo autorizaste. Un aviso no es un aporte confirmado: el aporte cuenta cuando Tesorería lo verifica.</p>
           <p><strong>Acceso y almacenamiento.</strong> Los datos se registran en AEMCiCD Platform y el comprobante en el almacenamiento documental institucional de Microsoft 365 de la asociación, con acceso limitado a Tesorería y a las personas autorizadas. El comprobante nunca se publica. Este sitio no guarda tus datos ni el archivo en tu navegador y no los envía a herramientas de analítica.</p>

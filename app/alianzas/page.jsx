@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
   keywords: ["donar BrailleLab", "apoyar BrailleTech 2027", "patrocinio BrailleTech 2027", "aporte en especie"],
 });
 
-const mail = (subject) => `mailto:${site.contact}?subject=${encodeURIComponent(subject)}`;
+const mail = (subject) => `mailto:${site.contacts.partnerships}?subject=${encodeURIComponent(subject)}`;
 
 export default function AlianzasPage() {
   return (
@@ -149,7 +149,7 @@ export default function AlianzasPage() {
           <h2 id="coorganizacion">El Challenge se articula desde la comunidad universitaria.</h2>
           <p>
             Los fondos se reciben en la cuenta institucional de AEMCiCD y su uso requiere las autorizaciones de la asociación.
-            Propuestas de patrocinio, especie o mentoría: <a href={mail("Apoya y colabora — BrailleLab 2027")}>{site.contact}</a>.
+            Propuestas de patrocinio, especie o mentoría: <a href={mail("Apoya y colabora — BrailleLab 2027")}>{site.contacts.partnerships}</a>.
           </p>
         </div>
         <div className={styles.names}>

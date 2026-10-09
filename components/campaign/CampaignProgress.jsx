@@ -18,7 +18,7 @@ function DataNotice({ state, onRetry }) {
     return (
       <p className={styles.dataNotice} role="status">
         Las cifras en vivo todavía no están conectadas a la plataforma de la asociación. Para conocer el avance escribe a{" "}
-        <a href={`mailto:${site.contact}`}>{site.contact}</a>.
+        <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>.
       </p>
     );
   }

@@ -1,3 +1,5 @@
+import { site } from "./site";
+
 export const faqGroups = [
   { title: "Participación e inscripción", items: [
     ["¿Qué es BrailleTech Challenge Ecuador 2027?", "Es una competencia nacional e interdisciplinaria de ingeniería para investigar, diseñar, construir y documentar tecnología Braille electrónica refrescable. Es una iniciativa de BrailleLab Ecuador, coorganizada por AEMCiCD y la IEEE Student Branch — Universidad Yachay Tech."],
@@ -24,6 +26,6 @@ export const faqGroups = [
   ]},
   { title: "Comunicación y datos", items: [
     ["¿Cómo se usarán nuestros datos?", "Para recibir postulaciones, verificar elegibilidad, comunicarse con el equipo, organizar etapas y planificar recursos de forma agregada. Revise el Aviso de Privacidad 2027 antes de enviar el formulario y no incluya documentos de identidad, direcciones, información médica ni datos bancarios en respuestas abiertas."],
-    ["¿Cómo pedimos una corrección?", "La organización se comunicará con el responsable principal. Para consultas o actualización de datos, escriba a asoemc@yachaytech.edu.ec con el asunto BrailleTech — consulta de inscripción."],
+    ["¿Cómo pedimos una corrección?", `La organización se comunicará con el responsable principal. Para consultas o actualización de datos, escriba a ${site.contacts.participants} con el asunto BrailleTech — consulta de inscripción.`],
   ]},
 ];
