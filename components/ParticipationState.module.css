@@ -10,7 +10,7 @@
 
 .copy > span {
   color: var(--color-info);
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 850;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -51,7 +51,7 @@
 
 .window small {
   color: var(--color-info);
-  font-size: .66rem;
+  font-size: .75rem;
   font-weight: 850;
   letter-spacing: .08em;
   text-transform: uppercase;

@@ -17,7 +17,7 @@
   content: "0" counter(item);
   color: var(--color-info);
   font-family: var(--font-mono);
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 800;
 }
 

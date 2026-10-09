@@ -15,7 +15,7 @@
 .optional > span,
 .proofCard > span {
   font-family: var(--font-mono);
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
