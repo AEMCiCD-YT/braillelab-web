@@ -87,6 +87,26 @@ function ResourcesVisual() {
   );
 }
 
+function TransparencyVisual() {
+  const rows = [
+    ["IN", "Recaudado"],
+    ["OUT", "Utilizado"],
+    ["GAP", "Por cubrir"],
+  ];
+
+  return (
+    <div className={styles.transparency}>
+      <div className={styles.visualMeta}><span>LIBRO</span><b>VERIFICADO</b></div>
+      <div className={styles.ledger}>
+        {rows.map(([code, label]) => (
+          <div key={code}><span>{code}</span><strong>{label}</strong><i /></div>
+        ))}
+      </div>
+      <small>registros de tesorería · sin datos personales</small>
+    </div>
+  );
+}
+
 function LabVisual() {
   return (
     <div className={styles.labBrand}>
@@ -127,6 +147,7 @@ export default function PageHeroVisual({ variant = "lab", accent = "cyan" }) {
     participate: <ParticipateVisual />,
     timeline: <TimelineVisual />,
     resources: <ResourcesVisual />,
+    transparency: <TransparencyVisual />,
     lab: <LabVisual />,
     alliances: <AlliancesVisual />,
   }[variant] || <LabVisual />;

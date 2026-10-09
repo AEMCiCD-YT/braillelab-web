@@ -31,7 +31,37 @@ const values = [
 
 const highlightedResources = site.resources.slice(0, 3);
 
-function AbstractSystemVisual({ compact = false }) {
+function MiniCell({ pattern }) {
+  return (
+    <div className={styles.miniCell}>
+      {Array.from({ length: 6 }).map((_, pointIndex) => (
+        <span className={pattern.includes(pointIndex) ? styles.activePoint : styles.point} key={pointIndex} />
+      ))}
+    </div>
+  );
+}
+
+function ProgressionVisual() {
+  const steps = [
+    ["Punto", <span className={styles.singlePoint} key="point" />],
+    ["Celda", <MiniCell pattern={[0, 3, 5]} key="cell" />],
+    ["Módulo", [[1, 2, 4], [0, 4, 5], [1, 3, 5]].map((pattern, index) => <MiniCell pattern={pattern} key={index} />)],
+    ["Sistema", Array.from({ length: 8 }).map((_, index) => <MiniCell pattern={[index % 6, (index + 3) % 6]} key={index} />)],
+  ];
+
+  return (
+    <ol className={styles.progression} aria-hidden="true">
+      {steps.map(([label, visual], index) => (
+        <li key={label}>
+          <span>{String(index + 1).padStart(2, "0")} · {label}</span>
+          <div>{visual}</div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function AbstractSystemVisual() {
   const patterns = [
     [0, 3, 5],
     [1, 2, 4],
@@ -40,7 +70,7 @@ function AbstractSystemVisual({ compact = false }) {
   ];
 
   return (
-    <div className={compact ? styles.systemVisualCompact : styles.systemVisual} aria-hidden="true">
+    <div className={styles.systemVisual} aria-hidden="true">
       <div className={styles.systemLabel}>punto</div>
       <div className={styles.systemTrack}>
         {patterns.map((pattern, cellIndex) => (
@@ -141,7 +171,7 @@ export default function Home() {
           </ul>
         </div>
         <div className={styles.systemPanel}>
-          <AbstractSystemVisual compact />
+          <ProgressionVisual />
           <p>Progresión conceptual, no codificación Braille textual.</p>
         </div>
       </section>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { EventActionLink } from "./SiteShell";
 import { challengeStatus } from "../content/site";
 import { getTimelineState } from "../content/timeline";
 import styles from "./HomeEventStatus.module.css";
@@ -90,7 +89,6 @@ export default function HomeEventStatus() {
           <span className={styles.eyebrow}>Estado de la edición</span>
           <h2 id="edition-status-title">{runtime.status.label}</h2>
           <p>{runtime.statusCopy}</p>
-          <div className={styles.action}><EventActionLink /></div>
         </div>
 
         <div className={styles.countdown}>

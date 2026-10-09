@@ -74,8 +74,7 @@
   line-height: 1.45;
 }
 
-.systemVisual,
-.systemVisualCompact {
+.systemVisual {
   position: relative;
   min-height: 390px;
   display: grid;
@@ -270,12 +269,59 @@
   color: var(--color-on-dark);
 }
 
-.systemPanel .systemVisualCompact {
-  min-height: 280px;
-  padding: 18px;
-  border: 0;
-  box-shadow: none;
-  background: transparent;
+.progression {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progression li {
+  min-height: 74px;
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+.progression li > span {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.progression li > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.miniCell {
+  width: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid rgb(255 255 255 / 12%);
+}
+
+.progression li:nth-child(2) .miniCell {
+  width: 46px;
+  gap: 5px;
+  padding: 6px;
+}
+
+.singlePoint {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-interactive);
+  box-shadow: 0 0 0 5px rgb(0 175 199 / 14%);
 }
 
 .systemPanel > p {

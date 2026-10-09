@@ -56,6 +56,7 @@
 .participate,
 .timeline,
 .resources,
+.transparency,
 .lab,
 .alliances {
   height: 100%;
@@ -197,7 +198,8 @@
 }
 
 .timeline li b,
-.docStack span {
+.docStack span,
+.ledger span {
   color: var(--visual-accent);
   font-family: var(--font-mono);
   font-size: .72rem;
@@ -232,6 +234,35 @@
   height: 2px;
   background: var(--visual-accent);
   opacity: .8;
+}
+
+.ledger {
+  display: grid;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+}
+
+.ledger > div {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 42px 1fr 72px;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+.ledger strong {
+  font-size: .86rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.ledger i {
+  height: 10px;
+  border: 1px dashed rgb(255 255 255 / 30%);
+}
+
+.ledger > div:last-child i {
+  border-color: var(--visual-accent);
 }
 
 .labFlow {

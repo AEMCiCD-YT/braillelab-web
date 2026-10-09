@@ -33,14 +33,14 @@ export const site = {
   },
   contact: "asoemc@yachaytech.edu.ec",
   resources: [
-    { id: "bases", title: "Bases y Reglamento 2027", version: "Edición 2027 · publicación pendiente", href: null },
-    { id: "guia", title: "Guía Técnica 2027", version: "Edición 2027 · publicación pendiente", href: null },
-    { id: "cronograma", title: "Cronograma 2027", version: "Ruta C seleccionada · publicación pendiente", href: null },
-    { id: "rubrica", title: "Rúbrica de evaluación 2027", version: "Edición 2027 · publicación pendiente", href: null },
+    { id: "bases", title: "Bases y Reglamento 2027", version: "Edición 2027", href: null },
+    { id: "guia", title: "Guía Técnica 2027", version: "Edición 2027", href: null },
+    { id: "cronograma", title: "Cronograma 2027", version: "Ruta C seleccionada", href: null },
+    { id: "rubrica", title: "Rúbrica de evaluación 2027", version: "Edición 2027", href: null },
     { id: "formulario", title: "Formulario oficial de inscripción 2027", version: "Se habilitará para la convocatoria", href: null },
-    { id: "declaracion", title: "Declaración de autoría y licencias 2027", version: "Edición 2027 · publicación pendiente", href: null },
-    { id: "seguridad", title: "Protocolo de seguridad y laboratorios 2027", version: "Edición 2027 · publicación pendiente", href: null },
-    { id: "validacion", title: "Protocolo de validación con personas usuarias 2027", version: "Edición 2027 · publicación pendiente", href: null },
+    { id: "declaracion", title: "Declaración de autoría y licencias 2027", version: "Edición 2027", href: null },
+    { id: "seguridad", title: "Protocolo de seguridad y laboratorios 2027", version: "Edición 2027", href: null },
+    { id: "validacion", title: "Protocolo de validación con personas usuarias 2027", version: "Edición 2027", href: null },
   ],
 };
 
