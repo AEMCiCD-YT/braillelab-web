@@ -40,6 +40,9 @@ jobs:
           # Public API of AEMCiCD Platform (repository variable). Empty = the page shows "not connected"
           # and keeps the contribution form closed; it never invents figures or transfer instructions.
           NEXT_PUBLIC_PLATFORM_API_URL: ${{ vars.PLATFORM_API_URL }}
+          # Microsoft Forms registration link (repository variable). Empty = no "Inscribir equipo" button;
+          # when set, the button shows only during the registration window (content/site.js).
+          NEXT_PUBLIC_BRAILLETECH_REGISTRATION_URL: ${{ vars.BRAILLETECH_REGISTRATION_URL }}
         run: npm run build
 
       - name: Upload Pages artifact
