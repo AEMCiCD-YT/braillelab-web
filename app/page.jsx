@@ -5,7 +5,7 @@ import Section from "../components/Section";
 import PhaseFlow from "../components/PhaseFlow";
 import HomeMilestones from "../components/HomeMilestones";
 import HomeEventStatus from "../components/HomeEventStatus";
-import { site } from "../content/site";
+import { assetPath, site } from "../content/site";
 import { brailleGridOrder, letterDots } from "../content/braille";
 import styles from "./home.module.css";
 import { buildMetadata } from "../content/metadata";
@@ -205,7 +205,7 @@ export default function Home() {
       <Section
         id="recursos"
         eyebrow="Recursos destacados"
-        title="Documentación 2027, cuando esté aprobada para publicación."
+        title="Documentación oficial 2027, lista para descargar."
         action={<ArrowLink href="/recursos">Ver todos los recursos</ArrowLink>}
       >
         <div className={styles.resourceGrid}>
@@ -214,7 +214,11 @@ export default function Home() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{resource.title}</h3>
               <p>{resource.version}</p>
-              <small>{resource.href ? "Disponible" : "Publicación pendiente"}</small>
+              {resource.href ? (
+                <a href={assetPath(resource.href)} target="_blank" rel="noreferrer">Abrir PDF</a>
+              ) : (
+                <small>Publicación pendiente</small>
+              )}
             </article>
           ))}
         </div>

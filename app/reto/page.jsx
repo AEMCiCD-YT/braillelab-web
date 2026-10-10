@@ -80,7 +80,7 @@ export default function RetoPage() {
         id="siguiente-paso"
         eyebrow="Siguiente paso"
         title="Entiende el alcance y prepara una propuesta técnicamente defendible."
-        lede="Los documentos 2027 se publicarán en Recursos cuando estén aprobados."
+        lede="Las bases, la guía técnica y la rúbrica 2027 están disponibles en Recursos."
         action={<>
           <ArrowLink href="/recursos" primary>Ver recursos 2027</ArrowLink>
           <EventActionLink avoid={["/recursos"]} />

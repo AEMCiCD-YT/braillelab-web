@@ -7,8 +7,8 @@ export function assetPath(path) {
 }
 
 export const site = {
-  updatedAt: "2026-09-26",
-  updatedAtLabel: "26 de septiembre de 2026",
+  updatedAt: "2026-10-10",
+  updatedAtLabel: "10 de octubre de 2026",
   event: {
     name: "BrailleTech Challenge Ecuador 2027",
     shortName: "BrailleTech Challenge 2027",
@@ -38,15 +38,18 @@ export const site = {
     partnerships: "alianzas@braillelab.org",
     privacy: "privacidad@braillelab.org",
   },
+  // PDFs públicos de la edición 2027 (fuentes en el repositorio de documentos de BrailleLab Ecuador).
   resources: [
-    { id: "bases", title: "Bases y Reglamento 2027", version: "Edición 2027", href: null },
-    { id: "guia", title: "Guía Técnica 2027", version: "Edición 2027", href: null },
-    { id: "cronograma", title: "Cronograma 2027", version: "Ruta C seleccionada", href: null },
-    { id: "rubrica", title: "Rúbrica de evaluación 2027", version: "Edición 2027", href: null },
-    { id: "formulario", title: "Formulario oficial de inscripción 2027", version: "Se habilitará para la convocatoria", href: null },
-    { id: "declaracion", title: "Declaración de autoría y licencias 2027", version: "Edición 2027", href: null },
-    { id: "seguridad", title: "Protocolo de seguridad y laboratorios 2027", version: "Edición 2027", href: null },
-    { id: "validacion", title: "Protocolo de validación con personas usuarias 2027", version: "Edición 2027", href: null },
+    { id: "bases", title: "Bases y Reglamento 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/bases-y-reglamento-2027.pdf" },
+    { id: "convocatoria", title: "Convocatoria oficial 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/convocatoria-oficial-2027.pdf" },
+    { id: "cronograma", title: "Cronograma oficial 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/cronograma-oficial-2027.pdf" },
+    { id: "formulario", title: "Formulario de inscripción 2027 · vista previa", version: "La inscripción se hace en línea", href: "/documentos/formulario-de-inscripcion-2027.pdf" },
+    { id: "guia", title: "Guía Técnica 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/guia-tecnica-2027.pdf" },
+    { id: "bootcamp", title: "Guía del Bootcamp y mentoría 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/guia-bootcamp-y-mentoria-2027.pdf" },
+    { id: "rubrica", title: "Rúbrica de evaluación 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/rubrica-de-evaluacion-2027.pdf" },
+    { id: "declaracion", title: "Declaración de autoría y licencias 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/declaracion-autoria-licencias-recursos-2027.pdf" },
+    { id: "seguridad", title: "Protocolo de seguridad y laboratorios 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/protocolo-seguridad-laboratorios-2027.pdf" },
+    { id: "validacion", title: "Protocolo de validación con personas usuarias 2027", version: "Versión 1.0 · 10 oct. 2026", href: "/documentos/protocolo-validacion-personas-usuarias-2027.pdf" },
   ],
 };
 

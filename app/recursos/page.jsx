@@ -10,16 +10,18 @@ import { buildMetadata } from "../../content/metadata";
 export const metadata = buildMetadata({
   path: "/recursos",
   title: "Recursos · BrailleTech 2027",
-  description: "Consulta las bases, guía técnica, cronograma, rúbrica y protocolos oficiales de BrailleTech Challenge Ecuador 2027 conforme se aprueben para publicación.",
+  description: "Descarga las bases, convocatoria, cronograma, guía técnica, rúbrica y protocolos oficiales de BrailleTech Challenge Ecuador 2027.",
   keywords: ["bases BrailleTech 2027", "guía técnica BrailleTech"],
 });
 
 const descriptions = {
   bases: "Elegibilidad, alcance y reglas de participación.",
+  convocatoria: "Resumen de la convocatoria, etapas y condiciones.",
   guia: "Alcance técnico para diseñar, construir y documentar.",
   cronograma: "Fases, hitos y fechas de la edición 2027.",
   rubrica: "Criterios de la evaluación competitiva.",
-  formulario: "Preguntas y declaraciones de la inscripción.",
+  formulario: "Preguntas de la inscripción para preparar las respuestas; el registro se hace en el formulario en línea.",
+  bootcamp: "Sesiones del Bootcamp, office hours y cómo funciona la mentoría.",
   declaracion: "Marco de autoría, licencias, recursos y apoyos externos.",
   seguridad: "Prácticas de seguridad para el trabajo en laboratorios.",
   validacion: "Participación y validación con personas usuarias de Braille.",
@@ -30,15 +32,15 @@ const groups = [
     id: "normativa",
     label: "01 · Marco de participación",
     title: "Primero, entiende las reglas y las fechas.",
-    copy: "Bases, cronograma y formulario definen quién participa, cuándo y bajo qué condiciones.",
-    ids: ["bases", "cronograma", "formulario"],
+    copy: "Bases, convocatoria, cronograma y formulario definen quién participa, cuándo y bajo qué condiciones.",
+    ids: ["bases", "convocatoria", "cronograma", "formulario"],
   },
   {
     id: "tecnica",
     label: "02 · Diseño y evaluación",
     title: "Después, trabaja sobre el alcance técnico.",
-    copy: "Guía, rúbrica y declaración de autoría orientan la propuesta y la evaluación.",
-    ids: ["guia", "rubrica", "declaracion"],
+    copy: "Guía técnica, Bootcamp, rúbrica y declaración de autoría orientan la propuesta y la evaluación.",
+    ids: ["guia", "bootcamp", "rubrica", "declaracion"],
   },
   {
     id: "operacion",
@@ -72,14 +74,14 @@ export default function RecursosPage() {
   return (
     <SiteShell>
       <PageHero eyebrow="Recursos · edición 2027" title="Documentos para cada etapa." visual="resources">
-        La documentación 2027 se encuentra en preparación y se habilitará públicamente cuando cada versión esté aprobada.
+        Bases, cronograma, guías, rúbrica y protocolos oficiales de la edición 2027, listos para descargar.
       </PageHero>
 
       <Section
         id="documentos"
         eyebrow="Documentos 2027"
         title="Empieza por reglas, sigue con diseño y termina con operación."
-        lede="Cada grupo indica en qué etapa conviene leerlo. Los documentos se habilitan cuando su versión 2027 está aprobada para publicación."
+        lede="Cada grupo indica en qué etapa conviene leerlo. Todos los documentos están en PDF."
       >
         {groups.map((group) => {
           const documents = group.ids.map((id) => site.resources.find((item) => item.id === id)).filter(Boolean);

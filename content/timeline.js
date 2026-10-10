@@ -160,6 +160,16 @@ export const timelineEvents = [
     endsAt: "2027-05-21T23:59:59-05:00",
   },
   {
+    id: "validacion-formativa",
+    date: "26 abr.–14 may. 2027",
+    title: "Validación formativa con personas usuarias",
+    copy: "Sesiones con la primera celda funcional o maquetas táctiles; los hallazgos se incorporan antes del Checkpoint 2.",
+    phase: "prototipado",
+    phaseLabel: "Prototipado",
+    startsAt: "2027-04-26T00:00:00-05:00",
+    endsAt: "2027-05-14T23:59:59-05:00",
+  },
+  {
     id: "checkpoint-2",
     date: "22 may. 2027",
     title: "Checkpoint 2",
@@ -172,8 +182,8 @@ export const timelineEvents = [
   {
     id: "validacion",
     date: "23–28 may. 2027",
-    title: "Pruebas, validación autorizada y documentación",
-    copy: "Corrección de fallos y documentación de cambios dentro del marco autorizado.",
+    title: "Validación de confirmación, pruebas y documentación",
+    copy: "Confirmación de los cambios incorporados y documentación dentro del marco autorizado.",
     phase: "prototipado",
     phaseLabel: "Prototipado",
     startsAt: "2027-05-23T00:00:00-05:00",
@@ -256,7 +266,8 @@ function timestamp(value) {
 
 export function getTimelineState(now = new Date()) {
   const currentTime = timestamp(now);
-  const currentEvent = timelineEvents.find((event) => currentTime >= timestamp(event.startsAt) && currentTime <= timestamp(event.endsAt)) || null;
+  // Si dos hitos se superponen (p. ej. una validación dentro de la integración), prevalece el que empezó más tarde.
+  const currentEvent = [...timelineEvents].reverse().find((event) => currentTime >= timestamp(event.startsAt) && currentTime <= timestamp(event.endsAt)) || null;
   const nextEvent = timelineEvents.find((event) => currentTime < timestamp(event.startsAt)) || null;
   const previousEvent = [...timelineEvents].reverse().find((event) => currentTime > timestamp(event.endsAt)) || null;
 
