@@ -8,6 +8,7 @@ import PublishedSupporters from "../../components/campaign/PublishedSupporters";
 import TransferInstructions from "../../components/campaign/TransferInstructions";
 import { campaign, modalities, usd } from "../../content/campaign";
 import { site } from "../../content/site";
+import { coorganizers } from "../../content/brand";
 import styles from "./alianzas.module.css";
 import { buildMetadata } from "../../content/metadata";
 
@@ -136,10 +137,14 @@ export default function AlianzasPage() {
           Propuestas de patrocinio, especie o mentoría: <a className={styles.inlineLink} href={mail("Apoya y colabora — BrailleLab 2027")}>{site.contacts.partnerships}</a>.
         </>}
       >
-        <div className={styles.names}>
-          <span>AEMCiCD · Universidad Yachay Tech</span>
-          <span>IEEE Student Branch · Universidad Yachay Tech</span>
-        </div>
+        <ul className={styles.coorganizers}>
+          {coorganizers.map((org) => (
+            <li key={org.id}>
+              <img src={org.logo} alt={org.alt} width={org.width} height={org.height} loading="lazy" />
+              <span>{org.name}</span>
+            </li>
+          ))}
+        </ul>
       </Section>
     </SiteShell>
   );

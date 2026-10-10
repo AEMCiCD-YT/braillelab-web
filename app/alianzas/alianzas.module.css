@@ -18,16 +18,48 @@
   text-underline-offset: 4px;
 }
 
-.names {
+.coorganizers {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.names span {
-  padding: 18px 20px;
+.coorganizers li {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+  padding: 28px 24px 20px;
   border: var(--card-border);
   background: var(--card-surface);
-  font-weight: 800;
+}
+
+.coorganizers img {
+  width: 100%;
+  max-width: 280px;
+  height: 96px;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.coorganizers span {
+  padding-top: 14px;
+  border-top: var(--card-border);
+  color: var(--color-text-muted);
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .coorganizers {
+    grid-template-columns: 1fr;
+  }
+
+  .coorganizers img {
+    height: 80px;
+  }
 }
 
 .budget,

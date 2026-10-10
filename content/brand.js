@@ -9,3 +9,23 @@ export const brandAssets = {
   markNegative: asset("/brand/braillelab-isotipo-negativo.svg"),
   favicon: asset("/favicon.svg"),
 };
+
+// Logos oficiales de las organizaciones coorganizadoras (fondo transparente, para superficies claras).
+export const coorganizers = [
+  {
+    id: "aemcicd",
+    name: "AEMCiCD · Universidad Yachay Tech",
+    alt: "Asociación de Estudiantes de Matemática, Ciencias Computacionales y Ciencia de Datos (AEMCiCD)",
+    logo: asset("/brand/coorganizadores/aemcicd.svg"),
+    width: 3150,
+    height: 845,
+  },
+  {
+    id: "ieee-sb",
+    name: "IEEE Student Branch · Universidad Yachay Tech",
+    alt: "IEEE Student Branch, Yachay Tech University",
+    logo: asset("/brand/coorganizadores/ieee-sb-yachay-tech.png"),
+    width: 484,
+    height: 242,
+  },
+];

@@ -1,7 +1,7 @@
 import SiteShell, { ArrowLink, EventActionLink } from "../../components/SiteShell";
 import PageHero from "../../components/PageHero";
 import Section from "../../components/Section";
-import { assetPath, site } from "../../content/site";
+import { assetPath, resourceGroups, site } from "../../content/site";
 import Faq from "../../components/Faq";
 import resourceStyles from "./recursos.module.css";
 import { ArrowUpRight } from "lucide-react";
@@ -27,29 +27,6 @@ const descriptions = {
   validacion: "Participación y validación con personas usuarias de Braille.",
 };
 
-const groups = [
-  {
-    id: "normativa",
-    label: "01 · Marco de participación",
-    title: "Primero, entiende las reglas y las fechas.",
-    copy: "Bases, convocatoria, cronograma y formulario definen quién participa, cuándo y bajo qué condiciones.",
-    ids: ["bases", "convocatoria", "cronograma", "formulario"],
-  },
-  {
-    id: "tecnica",
-    label: "02 · Diseño y evaluación",
-    title: "Después, trabaja sobre el alcance técnico.",
-    copy: "Guía técnica, Bootcamp, rúbrica y declaración de autoría orientan la propuesta y la evaluación.",
-    ids: ["guia", "bootcamp", "rubrica", "declaracion"],
-  },
-  {
-    id: "operacion",
-    label: "03 · Seguridad y validación",
-    title: "Finalmente, prepara pruebas responsables.",
-    copy: "Los protocolos operativos se vuelven relevantes durante prototipado y validación.",
-    ids: ["seguridad", "validacion"],
-  },
-];
 
 function DocumentCard({ document, index }) {
   return (
@@ -83,7 +60,7 @@ export default function RecursosPage() {
         title="Empieza por reglas, sigue con diseño y termina con operación."
         lede="Cada grupo indica en qué etapa conviene leerlo. Todos los documentos están en PDF."
       >
-        {groups.map((group) => {
+        {resourceGroups.map((group) => {
           const documents = group.ids.map((id) => site.resources.find((item) => item.id === id)).filter(Boolean);
           return (
             <div className={resourceStyles.group} id={group.id} key={group.id}>
