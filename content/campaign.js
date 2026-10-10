@@ -83,7 +83,7 @@ export const modalities = [
     id: "donacion",
     title: "Donación",
     copy: "Transferencia a la cuenta institucional de AEMCiCD con destino flexible o restringido a un rubro. No genera beneficios comerciales ni derechos de patrocinio.",
-    action: "Reportar mi transferencia",
+    action: "Cómo donar",
     href: "#aviso",
   },
   {
