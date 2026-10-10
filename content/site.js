@@ -53,6 +53,34 @@ export const site = {
   ],
 };
 
+// Grupos de la página Recursos; `name` es la etiqueta corta del índice del hero.
+export const resourceGroups = [
+  {
+    id: "normativa",
+    label: "01 · Marco de participación",
+    name: "Marco de participación",
+    title: "Primero, entiende las reglas y las fechas.",
+    copy: "Bases, convocatoria, cronograma y formulario definen quién participa, cuándo y bajo qué condiciones.",
+    ids: ["bases", "convocatoria", "cronograma", "formulario"],
+  },
+  {
+    id: "tecnica",
+    label: "02 · Diseño y evaluación",
+    name: "Diseño y evaluación",
+    title: "Después, trabaja sobre el alcance técnico.",
+    copy: "Guía técnica, Bootcamp, rúbrica y declaración de autoría orientan la propuesta y la evaluación.",
+    ids: ["guia", "bootcamp", "rubrica", "declaracion"],
+  },
+  {
+    id: "operacion",
+    label: "03 · Seguridad y validación",
+    name: "Seguridad y validación",
+    title: "Finalmente, prepara pruebas responsables.",
+    copy: "Los protocolos operativos se vuelven relevantes durante prototipado y validación.",
+    ids: ["seguridad", "validacion"],
+  },
+];
+
 export function registrationAction(now = new Date()) {
   const { startsAt, endsAt, url, privacyUrl } = site.registration;
   const start = new Date(startsAt);

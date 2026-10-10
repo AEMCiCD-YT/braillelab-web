@@ -1,6 +1,8 @@
+import { ArrowDown } from "lucide-react";
 import styles from "./PageHeroVisual.module.css";
 import { brandAssets } from "../content/brand";
 import { brailleGridOrder, letterDots } from "../content/braille";
+import { resourceGroups, site } from "../content/site";
 
 function SixPointCell({ letter }) {
   const dots = letterDots(letter);
@@ -60,20 +62,23 @@ function TimelineVisual() {
 }
 
 function ResourcesVisual() {
+  const published = site.resources.filter((item) => item.href);
   return (
-    <div className={styles.resources}>
-      <div className={styles.visualMeta}><span>FUENTES</span><b>2027</b></div>
-      <div className={styles.docStack}>
-        {[
-          ["01", "BASES"],
-          ["02", "GUÍA"],
-          ["03", "CRONO"],
-        ].map(([number, label]) => (
-          <div key={number}><span>{number}</span><strong>{label}</strong><i /></div>
+    <nav className={styles.resources} aria-label="Índice de documentos">
+      <div className={styles.visualMeta}><span>DOCUMENTOS</span><b>{site.event.edition}</b></div>
+      <ol className={styles.docStack}>
+        {resourceGroups.map((group, index) => (
+          <li key={group.id}>
+            <a href={`#${group.id}`}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{group.name}</strong>
+              <em>{group.ids.length}<ArrowDown aria-hidden="true" size={16} /></em>
+            </a>
+          </li>
         ))}
-      </div>
-      <small>publicación controlada por versión</small>
-    </div>
+      </ol>
+      <small>{published.length} PDF · {published[0]?.version}</small>
+    </nav>
   );
 }
 
@@ -132,6 +137,8 @@ function AlliancesVisual() {
 }
 
 export default function PageHeroVisual({ variant = "lab", accent = "cyan" }) {
+  // El índice de Recursos tiene enlaces reales; el resto de visuales son decorativos.
+  const interactive = variant === "resources";
   const visual = {
     challenge: <ChallengeVisual />,
     participate: <ParticipateVisual />,
@@ -146,7 +153,7 @@ export default function PageHeroVisual({ variant = "lab", accent = "cyan" }) {
     <div
       className={variant === "lab" ? `${styles.visual} ${styles.brandVisual}` : styles.visual}
       data-accent={accent}
-      aria-hidden="true"
+      aria-hidden={interactive ? undefined : "true"}
     >
       {visual}
     </div>
