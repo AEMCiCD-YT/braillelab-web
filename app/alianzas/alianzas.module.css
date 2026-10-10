@@ -107,14 +107,29 @@
 
 .milestone {
   margin-top: 22px;
-  padding: 18px 22px;
   border: var(--card-border);
   background: var(--card-surface);
 }
 
+/* Toda la caja cerrada es el área táctil: el relleno vive en el summary. */
 .milestone summary {
+  min-height: 44px;
+  padding: 18px 22px;
   cursor: pointer;
   font-weight: 800;
+}
+
+.milestone[open] summary {
+  padding-bottom: 0;
+}
+
+.milestone ul,
+.milestone p {
+  margin-inline: 22px;
+}
+
+.milestone p {
+  padding-bottom: 18px;
 }
 
 .milestone summary:focus-visible {
@@ -167,6 +182,12 @@
   min-width: 0;
 }
 
+/* Sin formulario de reporte (campaña no habilitada) queda una sola columna. */
+.contribute > :only-child {
+  grid-column: 1 / -1;
+  max-width: 760px;
+}
+
 @media (max-width: 980px) {
   .budget,
   .modalities {
@@ -182,5 +203,59 @@
   .budget,
   .modalities {
     grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  /* Presupuesto compacto: rubro y monto en una fila, detalle debajo. */
+  .budget article {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title amount"
+      "detail detail";
+    align-items: baseline;
+    gap: 6px 14px;
+    padding: 16px 18px;
+  }
+
+  .budget article > span {
+    grid-area: amount;
+    font-size: 1.35rem;
+  }
+
+  .budget h3 {
+    grid-area: title;
+    font-size: 1.12rem;
+  }
+
+  .budget p {
+    grid-area: detail;
+    font-size: var(--type-small);
+  }
+
+  .modalities article {
+    gap: 8px;
+    padding: 18px;
+  }
+
+  .modalities h3 {
+    font-size: 1.15rem;
+  }
+
+  .modalities p {
+    font-size: var(--type-small);
+  }
+
+  .modalities article .button {
+    margin-top: 6px;
+  }
+
+  .milestone summary {
+    padding: 14px 18px;
+  }
+
+  .milestone ul,
+  .milestone p {
+    margin-inline: 18px;
   }
 }

@@ -3,7 +3,7 @@ import PageHero from "../../components/PageHero";
 import Section from "../../components/Section";
 import { CampaignDataProvider } from "../../components/campaign/CampaignDataProvider";
 import CampaignProgress from "../../components/campaign/CampaignProgress";
-import ContributionNoticeForm from "../../components/campaign/ContributionNoticeForm";
+import ContributionReport from "../../components/campaign/ContributionReport";
 import PublishedSupporters from "../../components/campaign/PublishedSupporters";
 import TransferInstructions from "../../components/campaign/TransferInstructions";
 import { campaign, modalities, usd } from "../../content/campaign";
@@ -109,10 +109,7 @@ export default function AlianzasPage() {
               </ol>
               <TransferInstructions />
             </div>
-            <div>
-              <h3 className={styles.formTitle}>Reportar mi transferencia</h3>
-              <ContributionNoticeForm />
-            </div>
+            <ContributionReport titleClassName={styles.formTitle} />
           </div>
         </Section>
 
