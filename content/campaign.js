@@ -28,7 +28,7 @@ export function platformUrl(path) {
  * habilita cuando la plataforma usa esta misma versión: nunca se acepta un aviso distinto al
  * que la persona puede leer.
  */
-export const CONTRIBUTION_PRIVACY_VERSION = "aportes-2027-v0.1";
+export const CONTRIBUTION_PRIVACY_VERSION = "aportes-2027-v1.0";
 
 export const campaign = {
   name: "BrailleLab Ecuador 2027",

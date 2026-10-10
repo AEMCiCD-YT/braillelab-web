@@ -16,7 +16,7 @@ export default function PrivacidadPage() {
   return (
     <SiteShell>
       <article className={`wrap ${styles.article}`}>
-        <Eyebrow>Borrador 0.1 · edición 2027</Eyebrow>
+        <Eyebrow>Versión 1.0 · edición 2027</Eyebrow>
         <h1>Aviso de privacidad y tratamiento de datos</h1>
         <p className={styles.lede}>
           Este aviso cubre dos tratamientos: la inscripción en BrailleTech Challenge Ecuador 2027 (secciones 1 a 5) y los{" "}
@@ -57,7 +57,7 @@ export default function PrivacidadPage() {
         </section>
         <section id="aportes" aria-labelledby="aportes-title">
           <h2 id="aportes-title">6. Avisos de aporte a la campaña BrailleLab Ecuador 2027</h2>
-          <p><strong>Versión {CONTRIBUTION_PRIVACY_VERSION} · borrador pendiente de aprobación por la asociación.</strong> El formulario de aviso solo se habilita cuando la plataforma usa esta misma versión.</p>
+          <p><strong>Versión {CONTRIBUTION_PRIVACY_VERSION} · aprobada por la Presidencia de AEMCiCD el 10 de octubre de 2026.</strong> El formulario de aviso solo se habilita cuando la plataforma usa esta misma versión.</p>
           <p><strong>Responsable.</strong> AEMCiCD, titular de la cuenta institucional que recibe los aportes. Consultas: <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a>, asunto <code>Datos personales — Aportes BrailleLab</code>.</p>
           <p><strong>Datos.</strong> Nombre y correo de contacto; monto, fecha y referencia bancaria de la transferencia (o el motivo de no tenerla); destino elegido; el comprobante que adjuntas; y, solo si lo marcas, el nombre público y la autorización para mostrar el monto. No pedimos documento de identidad, número de cuenta de origen ni usuario institucional.</p>
           <p><strong>Finalidades.</strong> Identificar tu transferencia y verificarla en el banco, responderte sobre su estado, llevar la contabilidad y la rendición de cuentas de la campaña, y publicar tu reconocimiento únicamente si lo autorizaste. Un aviso no es un aporte confirmado: el aporte cuenta cuando Tesorería lo verifica.</p>
