@@ -10,15 +10,15 @@ export const brandAssets = {
   favicon: asset("/favicon.svg"),
 };
 
-// Logos de las organizaciones coorganizadoras (fondo transparente, para superficies claras).
+// Logos oficiales de las organizaciones coorganizadoras (fondo transparente, para superficies claras).
 export const coorganizers = [
   {
     id: "aemcicd",
     name: "AEMCiCD · Universidad Yachay Tech",
     alt: "Asociación de Estudiantes de Matemática, Ciencias Computacionales y Ciencia de Datos (AEMCiCD)",
-    logo: asset("/brand/coorganizadores/aemcicd.png"),
-    width: 614,
-    height: 180,
+    logo: asset("/brand/coorganizadores/aemcicd.svg"),
+    width: 3150,
+    height: 845,
   },
   {
     id: "ieee-sb",
