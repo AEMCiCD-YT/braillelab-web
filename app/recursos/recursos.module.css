@@ -1,7 +1,7 @@
 .library {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .document {
@@ -52,7 +52,7 @@
   color: var(--color-info);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .library {
     grid-template-columns: repeat(2, 1fr);
   }

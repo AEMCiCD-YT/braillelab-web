@@ -18,7 +18,7 @@ export default function CronogramaPage() {
   return (
     <SiteShell>
       <PageHero eyebrow="Cronograma 2027" title="Explora cada etapa del proceso." visual="timeline">
-        La ruta C fue seleccionada para la planificación 2027. Las fechas se actualizarán si existe un ajuste formal antes de su publicación definitiva.
+        Cronograma oficial de la edición 2027: de la convocatoria en enero al Demo Day del 12 de junio en la Universidad Yachay Tech.
       </PageHero>
 
       <Section

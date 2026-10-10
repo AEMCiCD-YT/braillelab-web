@@ -403,10 +403,19 @@
   color: var(--color-text-muted);
 }
 
-.resourceGrid small {
+.resourceGrid small,
+.resourceGrid a {
   margin-top: auto;
   color: var(--color-info);
   font-weight: 700;
+}
+
+.resourceGrid a {
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-underline-offset: 4px;
 }
 
 .demoDate {
