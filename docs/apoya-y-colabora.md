@@ -53,7 +53,7 @@ Opcional en el build: `NEXT_PUBLIC_CAMPAIGN_SLUG` (por defecto `braillelab-ecuad
 En la plataforma, antes de recibir avisos reales:
 
 - `PUBLIC_WEB_ORIGINS` debe incluir `https://braillelab.org` y `https://aemcicd.org`.
-- `CONTRIBUTION_PRIVACY_NOTICE_VERSION` debe ser `aportes-2027-v0.1`, o la versión que se publique aquí.
+- `CONTRIBUTION_PRIVACY_NOTICE_VERSION` debe ser `aportes-2027-v1.0` (aprobada el 10 de octubre de 2026), o la versión que se publique aquí.
 - Reglas editoriales aprobadas en la pestaña «Publicación».
 - Campaña `ACTIVE` con cuenta e instrucciones configuradas en privado.
 
