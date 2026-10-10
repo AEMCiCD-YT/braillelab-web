@@ -69,7 +69,7 @@ function ResourcesVisual() {
       <ol className={styles.docStack}>
         {resourceGroups.map((group, index) => (
           <li key={group.id}>
-            <a href={`#${group.id}`}>
+            <a href={`#${group.id}`} aria-label={`${group.name}: ${group.ids.length} documentos`}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{group.name}</strong>
               <em>{group.ids.length}<ArrowDown aria-hidden="true" size={16} /></em>
