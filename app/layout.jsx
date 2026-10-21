@@ -1,5 +1,6 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { buildMetadata, SITE_URL } from "../content/metadata";
+import GoogleAdsTag from "../components/GoogleAdsTag";
 import "./globals.css";
 
 const displayFont = Space_Grotesk({
@@ -35,7 +36,8 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
-      <body>{children}</body>
+      <body><GoogleAdsTag />{children}</body>
     </html>
   );
 }
+
