@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { CONTRIBUTION_PRIVACY_VERSION, campaignApi, destinationLabels, usd } from "../../content/campaign";
 import { site } from "../../content/site";
+import { recordContributionNoticeConversion } from "../../lib/google-ads.mjs";
 import styles from "./ContributionNoticeForm.module.css";
 
 /*
@@ -228,9 +229,10 @@ function NoticeForm({ config, onConfigOutdated }) {
     body.append("receipt", file, file.name);
 
     const request = new XMLHttpRequest();
+    const submissionKey = keyRef.current;
     request.open("POST", campaignApi("/contribution-notices"));
     request.withCredentials = false;
-    request.setRequestHeader("Idempotency-Key", keyRef.current);
+    request.setRequestHeader("Idempotency-Key", submissionKey);
     request.responseType = "json";
     request.upload.onprogress = (event) => {
       if (event.lengthComputable) setProgress(Math.round((event.loaded / event.total) * 100));
@@ -242,6 +244,7 @@ function NoticeForm({ config, onConfigOutdated }) {
       if (request.status === 202) {
         setReceipt(response);
         setPhase("received");
+        recordContributionNoticeConversion(request.status, response, submissionKey);
         return;
       }
       handleError(request.status, response, request.getResponseHeader("Retry-After"));
@@ -502,3 +505,4 @@ function NoticeForm({ config, onConfigOutdated }) {
     </div>
   );
 }
+
