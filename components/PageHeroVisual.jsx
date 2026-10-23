@@ -2,7 +2,28 @@ import { ArrowDown } from "lucide-react";
 import styles from "./PageHeroVisual.module.css";
 import { brandAssets } from "../content/brand";
 import { brailleGridOrder, letterDots } from "../content/braille";
-import { resourceGroups, site } from "../content/site";
+import { getResourceGroups, getResources, site } from "../content/site";
+
+const copy = {
+  es: {
+    cell: "CELDA · 6 PUNTOS", letter: "r", letterTag: "«r» de reto", control: "control electrónico",
+    team: "EQUIPO", teamNote: "interdisciplinario · inter-IES permitido",
+    route: "RUTA", prototype: "Prototipo",
+    docIndex: "Índice de documentos", docs: "DOCUMENTOS", docCount: (group) => `${group.name}: ${group.ids.length} documentos`,
+    ledger: "LIBRO", verified: "VERIFICADO", rows: ["Recaudado", "Utilizado", "Por cubrir"], ledgerNote: "registros de tesorería · sin datos personales",
+    lab: "Relieve · activación · sistema modular",
+    collaborate: "COLABORAR", scope: "CON ALCANCE", nodes: ["Técnico", "Difusión", "Institucional"],
+  },
+  en: {
+    cell: "CELL · 6 DOTS", letter: "c", letterTag: "«c» for challenge", control: "electronic control",
+    team: "TEAM", teamNote: "interdisciplinary · multi-institution allowed",
+    route: "ROUTE", prototype: "Prototype",
+    docIndex: "Document index", docs: "DOCUMENTS", docCount: (group) => `${group.name}: ${group.ids.length} documents`,
+    ledger: "LEDGER", verified: "VERIFIED", rows: ["Raised", "Used", "To cover"], ledgerNote: "treasury records · no personal data",
+    lab: "Relief · actuation · modular system",
+    collaborate: "COLLABORATE", scope: "WITH SCOPE", nodes: ["Technical", "Outreach", "Institutional"],
+  },
+};
 
 function SixPointCell({ letter }) {
   const dots = letterDots(letter);
@@ -13,21 +34,21 @@ function SixPointCell({ letter }) {
   );
 }
 
-function ChallengeVisual() {
+function ChallengeVisual({ t }) {
   return (
     <div className={styles.challenge}>
-      <div className={styles.visualMeta}><span>CELDA · 6 PUNTOS</span><b className={styles.letterTag}>«r» de reto</b></div>
-      <SixPointCell letter="r" />
+      <div className={styles.visualMeta}><span>{t.cell}</span><b className={styles.letterTag}>{t.letterTag}</b></div>
+      <SixPointCell letter={t.letter} />
       <div className={styles.signalLine}><i /><i /><i /></div>
-      <small>control electrónico</small>
+      <small>{t.control}</small>
     </div>
   );
 }
 
-function ParticipateVisual() {
+function ParticipateVisual({ t }) {
   return (
     <div className={styles.participate}>
-      <div className={styles.visualMeta}><span>EQUIPO</span><b>3–5</b></div>
+      <div className={styles.visualMeta}><span>{t.team}</span><b>3–5</b></div>
       <div className={styles.memberGrid}>
         {Array.from({ length: 5 }).map((_, index) => (
           <div key={index} className={index < 3 ? styles.memberRequired : styles.memberOptional}>
@@ -36,22 +57,22 @@ function ParticipateVisual() {
           </div>
         ))}
       </div>
-      <small>interdisciplinario · inter-IES permitido</small>
+      <small>{t.teamNote}</small>
     </div>
   );
 }
 
-function TimelineVisual() {
+function TimelineVisual({ t }) {
   const phases = [
     ["01", "Bootcamp"],
     ["02", "Review"],
-    ["03", "Prototipo"],
+    ["03", t.prototype],
     ["04", "Demo"],
   ];
 
   return (
     <div className={styles.timeline}>
-      <div className={styles.visualMeta}><span>RUTA</span><b>2027</b></div>
+      <div className={styles.visualMeta}><span>{t.route}</span><b>2027</b></div>
       <ol>
         {phases.map(([number, label]) => (
           <li key={number}><b>{number}</b><span>{label}</span></li>
@@ -61,15 +82,15 @@ function TimelineVisual() {
   );
 }
 
-function ResourcesVisual() {
-  const published = site.resources.filter((item) => item.href);
+function ResourcesVisual({ t, locale }) {
+  const published = getResources(locale).filter((item) => item.href);
   return (
-    <nav className={styles.resources} aria-label="Índice de documentos">
-      <div className={styles.visualMeta}><span>DOCUMENTOS</span><b>{site.event.edition}</b></div>
+    <nav className={styles.resources} aria-label={t.docIndex}>
+      <div className={styles.visualMeta}><span>{t.docs}</span><b>{site.event.edition}</b></div>
       <ol className={styles.docStack}>
-        {resourceGroups.map((group, index) => (
+        {getResourceGroups(locale).map((group, index) => (
           <li key={group.id}>
-            <a href={`#${group.id}`} aria-label={`${group.name}: ${group.ids.length} documentos`}>
+            <a href={`#${group.id}`} aria-label={t.docCount(group)}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{group.name}</strong>
               <em>{group.ids.length}<ArrowDown aria-hidden="true" size={16} /></em>
@@ -82,27 +103,27 @@ function ResourcesVisual() {
   );
 }
 
-function TransparencyVisual() {
+function TransparencyVisual({ t }) {
   const rows = [
-    ["IN", "Recaudado"],
-    ["OUT", "Utilizado"],
-    ["GAP", "Por cubrir"],
+    ["IN", t.rows[0]],
+    ["OUT", t.rows[1]],
+    ["GAP", t.rows[2]],
   ];
 
   return (
     <div className={styles.transparency}>
-      <div className={styles.visualMeta}><span>LIBRO</span><b>VERIFICADO</b></div>
+      <div className={styles.visualMeta}><span>{t.ledger}</span><b>{t.verified}</b></div>
       <div className={styles.ledger}>
         {rows.map(([code, label]) => (
           <div key={code}><span>{code}</span><strong>{label}</strong><i /></div>
         ))}
       </div>
-      <small>registros de tesorería · sin datos personales</small>
+      <small>{t.ledgerNote}</small>
     </div>
   );
 }
 
-function LabVisual() {
+function LabVisual({ t }) {
   return (
     <div className={styles.labBrand}>
       <img
@@ -110,17 +131,17 @@ function LabVisual() {
         alt=""
         aria-hidden="true"
       />
-      <small>Relieve · activación · sistema modular</small>
+      <small>{t.lab}</small>
     </div>
   );
 }
 
-function AlliancesVisual() {
-  const nodes = ["Técnico", "Difusión", "Institucional"];
+function AlliancesVisual({ t }) {
+  const nodes = t.nodes;
 
   return (
     <div className={styles.alliances}>
-      <div className={styles.visualMeta}><span>COLABORAR</span><b>CON ALCANCE</b></div>
+      <div className={styles.visualMeta}><span>{t.collaborate}</span><b>{t.scope}</b></div>
       <div className={styles.network}>
         <svg className={styles.networkLines} viewBox="0 0 100 100" preserveAspectRatio="none">
           <line x1="50" y1="50" x2="50" y2="18" />
@@ -136,18 +157,19 @@ function AlliancesVisual() {
   );
 }
 
-export default function PageHeroVisual({ variant = "lab", accent = "cyan" }) {
+export default function PageHeroVisual({ variant = "lab", accent = "cyan", locale = "es" }) {
+  const t = copy[locale] || copy.es;
   // El índice de Recursos tiene enlaces reales; el resto de visuales son decorativos.
   const interactive = variant === "resources";
   const visual = {
-    challenge: <ChallengeVisual />,
-    participate: <ParticipateVisual />,
-    timeline: <TimelineVisual />,
-    resources: <ResourcesVisual />,
-    transparency: <TransparencyVisual />,
-    lab: <LabVisual />,
-    alliances: <AlliancesVisual />,
-  }[variant] || <LabVisual />;
+    challenge: <ChallengeVisual t={t} />,
+    participate: <ParticipateVisual t={t} />,
+    timeline: <TimelineVisual t={t} />,
+    resources: <ResourcesVisual t={t} locale={locale} />,
+    transparency: <TransparencyVisual t={t} />,
+    lab: <LabVisual t={t} />,
+    alliances: <AlliancesVisual t={t} />,
+  }[variant] || <LabVisual t={t} />;
 
   return (
     <div

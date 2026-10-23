@@ -15,6 +15,7 @@ export const coorganizers = [
   {
     id: "aemcicd",
     name: "AEMCiCD · Universidad Yachay Tech",
+    nameEn: "AEMCiCD · Yachay Tech University",
     alt: "Asociación de Estudiantes de Matemática, Ciencias Computacionales y Ciencia de Datos (AEMCiCD)",
     logo: asset("/brand/coorganizadores/aemcicd.svg"),
     width: 3150,
@@ -23,6 +24,7 @@ export const coorganizers = [
   {
     id: "ieee-sb",
     name: "IEEE Student Branch · Universidad Yachay Tech",
+    nameEn: "IEEE Student Branch · Yachay Tech University",
     alt: "IEEE Student Branch, Yachay Tech University",
     logo: asset("/brand/coorganizadores/ieee-sb-yachay-tech.png"),
     width: 484,

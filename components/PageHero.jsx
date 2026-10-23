@@ -2,7 +2,7 @@ import { Eyebrow } from "./Visuals";
 import PageHeroVisual from "./PageHeroVisual";
 import styles from "./PageHero.module.css";
 
-export default function PageHero({ eyebrow, title, children, visual = "lab", accent = "cyan" }) {
+export default function PageHero({ eyebrow, title, children, visual = "lab", accent = "cyan", locale = "es" }) {
   return (
     <section className={styles.hero}>
       <div className={`wrap ${styles.grid}`}>
@@ -11,7 +11,7 @@ export default function PageHero({ eyebrow, title, children, visual = "lab", acc
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.copy}>{children}</p>
         </div>
-        <PageHeroVisual variant={visual} accent={accent} />
+        <PageHeroVisual variant={visual} accent={accent} locale={locale} />
       </div>
     </section>
   );

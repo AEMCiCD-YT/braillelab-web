@@ -1,7 +1,6 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
-import { buildMetadata, SITE_URL } from "../content/metadata";
-import GoogleAdsTag from "../components/GoogleAdsTag";
-import "./globals.css";
+import GoogleAdsTag from "./GoogleAdsTag";
+import "../app/globals.css";
 
 const displayFont = Space_Grotesk({
   subsets: ["latin"],
@@ -23,21 +22,16 @@ const monoFont = IBM_Plex_Mono({
   display: "swap",
 });
 
-export const metadata = {
-  metadataBase: new URL(`${SITE_URL}/`),
-  ...buildMetadata({ path: "/" }),
-};
-
 export const viewport = {
   themeColor: "#0B132B",
   colorScheme: "light",
 };
 
-export default function RootLayout({ children }) {
+// Documento común a los dos layouts raíz: (es) en la raíz del sitio y /en.
+export default function RootDocument({ lang, children }) {
   return (
-    <html lang="es" className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
+    <html lang={lang} className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
       <body><GoogleAdsTag />{children}</body>
     </html>
   );
 }
-

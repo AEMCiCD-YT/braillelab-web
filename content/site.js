@@ -81,74 +81,169 @@ export const resourceGroups = [
   },
 ];
 
-export function registrationAction(now = new Date()) {
+// Textos de las acciones y estados que cambian con el calendario. Los enlaces se escriben con la
+// ruta en español; ArrowLink y la barra de navegación los traducen al idioma de la página.
+const runtimeText = {
+  es: {
+    register: "Inscribir equipo",
+    howToParticipate: "Ver cómo participar",
+    schedule: "Consultar cronograma",
+    prepare: "Preparar participación",
+    nextMilestone: "Ver próximo hito",
+    aboutBraillelab: "Conocer BrailleLab",
+    followProcess: "Seguir el proceso",
+    demoDay: "Ver Demo Day",
+    registrationOpen: "Inscripciones abiertas",
+    callOpen: "Convocatoria abierta",
+    registrationClosed: "Inscripciones cerradas",
+    registrationWindow: "Inscripciones: 13–31 de enero de 2027",
+    preparing: "Edición 2027 en preparación",
+    nextLabel: "Próximo hito",
+    next: (event) => `Próximo hito: ${event.title} · ${event.date}`,
+    finished: "Edición 2027 finalizada",
+    finishedDetail: "Consulta BrailleLab Ecuador para conocer la continuidad del programa.",
+  },
+  en: {
+    register: "Register your team",
+    howToParticipate: "See how to take part",
+    schedule: "View the schedule",
+    prepare: "Get ready to take part",
+    nextMilestone: "See the next milestone",
+    aboutBraillelab: "Discover BrailleLab",
+    followProcess: "Follow the process",
+    demoDay: "See Demo Day",
+    registrationOpen: "Registration open",
+    callOpen: "Call for applications open",
+    registrationClosed: "Registration closed",
+    registrationWindow: "Registration: January 13–31, 2027",
+    preparing: "2027 edition in preparation",
+    nextLabel: "Next milestone",
+    next: (event) => `Next milestone: ${event.title} · ${event.date}`,
+    finished: "2027 edition completed",
+    finishedDetail: "Visit BrailleLab Ecuador to learn how the program continues.",
+  },
+};
+
+// Traducción de los documentos y grupos de Recursos. Los PDF solo existen en español.
+const resourcesEn = {
+  bases: ["2027 Rules and Regulations", "Version 1.0 · Oct 10, 2026"],
+  convocatoria: ["2027 Official Call for Applications", "Version 1.0 · Oct 10, 2026"],
+  cronograma: ["2027 Official Schedule", "Version 1.0 · Oct 10, 2026"],
+  formulario: ["2027 Registration Form · preview", "Registration is completed online"],
+  guia: ["2027 Technical Guide", "Version 1.0 · Oct 10, 2026"],
+  bootcamp: ["2027 Bootcamp and Mentoring Guide", "Version 1.0 · Oct 10, 2026"],
+  rubrica: ["2027 Evaluation Rubric", "Version 1.1 · Oct 10, 2026"],
+  declaracion: ["2027 Authorship and Licensing Statement", "Version 1.0 · Oct 10, 2026"],
+  seguridad: ["2027 Safety and Laboratory Protocol", "Version 1.0 · Oct 10, 2026"],
+  validacion: ["2027 User Validation Protocol", "Version 1.0 · Oct 10, 2026"],
+};
+
+const resourceGroupsEn = {
+  normativa: {
+    label: "01 · Participation framework",
+    name: "Participation framework",
+    title: "First, understand the rules and the dates.",
+    copy: "The rules, call for applications, schedule and form define who can take part, when and under what conditions.",
+  },
+  tecnica: {
+    label: "02 · Design and evaluation",
+    name: "Design and evaluation",
+    title: "Then, work on the technical scope.",
+    copy: "The technical guide, Bootcamp, rubric and authorship statement guide the proposal and its evaluation.",
+  },
+  operacion: {
+    label: "03 · Safety and validation",
+    name: "Safety and validation",
+    title: "Finally, prepare responsible testing.",
+    copy: "The operating protocols become relevant during prototyping and validation.",
+  },
+};
+
+export function getResources(locale = "es") {
+  if (locale !== "en") return site.resources;
+  return site.resources.map((resource) => {
+    const [title, version] = resourcesEn[resource.id] || [resource.title, resource.version];
+    return { ...resource, title, version };
+  });
+}
+
+export function getResourceGroups(locale = "es") {
+  if (locale !== "en") return resourceGroups;
+  return resourceGroups.map((group) => ({ ...group, ...resourceGroupsEn[group.id] }));
+}
+
+export function registrationAction(now = new Date(), locale = "es") {
+  const t = runtimeText[locale] || runtimeText.es;
   const { startsAt, endsAt, url, privacyUrl } = site.registration;
   const start = new Date(startsAt);
   const end = new Date(endsAt);
   const open = now >= start && now <= end;
 
   if (open && url && privacyUrl) {
-    return { label: "Inscribir equipo", href: url, state: "open", external: true };
+    return { label: t.register, href: url, state: "open", external: true };
   }
 
   if (open) {
-    return { label: "Ver cómo participar", href: "/participar", state: "open-pending", external: false };
+    return { label: t.howToParticipate, href: "/participar", state: "open-pending", external: false };
   }
 
   if (now > end) {
-    return { label: "Consultar cronograma", href: "/cronograma", state: "closed", external: false };
+    return { label: t.schedule, href: "/cronograma", state: "closed", external: false };
   }
 
-  return { label: "Preparar participación", href: "/participar", state: "upcoming", external: false };
+  return { label: t.prepare, href: "/participar", state: "upcoming", external: false };
 }
 
-export function registrationStatus(now = new Date()) {
-  const action = registrationAction(now);
-  if (action.state === "open") return "Inscripciones abiertas";
-  if (action.state === "open-pending") return "Convocatoria abierta";
-  if (action.state === "closed") return "Inscripciones cerradas";
-  return "Inscripciones: 13–31 de enero de 2027";
+export function registrationStatus(now = new Date(), locale = "es") {
+  const t = runtimeText[locale] || runtimeText.es;
+  const action = registrationAction(now, locale);
+  if (action.state === "open") return t.registrationOpen;
+  if (action.state === "open-pending") return t.callOpen;
+  if (action.state === "closed") return t.registrationClosed;
+  return t.registrationWindow;
 }
 
-export function challengeAction(now = new Date()) {
-  const registration = registrationAction(now);
+export function challengeAction(now = new Date(), locale = "es") {
+  const t = runtimeText[locale] || runtimeText.es;
+  const registration = registrationAction(now, locale);
   if (registration.state === "open" || registration.state === "open-pending") return registration;
 
-  const timeline = getTimelineState(now);
+  const timeline = getTimelineState(now, locale);
   if (timeline.state === "prelaunch") {
-    return { label: "Consultar cronograma", href: "/cronograma", state: "prelaunch", external: false };
+    return { label: t.schedule, href: "/cronograma", state: "prelaunch", external: false };
   }
 
   if (!timeline.currentEvent && timeline.nextEvent) {
-    return { label: "Ver próximo hito", href: "/cronograma", state: "between", external: false };
+    return { label: t.nextMilestone, href: "/cronograma", state: "between", external: false };
   }
 
   const current = timeline.currentEvent;
   if (!current) {
-    return { label: "Conocer BrailleLab", href: "/braillelab", state: "complete", external: false };
+    return { label: t.aboutBraillelab, href: "/braillelab", state: "complete", external: false };
   }
 
   if (current.id === "predifusion" || current.id === "countdown") {
-    return { label: "Preparar participación", href: "/participar", state: "preparation", external: false };
+    return { label: t.prepare, href: "/participar", state: "preparation", external: false };
   }
 
   if (current.phase === "convocatoria" || current.phase === "diseno") {
-    return { label: "Consultar cronograma", href: "/cronograma", state: current.phase, external: false };
+    return { label: t.schedule, href: "/cronograma", state: current.phase, external: false };
   }
 
   if (current.phase === "prototipado") {
-    return { label: "Seguir el proceso", href: "/cronograma", state: "prototipado", external: false };
+    return { label: t.followProcess, href: "/cronograma", state: "prototipado", external: false };
   }
 
   if (current.phase === "demo") {
-    return { label: "Ver Demo Day", href: "/cronograma", state: "demo", external: false };
+    return { label: t.demoDay, href: "/cronograma", state: "demo", external: false };
   }
 
-  return { label: "Conocer BrailleLab", href: "/braillelab", state: "cierre", external: false };
+  return { label: t.aboutBraillelab, href: "/braillelab", state: "cierre", external: false };
 }
 
-export function challengeStatus(now = new Date()) {
-  const timeline = getTimelineState(now);
+export function challengeStatus(now = new Date(), locale = "es") {
+  const t = runtimeText[locale] || runtimeText.es;
+  const timeline = getTimelineState(now, locale);
 
   if (timeline.currentEvent) {
     return {
@@ -160,23 +255,23 @@ export function challengeStatus(now = new Date()) {
 
   if (timeline.nextEvent && timeline.state === "prelaunch") {
     return {
-      label: "Edición 2027 en preparación",
-      detail: `Próximo hito: ${timeline.nextEvent.title} · ${timeline.nextEvent.date}`,
+      label: t.preparing,
+      detail: t.next(timeline.nextEvent),
       state: "prelaunch",
     };
   }
 
   if (timeline.nextEvent) {
     return {
-      label: "Próximo hito",
+      label: t.nextLabel,
       detail: `${timeline.nextEvent.title} · ${timeline.nextEvent.date}`,
       state: "between",
     };
   }
 
   return {
-    label: "Edición 2027 finalizada",
-    detail: "Consulta BrailleLab Ecuador para conocer la continuidad del programa.",
+    label: t.finished,
+    detail: t.finishedDetail,
     state: "complete",
   };
 }

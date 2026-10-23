@@ -109,25 +109,129 @@ export const modalities = [
   },
 ];
 
+// Traducción al inglés: presupuesto por `code` (null = reserva), hito por posición y modalidades por id.
+const budgetGroupsEn = {
+  KITS: ["Kits and shipping", "10 XIAO ESP32-S3 kits + Sidekick Basic V2 + USB cable, with international shipping. Only for the 10 teams that pass the Design Review and move on to prototyping."],
+  PHASE_I: ["Prototyping phase I", "Additional electronics, actuators and mechanisms, mechanical components, filament, testing and spare parts, printed circuit boards, external fabrication and local visits."],
+  PHASE_II: ["Continuity phase II", "Braille line actuation, electronics and power, structure and materials, fabrication and iterations."],
+  null: ["Adjustment reserve", "Price changes, receiving and adjustments. Only takes contributions for flexible use."],
+};
+
+const milestoneEn = ["Kits", "Kit shipping", "Receiving and adjustment reserve", "PLA filament", "Fasteners", "Partial electronics", "Partial actuation"];
+
+const destinationLabelsEn = {
+  KITS: "Kits and shipping for the finalist teams",
+  PHASE_I: "Prototyping phase I",
+  PHASE_II: "Continuity phase II",
+};
+
+const modalitiesEn = {
+  donacion: {
+    title: "Donation",
+    copy: "Bank transfer to AEMCiCD's institutional account, for flexible use or restricted to one budget line. It does not create commercial benefits or sponsorship rights.",
+    action: "How to donate",
+  },
+  patrocinio: {
+    title: "Sponsorship",
+    copy: "Support from an organization, with benefits set out in an approved written agreement. Without a current agreement there is no logo or sponsor label.",
+    action: "Propose a sponsorship",
+    subject: "Sponsorship proposal — BrailleLab 2027",
+  },
+  especie: {
+    title: "In-kind contribution",
+    copy: "Goods or services compatible with the technical design. They are reviewed and valued before being accepted; they only reduce the need if they replace a budgeted cost.",
+    action: "Propose an in-kind contribution",
+    subject: "In-kind contribution proposal — BrailleLab 2027",
+  },
+  mentoria: {
+    title: "Mentoring and outreach",
+    copy: "Technical or professional guidance, and connections with communities and institutions. No financial contribution required.",
+    action: "Offer mentoring or outreach",
+    subject: "Mentoring or outreach — BrailleLab 2027",
+  },
+};
+
+export function getBudgetGroups(locale = "es") {
+  if (locale !== "en") return campaign.budgetGroups;
+  return campaign.budgetGroups.map((group) => {
+    const [title, detail] = budgetGroupsEn[group.code] || [group.title, group.detail];
+    return { ...group, title, detail };
+  });
+}
+
+export function getMilestone(locale = "es") {
+  if (locale !== "en") return campaign.milestone;
+  return campaign.milestone.map(([label, amount], index) => [milestoneEn[index] || label, amount]);
+}
+
+export function getDestinationLabels(locale = "es") {
+  return locale === "en" ? destinationLabelsEn : destinationLabels;
+}
+
+export function getModalities(locale = "es") {
+  if (locale !== "en") return modalities;
+  return modalities.map((modality) => ({ ...modality, ...modalitiesEn[modality.id] }));
+}
+
 /** Formato de presentación. Los importes viajan como texto decimal y nunca se calculan con flotantes. */
-const formatter = new Intl.NumberFormat("es-EC", { style: "currency", currency: "USD" });
-export function usd(amount) {
-  if (amount === null || amount === undefined) return "No disponible";
-  return formatter.format(Number(amount));
+const intlLocale = (locale) => (locale === "en" ? "en-US" : "es-EC");
+const unavailable = { es: "No disponible", en: "Not available" };
+const noDate = { es: "fecha no disponible", en: "date not available" };
+
+export function usd(amount, locale = "es") {
+  if (amount === null || amount === undefined) return unavailable[locale] ?? unavailable.es;
+  return new Intl.NumberFormat(intlLocale(locale), { style: "currency", currency: "USD" }).format(Number(amount));
 }
 
-export function dateLabel(isoDate) {
-  if (!isoDate) return "fecha no disponible";
+export function dateLabel(isoDate, locale = "es") {
+  if (!isoDate) return noDate[locale] ?? noDate.es;
   const [year, month, day] = isoDate.slice(0, 10).split("-").map(Number);
-  return new Intl.DateTimeFormat("es-EC", { dateStyle: "medium", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day)));
+  return new Intl.DateTimeFormat(intlLocale(locale), { dateStyle: "medium", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
-export function monthLabel(month) {
+export function monthLabel(month, locale = "es") {
   const [year, value] = month.split("-").map(Number);
-  return new Intl.DateTimeFormat("es-EC", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, value - 1, 1)));
+  return new Intl.DateTimeFormat(intlLocale(locale), { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, value - 1, 1)));
 }
 
-export function dateTimeLabel(iso) {
-  if (!iso) return "fecha no disponible";
-  return new Intl.DateTimeFormat("es-EC", { dateStyle: "long", timeStyle: "short", timeZone: "America/Guayaquil" }).format(new Date(iso));
+export function dateTimeLabel(iso, locale = "es") {
+  if (!iso) return noDate[locale] ?? noDate.es;
+  return new Intl.DateTimeFormat(intlLocale(locale), { dateStyle: "long", timeStyle: "short", timeZone: "America/Guayaquil" }).format(new Date(iso));
+}
+
+/**
+ * Traducción al inglés de los nombres de rubros y asignaciones que publica la plataforma. La API
+ * solo publica español: un nombre que no esté aquí se muestra tal como llega.
+ */
+const apiLabelsEn = {
+  "Kits y envío": "Kits and shipping",
+  "Fase I: prototipado": "Phase I: prototyping",
+  "Fase II: continuidad": "Phase II: continuity",
+  Reserva: "Reserve",
+  "10 kits XIAO ESP32-S3 + Sidekick Basic V2 + cable USB": "10 XIAO ESP32-S3 kits + Sidekick Basic V2 + USB cable",
+  "Envío internacional de kits (referencia anterior)": "International shipping of kits (earlier estimate)",
+  "Electrónica adicional": "Additional electronics",
+  "Actuadores y mecanismos alternativos": "Alternative actuators and mechanisms",
+  "Componentes mecánicos": "Mechanical components",
+  Filamentos: "Filaments",
+  "Pruebas y repuestos": "Testing and spare parts",
+  "Circuitos impresos": "Printed circuit boards",
+  "Impresión 3D externa / corte o mecanizado": "External 3D printing / cutting or machining",
+  "Visitas locales de proyecto": "Local project visits",
+  "Actuación de línea braille": "Braille line actuation",
+  "Electrónica y alimentación": "Electronics and power",
+  "Estructura y materiales": "Structure and materials",
+  "Fabricación e iteraciones": "Fabrication and iterations",
+  "Reserva para ajustes": "Adjustment reserve",
+  Kits: "Kits",
+  Envío: "Shipping",
+  "Reserva de recepción y ajustes": "Receiving and adjustment reserve",
+  PLA: "PLA",
+  Fijaciones: "Fasteners",
+  "Electrónica parcial": "Partial electronics",
+  "Actuación parcial": "Partial actuation",
+};
+
+export function apiLabel(text, locale = "es") {
+  return locale === "en" ? apiLabelsEn[text] ?? text : text;
 }

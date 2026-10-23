@@ -1,4 +1,5 @@
 import { absoluteUrl } from "../content/metadata";
+import { localizePath } from "../lib/i18n.mjs";
 
 export const dynamic = "force-static";
 
@@ -15,10 +16,16 @@ const routes = [
 ];
 
 export default function sitemap() {
-  return routes.map((route) => ({
-    url: absoluteUrl(route.path),
+  return ["es", "en"].flatMap((locale) => routes.map((route) => ({
+    url: absoluteUrl(localizePath(route.path, locale)),
     lastModified: new Date(route.lastModified ?? "2026-09-26T00:00:00-05:00"),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
-  }));
+    alternates: {
+      languages: {
+        es: absoluteUrl(route.path),
+        en: absoluteUrl(localizePath(route.path, "en")),
+      },
+    },
+  })));
 }
