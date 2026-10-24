@@ -3,43 +3,100 @@
 import Link from "next/link";
 import { campaign, dateTimeLabel, usd, TRANSPARENCY_PAGE } from "../../content/campaign";
 import { site } from "../../content/site";
+import { localizePath } from "../../lib/i18n.mjs";
+import { useLocale } from "../useLocale";
 import { useCampaign } from "./CampaignDataProvider";
 import styles from "./Campaign.module.css";
 
-function percent(basisPoints) {
-  return `${(Math.max(0, Math.min(basisPoints, 10_000)) / 100).toLocaleString("es-EC", { maximumFractionDigits: 1 })} %`;
+const copy = {
+  es: {
+    loading: "Cargando las cifras de la campaña…",
+    unconfigured: "Las cifras en vivo todavía no están conectadas a la plataforma de la asociación. Para conocer el avance escribe a",
+    notPublished: "La campaña aún no publica cifras de avance. La meta y el presupuesto de arriba son los aprobados; los montos recibidos se mostrarán cuando estén verificados y su publicación esté autorizada.",
+    unavailable: "No pudimos cargar las cifras en este momento. No mostramos montos para no dar datos incorrectos.",
+    retry: "Reintentar",
+    goal: "Meta técnica total",
+    milestone: "Primer hito acumulativo",
+    stale: (date) => `Datos desactualizados: mostramos el último corte publicado (${date}) porque la actualización no está disponible ahora.`,
+    bar: (percent, reached, target) => `Avance del primer hito: ${percent}, ${reached} de ${target}`,
+    cash: "Efectivo recibido y verificado (neto)",
+    gross: "Bruto",
+    refunds: "devoluciones",
+    reversals: "reversos",
+    goalProgress: "Avance hacia la meta total",
+    goalProgressNote: "Solo cuenta efectivo verificado en el banco.",
+    paid: "Gasto pagado",
+    committed: "Comprometido pendiente",
+    inKind: "Aportes en especie (aparte del efectivo)",
+    inKindNote: "Costo del presupuesto cubierto con bienes aceptados y valorados.",
+    pending: "Necesidad pendiente",
+    pendingNote: "Meta − efectivo verificado − costo cubierto en especie.",
+    empty: "Todavía no hay aportes verificados.",
+    hidden: "Las cifras de avance de esta campaña no están publicadas.",
+    asOf: (date, version) => `Datos al ${date} · versión ${version}. Los avisos de transferencia pendientes de revisión, las promesas y las transferencias internas no se suman.`,
+    detail: "Ver transparencia detallada",
+  },
+  en: {
+    loading: "Loading campaign figures…",
+    unconfigured: "Live figures are not yet connected to the association's platform. To learn about the progress, write to",
+    notPublished: "The campaign has not published progress figures yet. The goal and budget above are the approved ones; amounts received will be shown once they are verified and their publication is authorized.",
+    unavailable: "We could not load the figures right now. We do not show amounts so as not to give incorrect data.",
+    retry: "Try again",
+    goal: "Total technical goal",
+    milestone: "Cumulative first milestone",
+    stale: (date) => `Outdated data: we are showing the last published snapshot (${date}) because the update is not available right now.`,
+    bar: (percent, reached, target) => `First milestone progress: ${percent}, ${reached} of ${target}`,
+    cash: "Cash received and verified (net)",
+    gross: "Gross",
+    refunds: "refunds",
+    reversals: "reversals",
+    goalProgress: "Progress toward the total goal",
+    goalProgressNote: "Only cash verified at the bank counts.",
+    paid: "Paid expenses",
+    committed: "Pending commitments",
+    inKind: "In-kind contributions (separate from cash)",
+    inKindNote: "Budgeted cost covered by goods that were accepted and valued.",
+    pending: "Remaining need",
+    pendingNote: "Goal − verified cash − cost covered in kind.",
+    empty: "There are no verified contributions yet.",
+    hidden: "Progress figures for this campaign are not published.",
+    asOf: (date, version) => `Data as of ${date} · version ${version}. Transfer reports pending review, pledges and internal transfers are not counted.`,
+    detail: "See detailed transparency",
+  },
+};
+
+function percent(basisPoints, locale) {
+  return `${(Math.max(0, Math.min(basisPoints, 10_000)) / 100).toLocaleString(locale === "en" ? "en-US" : "es-EC", { maximumFractionDigits: 1 })} %`;
 }
 
-function DataNotice({ state, onRetry }) {
+function DataNotice({ state, onRetry, t }) {
   if (state === "loading") {
-    return <p className={styles.dataNotice} role="status">Cargando las cifras de la campaña…</p>;
+    return <p className={styles.dataNotice} role="status">{t.loading}</p>;
   }
   if (state === "unconfigured") {
     return (
       <p className={styles.dataNotice} role="status">
-        Las cifras en vivo todavía no están conectadas a la plataforma de la asociación. Para conocer el avance escribe a{" "}
+        {t.unconfigured}{" "}
         <a href={`mailto:${site.contacts.partnerships}`}>{site.contacts.partnerships}</a>.
       </p>
     );
   }
   if (state === "not-published") {
-    return (
-      <p className={styles.dataNotice} role="status">
-        La campaña aún no publica cifras de avance. La meta y el presupuesto de arriba son los aprobados; los montos recibidos se
-        mostrarán cuando estén verificados y su publicación esté autorizada.
-      </p>
-    );
+    return <p className={styles.dataNotice} role="status">{t.notPublished}</p>;
   }
   return (
     <div className={`${styles.dataNotice} ${styles.dataNoticeAlert}`} role="alert">
-      <p>No pudimos cargar las cifras en este momento. No mostramos montos para no dar datos incorrectos.</p>
-      <button type="button" className="button button-secondary" onClick={onRetry}>Reintentar</button>
+      <p>{t.unavailable}</p>
+      <button type="button" className="button button-secondary" onClick={onRetry}>{t.retry}</button>
     </div>
   );
 }
 
 /** Meta, primer hito y cifras verificadas. Efectivo y especie siempre por separado. */
 export default function CampaignProgress() {
+  const locale = useLocale();
+  const t = copy[locale];
+  const money = (amount) => usd(amount, locale);
   const { state, data, retry } = useCampaign();
   const ready = state === "ready" && data;
   const cash = ready ? data.cash : null;
@@ -51,23 +108,22 @@ export default function CampaignProgress() {
     <div className={styles.progress} aria-busy={state === "loading"}>
       <div className={styles.goalRow}>
         <div>
-          <span className={styles.label}>Meta técnica total</span>
-          <strong className={styles.bigFigure}>{usd(ready ? data.goal : campaign.goal)}</strong>
+          <span className={styles.label}>{t.goal}</span>
+          <strong className={styles.bigFigure}>{money(ready ? data.goal : campaign.goal)}</strong>
         </div>
         <div>
-          <span className={styles.label}>Primer hito acumulativo</span>
-          <strong className={styles.bigFigure}>{usd(milestone?.target ?? campaign.firstMilestone)}</strong>
+          <span className={styles.label}>{t.milestone}</span>
+          <strong className={styles.bigFigure}>{money(milestone?.target ?? campaign.firstMilestone)}</strong>
         </div>
       </div>
 
-      {!ready && <DataNotice state={state} onRetry={retry} />}
+      {!ready && <DataNotice state={state} onRetry={retry} t={t} />}
 
       {ready && (
         <>
           {data.publication.freshness === "stale" && (
             <p className={`${styles.dataNotice} ${styles.dataNoticeAlert}`} role="status">
-              Datos desactualizados: mostramos el último corte publicado ({dateTimeLabel(data.publication.asOf)}) porque la
-              actualización no está disponible ahora.
+              {t.stale(dateTimeLabel(data.publication.asOf, locale))}
             </p>
           )}
           {cash ? (
@@ -75,57 +131,56 @@ export default function CampaignProgress() {
               <div
                 className={styles.bar}
                 role="img"
-                aria-label={`Avance del primer hito: ${percent(milestone?.progressBasisPoints ?? 0)}, ${usd(milestone?.reachedAmount)} de ${usd(milestone?.target)}`}
+                aria-label={t.bar(percent(milestone?.progressBasisPoints ?? 0, locale), money(milestone?.reachedAmount), money(milestone?.target))}
               >
                 <span style={{ width: `${Math.max(0, Math.min(milestone?.progressBasisPoints ?? 0, 10_000)) / 100}%` }} />
               </div>
               <dl className={styles.figures}>
                 <div>
-                  <dt>Efectivo recibido y verificado (neto)</dt>
-                  <dd>{usd(cash.netReceived)}</dd>
+                  <dt>{t.cash}</dt>
+                  <dd>{money(cash.netReceived)}</dd>
                   <dd className={styles.figureNote}>
-                    Bruto {usd(cash.grossIncome)}
-                    {cash.refunds !== "0.00" && ` · devoluciones ${usd(cash.refunds)}`}
-                    {cash.reversals !== "0.00" && ` · reversos ${usd(cash.reversals)}`}
+                    {t.gross} {money(cash.grossIncome)}
+                    {cash.refunds !== "0.00" && ` · ${t.refunds} ${money(cash.refunds)}`}
+                    {cash.reversals !== "0.00" && ` · ${t.reversals} ${money(cash.reversals)}`}
                   </dd>
                 </div>
                 <div>
-                  <dt>Avance hacia la meta total</dt>
-                  <dd>{percent(cash.goalProgressBasisPoints)}</dd>
-                  <dd className={styles.figureNote}>Solo cuenta efectivo verificado en el banco.</dd>
+                  <dt>{t.goalProgress}</dt>
+                  <dd>{percent(cash.goalProgressBasisPoints, locale)}</dd>
+                  <dd className={styles.figureNote}>{t.goalProgressNote}</dd>
                 </div>
                 {execution && (
                   <div>
-                    <dt>Gasto pagado</dt>
-                    <dd>{usd(execution.paid)}</dd>
-                    <dd className={styles.figureNote}>Comprometido pendiente {usd(execution.committedPending)}</dd>
+                    <dt>{t.paid}</dt>
+                    <dd>{money(execution.paid)}</dd>
+                    <dd className={styles.figureNote}>{t.committed} {money(execution.committedPending)}</dd>
                   </div>
                 )}
                 {inKind && (
                   <div>
-                    <dt>Aportes en especie (aparte del efectivo)</dt>
-                    <dd>{usd(inKind.substituted)}</dd>
-                    <dd className={styles.figureNote}>Costo del presupuesto cubierto con bienes aceptados y valorados.</dd>
+                    <dt>{t.inKind}</dt>
+                    <dd>{money(inKind.substituted)}</dd>
+                    <dd className={styles.figureNote}>{t.inKindNote}</dd>
                   </div>
                 )}
                 <div>
-                  <dt>Necesidad pendiente</dt>
-                  <dd>{usd(data.pendingMonetaryNeed)}</dd>
-                  <dd className={styles.figureNote}>Meta − efectivo verificado − costo cubierto en especie.</dd>
+                  <dt>{t.pending}</dt>
+                  <dd>{money(data.pendingMonetaryNeed)}</dd>
+                  <dd className={styles.figureNote}>{t.pendingNote}</dd>
                 </div>
               </dl>
-              {data.dataState === "empty" && <p className={styles.muted}>Todavía no hay aportes verificados.</p>}
+              {data.dataState === "empty" && <p className={styles.muted}>{t.empty}</p>}
             </>
           ) : (
-            <p className={styles.dataNotice} role="status">Las cifras de avance de esta campaña no están publicadas.</p>
+            <p className={styles.dataNotice} role="status">{t.hidden}</p>
           )}
           <p className={styles.meta}>
-            Datos al {dateTimeLabel(data.publication.asOf)} · versión {data.publication.version}. Los avisos de transferencia
-            pendientes de revisión, las promesas y las transferencias internas no se suman.
+            {t.asOf(dateTimeLabel(data.publication.asOf, locale), data.publication.version)}
             {TRANSPARENCY_PAGE && (
               <>
                 {" "}
-                <Link href={TRANSPARENCY_PAGE}>Ver transparencia detallada</Link>.
+                <Link href={localizePath(TRANSPARENCY_PAGE, locale)}>{t.detail}</Link>.
               </>
             )}
           </p>

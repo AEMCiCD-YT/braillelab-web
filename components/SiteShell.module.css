@@ -144,6 +144,30 @@
   transform: scaleX(1);
 }
 
+.languageSwitch {
+  min-width: 44px;
+  min-height: 40px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 8px;
+  color: var(--color-on-dark);
+  font-size: .82rem;
+  font-weight: 750;
+  letter-spacing: .04em;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.languageSwitch:hover,
+.languageSwitch:focus-visible {
+  border-color: var(--color-interactive);
+  color: var(--color-interactive);
+}
+
 .menuToggle {
   display: none;
   padding: 12px;
@@ -323,6 +347,12 @@
 
   .menuToggle {
     display: block;
+    order: 3;
+  }
+
+  .languageSwitch {
+    order: 2;
+    margin-left: auto;
   }
 
   .footerGrid {

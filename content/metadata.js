@@ -1,3 +1,5 @@
+import { localizePath } from "../lib/i18n.mjs";
+
 const DEFAULT_SITE_URL = "https://braillelab.org";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
@@ -29,26 +31,50 @@ export const siteMetadata = {
   ],
 };
 
+const siteMetadataEn = {
+  defaultDescription:
+    "BrailleTech Challenge Ecuador 2027, a BrailleLab Ecuador initiative to learn, design, build and document refreshable electronic Braille technology.",
+  keywords: [
+    "BrailleLab Ecuador",
+    "BrailleTech Challenge Ecuador 2027",
+    "Braille",
+    "accessibility",
+    "assistive technology",
+    "open hardware",
+    "Yachay Tech University",
+    "Ecuador",
+  ],
+};
+
+/** `path` es siempre la ruta en español; la versión en inglés se deriva con `locale: "en"`. */
 export function buildMetadata({
   title = siteMetadata.defaultTitle,
-  description = siteMetadata.defaultDescription,
+  description,
   path = "/",
   keywords = [],
+  locale = "es",
 }) {
-  const canonical = absoluteUrl(path);
+  const localized = locale === "en" ? siteMetadataEn : siteMetadata;
+  description ??= localized.defaultDescription;
+  const canonical = absoluteUrl(localizePath(path, locale));
   const pageTitle = title === siteMetadata.defaultTitle || title === siteMetadata.applicationName ? title : `${title} · BrailleLab Ecuador`;
 
   return {
     title: pageTitle,
     description,
     applicationName: siteMetadata.applicationName,
-    keywords: [...siteMetadata.keywords, ...keywords],
+    keywords: [...localized.keywords, ...keywords],
     authors: [{ name: "BrailleLab Ecuador" }],
     creator: "BrailleLab Ecuador",
     publisher: "AEMCiCD · Universidad Yachay Tech",
     category: "technology",
     alternates: {
       canonical,
+      languages: {
+        es: absoluteUrl(path),
+        en: absoluteUrl(localizePath(path, "en")),
+        "x-default": absoluteUrl(path),
+      },
     },
     icons: {
       icon: [{ url: FAVICON_URL, type: "image/svg+xml" }],
@@ -56,7 +82,8 @@ export function buildMetadata({
     },
     openGraph: {
       type: "website",
-      locale: "es_EC",
+      locale: locale === "en" ? "en_US" : "es_EC",
+      alternateLocale: locale === "en" ? ["es_EC"] : ["en_US"],
       url: canonical,
       siteName: siteMetadata.siteName,
       title: pageTitle,
