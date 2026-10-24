@@ -251,6 +251,51 @@ export const timelineEvents = [
   },
 ];
 
+// Traducción al inglés por id; fechas y fases se toman siempre de timelineEvents.
+const timelineEn = {
+  predifusion: ["Dec 1–18, 2026", "National pre-announcement", "Announce the upcoming opening of the 2027 edition, without accepting applications yet."],
+  countdown: ["Jan 4–12, 2027", "Countdown and final check", "Form, privacy notice, FAQ and contact channels ready before opening."],
+  inscripciones: ["Jan 13–31, 2027", "Call for applications and registration", "Formal team applications from higher education institutions in Ecuador."],
+  elegibilidad: ["Feb 1–5, 2027", "Eligibility and administrative review", "Verification of teams, institutions, consents and entry requirements."],
+  admitidos: ["Feb 8, 2027", "Admitted teams announced", "Admitted teams continue to the Bootcamp; admission does not mean being a finalist."],
+  bootcamp: ["Feb 15–28, 2027", "BrailleTech Design Bootcamp", "Six sessions and design deliverables for the admitted teams."],
+  package: ["Mar 1–21, 2027", "Design Package and office hours", "Technical proposal, preliminary BOM, risks and test plan. Deadline: March 21 at 18:00."],
+  "revision-documental": ["Mar 22–26, 2027", "Document review", "Completeness, conflicts of interest and preparation of the panel agenda."],
+  review: ["Mar 27, 2027", "Virtual Design Review", "Technical defense and evaluation of the engineering proposals."],
+  deliberacion: ["Mar 28–29, 2027", "Deliberation", "Consolidation of results, application of the rubric and tie-breaks."],
+  finalistas: ["Mar 30, 2027", "Finalists announced", "Selection of up to 10 finalist teams and up to 2 alternates."],
+  "bom-final": ["Mar 31–Apr 5, 2027", "Final BOM and fabrication needs", "Consolidation of orders backed by confirmed sources or an authorized budget."],
+  ordenes: ["Apr 6–9, 2027", "BOM review and authorized orders", "Final purchasing and fabrication decisions for critical parts."],
+  fabricacion: ["Apr 10–23, 2027", "Fabrication, purchasing and construction", "First window for fabrication, purchasing, construction and logistics follow-up."],
+  "checkpoint-1": ["Apr 24, 2027", "Checkpoint 1", "Early identification of mechanical, electronic, firmware and resource blockers."],
+  integracion: ["Apr 25–May 21, 2027", "Integration and functional testing", "Main window for integration, testing and recovering from delays."],
+  "validacion-formativa": ["Apr 26–May 14, 2027", "Formative validation with users", "Sessions with the first working cell or tactile mock-ups; findings are incorporated before Checkpoint 2."],
+  "checkpoint-2": ["May 22, 2027", "Checkpoint 2", "Decision on replacements or a justified change of plan when needed."],
+  validacion: ["May 23–28, 2027", "Confirmation validation, testing and documentation", "Confirmation of the incorporated changes and documentation within the authorized framework."],
+  "checkpoint-3": ["May 29, 2027", "Checkpoint 3 / contingency", "Definition of the demonstrable scope and each finalist's individual logistics."],
+  entrega: ["May 30–Jun 4, 2027", "Technical and documentation submission", "Repository, tests, safety, presentation and required evidence. Expected deadline: June 4 at 18:00."],
+  freeze: ["Jun 5, 2027", "Technical freeze", "No more high-risk structural changes before the final event."],
+  inspeccion: ["Jun 6–11, 2027", "Setup, inspection, rehearsal and arrival", "On-site preparation, safety, power, connectivity and final logistics."],
+  "demo-day": ["Jun 12, 2027", "Demo Day", "In-person evaluation at Yachay Tech University. Starts at 10:00; expected to end at 17:00, possibly extended to 18:00 depending on the final agenda."],
+  cierre: ["Jun 13–18, 2027", "Closing, evidence and reporting", "Teardown, consolidation of evidence, accountability report and authorized follow-up communication."],
+};
+
+const phaseLabelsEn = {
+  convocatoria: "Call for applications",
+  diseno: "Design",
+  prototipado: "Prototyping",
+  demo: "Demo Day",
+  cierre: "Closing",
+};
+
+export function getTimelineEvents(locale = "es") {
+  if (locale !== "en") return timelineEvents;
+  return timelineEvents.map((event) => {
+    const [date, title, copy] = timelineEn[event.id] || [event.date, event.title, event.copy];
+    return { ...event, date, title, copy, phaseLabel: phaseLabelsEn[event.phase] || event.phaseLabel };
+  });
+}
+
 export const timelineFilters = [
   { id: "all", label: "Todo el proceso" },
   { id: "convocatoria", label: "Convocatoria" },
@@ -260,11 +305,17 @@ export const timelineFilters = [
   { id: "cierre", label: "Cierre" },
 ];
 
+export function getTimelineFilters(locale = "es") {
+  if (locale !== "en") return timelineFilters;
+  return timelineFilters.map((filter) => ({ ...filter, label: filter.id === "all" ? "Whole process" : phaseLabelsEn[filter.id] }));
+}
+
 function timestamp(value) {
   return (value instanceof Date ? value : new Date(value)).getTime();
 }
 
-export function getTimelineState(now = new Date()) {
+export function getTimelineState(now = new Date(), locale = "es") {
+  const timelineEvents = getTimelineEvents(locale);
   const currentTime = timestamp(now);
   // Si dos hitos se superponen (p. ej. una validación dentro de la integración), prevalece el que empezó más tarde.
   const currentEvent = [...timelineEvents].reverse().find((event) => currentTime >= timestamp(event.startsAt) && currentTime <= timestamp(event.endsAt)) || null;
@@ -279,7 +330,7 @@ export function getTimelineState(now = new Date()) {
   return { state, currentEvent, nextEvent, previousEvent };
 }
 
-export function getHighlightedTimelineEvent(now = new Date()) {
-  const { currentEvent, nextEvent, previousEvent } = getTimelineState(now);
-  return currentEvent || nextEvent || previousEvent || timelineEvents[0];
+export function getHighlightedTimelineEvent(now = new Date(), locale = "es") {
+  const { currentEvent, nextEvent, previousEvent } = getTimelineState(now, locale);
+  return currentEvent || nextEvent || previousEvent || getTimelineEvents(locale)[0];
 }
