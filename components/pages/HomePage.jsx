@@ -49,8 +49,8 @@ const copy = {
     factsLabel: "Datos esenciales",
     challenge: {
       eyebrow: "El reto en una frase",
-      title: "Construir una celda Braille refrescable de seis puntos, funcional y controlable electrónicamente.",
-      lede: "La solución debe poder explicarse, probarse y documentarse. La arquitectura concreta queda en manos de cada equipo dentro de las bases y la guía técnica vigentes.",
+      title: "Construir una celda Braille refrescable de seis puntos.",
+      lede: "Funcional y controlable electrónicamente. La solución debe poder explicarse, probarse y documentarse. La arquitectura concreta queda en manos de cada equipo dentro de las bases y la guía técnica vigentes.",
       action: "Ver alcance técnico",
     },
     journey: {
@@ -120,8 +120,8 @@ const copy = {
     factsLabel: "Key facts",
     challenge: {
       eyebrow: "The challenge in one sentence",
-      title: "Build a working, electronically controllable six-dot refreshable Braille cell.",
-      lede: "The solution must be explainable, testable and documented. Each team chooses its own architecture within the current rules and technical guide.",
+      title: "Build a six-dot refreshable Braille cell.",
+      lede: "Working and electronically controllable. The solution must be explainable, testable and documented. Each team chooses its own architecture within the current rules and technical guide.",
       action: "See the technical scope",
     },
     journey: {

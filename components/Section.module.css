@@ -27,6 +27,13 @@
 .heading h2 {
   margin: 0;
   font-size: var(--type-heading-lg);
+  text-wrap: balance;
+}
+
+/* En dos columnas el título comparte ancho con el contenido: una escala menor
+   evita que una frase larga ocupe seis o siete líneas. */
+.split .heading h2 {
+  font-size: var(--type-heading-split);
 }
 
 .heading > * + * {

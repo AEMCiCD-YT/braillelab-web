@@ -17,7 +17,7 @@
 .title {
   max-width: 820px;
   margin-bottom: 20px;
-  font-size: var(--type-display-lg);
+  font-size: clamp(2.4rem, 4.2vw, 3.9rem);
   text-wrap: balance;
 }
 
@@ -54,7 +54,7 @@
   .title {
     max-width: 100%;
     margin-bottom: 16px;
-    font-size: clamp(2.35rem, 12vw, 3.15rem);
+    font-size: clamp(2.1rem, 9.6vw, 2.8rem);
   }
 
   .copy {
