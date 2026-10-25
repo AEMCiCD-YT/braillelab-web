@@ -5,6 +5,7 @@ import styles from "./privacidad.module.css";
 import { buildMetadata } from "../../content/metadata";
 import { CONTRIBUTION_PRIVACY_VERSION } from "../../content/campaign";
 import { site } from "../../content/site";
+import { GOOGLE_ADS_ID } from "../../lib/google-ads.mjs";
 
 const meta = {
   es: {
@@ -26,11 +27,12 @@ export function metadataFor(locale = "es") {
 // El aviso en español es la versión que rige; la traducción al inglés es informativa.
 function SpanishNotice() {
   return <>
-    <Eyebrow>Versión 1.0 · edición 2027</Eyebrow>
+    <Eyebrow>Versión 1.1 · 25 de octubre de 2026</Eyebrow>
     <h1>Aviso de privacidad y tratamiento de datos</h1>
     <p className={styles.lede}>
-      Este aviso cubre dos tratamientos: la inscripción en BrailleTech Challenge Ecuador 2027 (secciones 1 a 5) y los{" "}
-      <a href="#aportes">avisos de aporte a la campaña BrailleLab Ecuador 2027</a> (sección 6).
+      Este aviso cubre la inscripción en BrailleTech Challenge Ecuador 2027 (secciones 1 a 5), los{" "}
+      <a href="#aportes">avisos de aporte a la campaña BrailleLab Ecuador 2027</a> (sección 6) y la{" "}
+      <a href="#medicion">medición de anuncios en este sitio</a> (sección 7).
     </p>
     <p className={styles.lede}>
       Inscripción BrailleTech Challenge Ecuador 2027. Vigencia propuesta desde la apertura del formulario hasta su sustitución por una versión posterior publicada en los canales oficiales.
@@ -71,24 +73,34 @@ function SpanishNotice() {
       <p><strong>Responsable.</strong> AEMCiCD, titular de la cuenta institucional que recibe los aportes. Consultas: <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a>, asunto <code>Datos personales — Aportes BrailleLab</code>.</p>
       <p><strong>Datos.</strong> Nombre y correo de contacto; monto, fecha y referencia bancaria de la transferencia (o el motivo de no tenerla); destino elegido; el comprobante que adjuntas; y, solo si lo marcas, el nombre público y la autorización para mostrar el monto. No pedimos documento de identidad, número de cuenta de origen ni usuario institucional.</p>
       <p><strong>Finalidades.</strong> Identificar tu transferencia y verificarla en el banco, responderte sobre su estado, llevar la contabilidad y la rendición de cuentas de la campaña, y publicar tu reconocimiento únicamente si lo autorizaste. Un aviso no es un aporte confirmado: el aporte cuenta cuando Tesorería lo verifica.</p>
-      <p><strong>Acceso y almacenamiento.</strong> Los datos se registran en AEMCiCD Platform y el comprobante en el almacenamiento documental institucional de Microsoft 365 de la asociación, con acceso limitado a Tesorería y a las personas autorizadas. El comprobante nunca se publica. Este sitio no guarda tus datos ni el archivo en tu navegador y no los envía a herramientas de analítica.</p>
+      <p><strong>Acceso y almacenamiento.</strong> Los datos se registran en AEMCiCD Platform y el comprobante en el almacenamiento documental institucional de Microsoft 365 de la asociación, con acceso limitado a Tesorería y a las personas autorizadas. El comprobante nunca se publica. Este sitio no guarda tus datos ni el archivo en tu navegador y no los envía a herramientas de analítica. Cuando la plataforma acepta tu aviso, el sitio solo registra en Google Ads una conversión anónima con un identificador aleatorio del envío, sin tu nombre, correo, monto, referencia ni comprobante (ver <a href="#medicion">sección 7</a>).</p>
       <p><strong>Publicación.</strong> Por defecto tu aporte es anónimo. Nombre público y monto son autorizaciones separadas; puedes retirarlas escribiendo al correo de contacto. Retirarlas quita tu nombre o monto de las páginas públicas, pero no elimina el registro contable del aporte.</p>
       <p><strong>Conservación.</strong> Los registros financieros y sus soportes se conservan el tiempo que exijan las obligaciones contables, legales y de rendición de cuentas de la asociación. El plazo exacto se fijará en la versión aprobada de este aviso. Los avisos que no correspondan a una transferencia real se depuran tras su revisión.</p>
       <p><strong>Derechos.</strong> Puedes solicitar acceso, rectificación, actualización, eliminación cuando no exista una obligación de conservar, oposición o suspensión, y retirar tus autorizaciones de publicación.</p>
+    </section>
+    <section id="medicion" aria-labelledby="medicion-title">
+      <h2 id="medicion-title">7. Medición de anuncios en este sitio (Google Ads)</h2>
+      <p><strong>Qué usamos.</strong> braillelab.org carga la etiqueta de Google (gtag.js) de la cuenta de Google Ads de AEMCiCD ({GOOGLE_ADS_ID}), que usamos para medir los anuncios del programa Google Ad Grants. El servicio lo presta Google LLC.</p>
+      <p><strong>Qué datos se tratan.</strong> Al visitar el sitio, Google puede recibir la página visitada, la página de origen, el identificador del clic si llegaste desde un anuncio, datos técnicos del navegador y del dispositivo, y tu dirección IP. La etiqueta guarda cookies propias de medición en tu navegador y relaciona las visitas entre aemcicd.org y braillelab.org. Google trata estos datos en servidores fuera del Ecuador, según sus propias políticas de privacidad.</p>
+      <p><strong>Para qué.</strong> Saber cuántas visitas llegan desde los anuncios y cuántas terminan en una acción del sitio, para decidir dónde invertir el presupuesto de anuncios. Hoy la única acción medida es un aviso de aporte aceptado por la plataforma, que se registra con un identificador aleatorio del envío.</p>
+      <p><strong>Qué no enviamos.</strong> Los datos que escribes en formularios (nombre, correo, monto, referencia bancaria, comprobante o respuestas de la inscripción) no se envían a Google Ads. La inscripción se hace en Microsoft Forms, fuera de este sitio.</p>
+      <p><strong>Cómo evitarlo.</strong> Puedes bloquear las cookies de terceros o borrar las cookies del sitio en tu navegador, navegar en modo privado, usar un bloqueador de rastreo o ajustar la personalización de anuncios en tu cuenta de Google. El sitio funciona igual sin la etiqueta.</p>
+      <p><strong>Consultas y derechos.</strong> Escribe a <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a> con el asunto <code>Datos personales — Medición del sitio</code>.</p>
     </section>
   </>;
 }
 
 function EnglishNotice() {
   return <>
-    <Eyebrow>Version 1.0 · 2027 edition</Eyebrow>
+    <Eyebrow>Version 1.1 · October 25, 2026</Eyebrow>
     <h1>Privacy and data processing notice</h1>
     <p className={styles.lede}>
       <strong>This is a courtesy translation.</strong> The <Link href="/privacidad" hrefLang="es">Spanish version</Link> of this notice is the one that applies.
     </p>
     <p className={styles.lede}>
-      This notice covers two types of processing: registration in BrailleTech Challenge Ecuador 2027 (sections 1 to 5) and{" "}
-      <a href="#aportes">contribution reports to the BrailleLab Ecuador 2027 campaign</a> (section 6).
+      This notice covers registration in BrailleTech Challenge Ecuador 2027 (sections 1 to 5),{" "}
+      <a href="#aportes">contribution reports to the BrailleLab Ecuador 2027 campaign</a> (section 6) and{" "}
+      <a href="#medicion">ad measurement on this website</a> (section 7).
     </p>
     <p className={styles.lede}>
       BrailleTech Challenge Ecuador 2027 registration. Proposed validity from the opening of the form until it is replaced by a later version published on the official channels.
@@ -129,10 +141,19 @@ function EnglishNotice() {
       <p><strong>Controller.</strong> AEMCiCD, holder of the institutional account that receives contributions. Questions: <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a>, subject <code>Datos personales — Aportes BrailleLab</code>.</p>
       <p><strong>Data.</strong> Contact name and email; amount, date and bank reference of the transfer (or the reason for not having it); the chosen allocation; the proof of payment you attach; and, only if you check the boxes, the public name and the authorization to show the amount. We do not ask for an identity document, the originating account number or an institutional username.</p>
       <p><strong>Purposes.</strong> To identify your transfer and verify it at the bank, reply to you about its status, keep the campaign&apos;s accounts and accountability records, and publish your recognition only if you authorized it. A report is not a confirmed contribution: the contribution counts once the Treasurer verifies it.</p>
-      <p><strong>Access and storage.</strong> The data is recorded in AEMCiCD Platform and the proof of payment in the association&apos;s institutional Microsoft 365 document storage, with access limited to the Treasurer and authorized people. The proof of payment is never published. This website does not store your data or the file in your browser and does not send them to analytics tools.</p>
+      <p><strong>Access and storage.</strong> The data is recorded in AEMCiCD Platform and the proof of payment in the association&apos;s institutional Microsoft 365 document storage, with access limited to the Treasurer and authorized people. The proof of payment is never published. This website does not store your data or the file in your browser and does not send them to analytics tools. When the platform accepts your report, the website only records an anonymous conversion in Google Ads with a random submission identifier, without your name, email, amount, reference or proof of payment (see <a href="#medicion">section 7</a>).</p>
       <p><strong>Publication.</strong> By default your contribution is anonymous. Public name and amount are separate authorizations; you can withdraw them by writing to the contact email. Withdrawing them removes your name or amount from the public pages, but does not delete the accounting record of the contribution.</p>
       <p><strong>Retention.</strong> Financial records and their supporting documents are kept for as long as the association&apos;s accounting, legal and accountability obligations require. The exact period will be set in the approved version of this notice. Reports that do not correspond to a real transfer are removed after review.</p>
       <p><strong>Rights.</strong> You can request access, rectification, updating, deletion when there is no obligation to retain, objection or suspension, and withdraw your publication authorizations.</p>
+    </section>
+    <section id="medicion" aria-labelledby="medicion-title">
+      <h2 id="medicion-title">7. Ad measurement on this website (Google Ads)</h2>
+      <p><strong>What we use.</strong> braillelab.org loads the Google tag (gtag.js) of AEMCiCD&apos;s Google Ads account ({GOOGLE_ADS_ID}), which we use to measure the ads of the Google Ad Grants program. The service is provided by Google LLC.</p>
+      <p><strong>What data is processed.</strong> When you visit the website, Google may receive the page visited, the referring page, the click identifier if you arrived from an ad, technical data about your browser and device, and your IP address. The tag stores its own measurement cookies in your browser and links visits between aemcicd.org and braillelab.org. Google processes this data on servers outside Ecuador, under its own privacy policies.</p>
+      <p><strong>Why.</strong> To know how many visits come from the ads and how many end in an action on the website, so we can decide where to invest the ad budget. Today the only action measured is a contribution report accepted by the platform, recorded with a random submission identifier.</p>
+      <p><strong>What we do not send.</strong> The data you type into forms (name, email, amount, bank reference, proof of payment or registration answers) is not sent to Google Ads. Registration takes place in Microsoft Forms, outside this website.</p>
+      <p><strong>How to avoid it.</strong> You can block third-party cookies or delete this website&apos;s cookies in your browser, browse in private mode, use a tracking blocker or adjust ad personalization in your Google account. The website works the same without the tag.</p>
+      <p><strong>Questions and rights.</strong> Write to <a href={`mailto:${site.contacts.privacy}`}>{site.contacts.privacy}</a> with the subject <code>Datos personales — Medición del sitio</code>.</p>
     </section>
   </>;
 }
