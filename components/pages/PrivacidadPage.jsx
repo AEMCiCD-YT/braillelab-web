@@ -28,7 +28,7 @@ export function metadataFor(locale = "es") {
 function SpanishNotice() {
   return <>
     <Eyebrow>Versión 1.1 · 25 de octubre de 2026</Eyebrow>
-    <h1>Aviso de privacidad y tratamiento de datos</h1>
+    <h1>Aviso de privacidad</h1>
     <p className={styles.lede}>
       Este aviso cubre la inscripción en BrailleTech Challenge Ecuador 2027 (secciones 1 a 5), los{" "}
       <a href="#aportes">avisos de aporte a la campaña BrailleLab Ecuador 2027</a> (sección 6) y la{" "}
@@ -93,7 +93,7 @@ function SpanishNotice() {
 function EnglishNotice() {
   return <>
     <Eyebrow>Version 1.1 · October 25, 2026</Eyebrow>
-    <h1>Privacy and data processing notice</h1>
+    <h1>Privacy notice</h1>
     <p className={styles.lede}>
       <strong>This is a courtesy translation.</strong> The <Link href="/privacidad" hrefLang="es">Spanish version</Link> of this notice is the one that applies.
     </p>

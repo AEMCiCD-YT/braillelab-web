@@ -29,7 +29,7 @@ const copy = {
       ["03", "Módulo", "Una arquitectura que puede crecer sin perder claridad ni reparabilidad."],
       ["04", "Sistema", "Conocimiento, hardware y documentación conectados para poder reproducirse."],
     ],
-    heroTitle: <>Investigación aplicada para una tecnología más <em>accesible.</em></>,
+    heroTitle: <>Investigación aplicada, tecnología <em>accesible.</em></>,
     hero: "BrailleLab es la marca madre. BrailleTech Challenge Ecuador 2027 es una iniciativa de aprendizaje, diseño y demostración.",
     systemSection: {
       eyebrow: "Del punto al sistema",
@@ -66,7 +66,7 @@ const copy = {
       ["03", "Module", "An architecture that can grow without losing clarity or repairability."],
       ["04", "System", "Knowledge, hardware and documentation connected so they can be reproduced."],
     ],
-    heroTitle: <>Applied research for more <em>accessible</em> technology.</>,
+    heroTitle: <>Applied research, <em>accessible</em> technology.</>,
     hero: "BrailleLab is the parent brand. BrailleTech Challenge Ecuador 2027 is a learning, design and demonstration initiative.",
     systemSection: {
       eyebrow: "From dot to system",

@@ -34,13 +34,13 @@ export function metadataFor(locale = "es") {
 const copy = {
   es: {
     heroEyebrow: "Apoya y colabora",
-    heroTitle: "Tu apoyo convierte prototipos en tecnología Braille accesible.",
+    heroTitle: "Tu apoyo construye tecnología Braille accesible.",
     heroCopy: <>
       Personas, empresas e instituciones pueden financiar materiales, aportar bienes, patrocinar o acompañar a los equipos de
       BrailleTech Challenge Ecuador 2027, la edición 2027 de BrailleLab Ecuador.
     </>,
     purposeEyebrow: "Propósito",
-    purposeTitle: "Materiales para que 10 equipos construyan y documenten prototipos Braille abiertos.",
+    purposeTitle: "Materiales para 10 equipos y sus prototipos abiertos.",
     purpose: <>
       BrailleLab Ecuador es el programa permanente; el Challenge 2027 es su edición actual. La campaña financia kits,
       prototipado y continuidad técnica de los equipos que avancen tras la revisión de diseño, con resultados
@@ -81,13 +81,13 @@ const copy = {
   },
   en: {
     heroEyebrow: "Support us",
-    heroTitle: "Your support turns prototypes into accessible Braille technology.",
+    heroTitle: "Your support builds accessible Braille technology.",
     heroCopy: <>
       Individuals, companies and institutions can fund materials, contribute goods, sponsor or mentor the teams of
       BrailleTech Challenge Ecuador 2027, the 2027 edition of BrailleLab Ecuador.
     </>,
     purposeEyebrow: "Purpose",
-    purposeTitle: "Materials for 10 teams to build and document open Braille prototypes.",
+    purposeTitle: "Materials for 10 teams and their open prototypes.",
     purpose: <>
       BrailleLab Ecuador is the permanent program; the 2027 Challenge is its current edition. The campaign funds kits,
       prototyping and technical continuity for the teams that advance after the design review, with reproducible

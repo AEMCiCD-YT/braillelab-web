@@ -91,8 +91,8 @@ const copy = {
     },
     participation: {
       eyebrow: "Participación 2027",
-      title: "Equipos de 3 a 5 estudiantes. Inscripciones del 13 al 31 de enero.",
-      lede: "Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.",
+      title: "Equipos de 3 a 5 estudiantes.",
+      lede: "Inscripciones del 13 al 31 de enero. Antes de la apertura puedes revisar el cronograma, formar tu equipo y preparar la información necesaria. El formulario oficial aparecerá únicamente cuando la convocatoria esté habilitada.",
       contact: "Alianzas y consultas institucionales:",
       action: "Cómo participar",
     },
@@ -162,8 +162,8 @@ const copy = {
     },
     participation: {
       eyebrow: "Participation 2027",
-      title: "Teams of 3 to 5 students. Registration from January 13 to 31.",
-      lede: "Before registration opens you can review the schedule, form your team and prepare the information you need. The official form will appear only once the call for applications is open.",
+      title: "Teams of 3 to 5 students.",
+      lede: "Registration runs from January 13 to 31. Before registration opens you can review the schedule, form your team and prepare the information you need. The official form will appear only once the call for applications is open.",
       contact: "Partnerships and institutional inquiries:",
       action: "How to participate",
     },
