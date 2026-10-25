@@ -202,6 +202,7 @@ export default function SiteShell({ children }) {
           {t.switchLabel}
         </a>
       </header>
+      <span className="read-progress" aria-hidden="true" />
     </div>
     <main ref={mainRef} id="main" tabIndex="-1">{children}</main>
     <footer className={styles.footer}>

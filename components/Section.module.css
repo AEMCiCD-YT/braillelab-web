@@ -33,6 +33,10 @@
   margin-top: 18px;
 }
 
+.heading > :global(.braille-rule) {
+  margin-top: 20px;
+}
+
 .lede {
   max-width: 720px;
   margin-bottom: 0;

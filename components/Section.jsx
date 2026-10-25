@@ -1,6 +1,15 @@
 import { Eyebrow } from "./Visuals";
 import styles from "./Section.module.css";
 
+// Seis puntos en fila, decorativos, que se encienden uno a uno cuando la sección entra.
+export function BrailleRule() {
+  return (
+    <div className="braille-rule" aria-hidden="true">
+      {[0, 1, 2, 3, 4, 5].map((dot) => <span key={dot} style={{ "--d": dot }} />)}
+    </div>
+  );
+}
+
 // Sección estándar de las páginas: etiqueta, título, entrada y acción opcional,
 // en tono blanco («plain») o gris claro («soft»). Con layout="split" el encabezado
 // va a la izquierda y el contenido a la derecha; `intro` se añade bajo la entrada.
@@ -20,10 +29,11 @@ export default function Section({
   const sectionClass = [styles.section, tone === "soft" ? styles.soft : "", layout === "split" ? styles.split : ""].join(" ");
 
   const header = title ? (
-    <header className={styles.header}>
+    <header className={styles.header} data-reveal="">
       <div className={styles.heading}>
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <h2 id={headingId}>{title}</h2>
+        <BrailleRule />
         {lede ? <p className={styles.lede}>{lede}</p> : null}
         {intro}
       </div>
@@ -35,7 +45,7 @@ export default function Section({
     <section id={id} className={sectionClass} aria-labelledby={title ? headingId : undefined}>
       <div className={`wrap ${styles.inner} ${className}`}>
         {header}
-        {children ? <div className={styles.body}>{children}</div> : null}
+        {children ? <div className={styles.body} data-reveal="">{children}</div> : null}
       </div>
     </section>
   );

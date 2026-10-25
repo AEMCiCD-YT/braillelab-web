@@ -199,7 +199,7 @@ function ProgressionVisual({ labels }) {
   ];
 
   return (
-    <ol className={styles.progression} aria-hidden="true">
+    <ol className={styles.progression} aria-hidden="true" data-reveal="" data-stagger="">
       {steps.map(([label, word, visual], index) => (
         <li key={label}>
           <span>
@@ -215,6 +215,13 @@ function ProgressionVisual({ labels }) {
 
 const heroWord = "tech";
 
+// Envuelve el primer número de una cifra para que cuente al aparecer («Hasta 20»).
+function countable(value) {
+  const match = /^(Hasta |Up to )(\d+)(.*)$/.exec(value);
+  if (!match) return value;
+  return <>{match[1]}<b data-count={match[2]}>{match[2]}</b>{match[3]}</>;
+}
+
 function AbstractSystemVisual({ label }) {
   return (
     <div className={styles.systemVisual} aria-hidden="true">
@@ -223,7 +230,11 @@ function AbstractSystemVisual({ label }) {
         {[...heroWord].map((letter, cellIndex) => (
           <div className={styles.systemCell} key={cellIndex}>
             {cellPoints(letter).map((active, pointIndex) => (
-              <span className={active ? styles.activePoint : styles.point} key={pointIndex} />
+              <span
+                className={active ? styles.activePoint : styles.point}
+                key={pointIndex}
+                style={{ "--dot": cellIndex * 6 + pointIndex }}
+              />
             ))}
           </div>
         ))}
@@ -243,19 +254,20 @@ export default function HomePage({ locale = "es" }) {
     <SiteShell>
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroDots} aria-hidden="true" />
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
-            <Eyebrow tone="dark">{t.heroEyebrow}</Eyebrow>
-            <h1>BrailleTech Challenge <em>Ecuador 2027</em></h1>
-            <p className={styles.concept}>{t.concept}</p>
-            <p className={styles.lede}>{t.heroLede}</p>
-            <div className={styles.actions}>
+            <div data-enter="" style={{ "--enter": ".1s" }}><Eyebrow tone="dark">{t.heroEyebrow}</Eyebrow></div>
+            <h1 data-enter="" style={{ "--enter": ".2s" }}>BrailleTech Challenge <em>Ecuador 2027</em></h1>
+            <p className={styles.concept} data-enter="" style={{ "--enter": ".5s" }}>{t.concept}</p>
+            <p className={styles.lede} data-enter="" style={{ "--enter": ".62s" }}>{t.heroLede}</p>
+            <div className={styles.actions} data-enter="" style={{ "--enter": ".75s" }}>
               <EventActionLink primary />
               <ArrowLink href="/reto">{t.heroAction}</ArrowLink>
             </div>
 
           </div>
-          <div>
+          <div data-enter="" style={{ "--enter": ".35s" }}>
             <AbstractSystemVisual label={t.systemLabel} />
             <p className={styles.visualCaption}>{t.heroCaption}</p>
           </div>
@@ -264,10 +276,10 @@ export default function HomePage({ locale = "es" }) {
 
       <Section id="estado" tone="soft">
         <HomeEventStatus />
-        <div className={styles.factRail} aria-label={t.factsLabel}>
+        <div className={styles.factRail} aria-label={t.factsLabel} data-reveal="" data-stagger="">
           {t.facts.map(([value, label]) => (
             <article key={label}>
-              <strong>{value}</strong>
+              <strong>{countable(value)}</strong>
               <span>{label}</span>
             </article>
           ))}
@@ -304,7 +316,7 @@ export default function HomePage({ locale = "es" }) {
         title={t.system.title}
         lede={t.system.lede}
         intro={(
-          <ul className={styles.values}>
+          <ul className={styles.values} data-reveal="" data-stagger="">
             {t.values.map(([title, text]) => (
               <li key={title}><b>{title}</b><span>{text}</span></li>
             ))}
@@ -318,7 +330,7 @@ export default function HomePage({ locale = "es" }) {
       </Section>
 
       <section className={styles.evidenceSection}>
-        <div className={`wrap ${styles.evidenceGrid}`}>
+        <div className={`wrap ${styles.evidenceGrid}`} data-reveal="">
           <div>
             <Eyebrow tone="dark">{t.evidence.eyebrow}</Eyebrow>
             <h2>{t.evidence.title}</h2>
@@ -341,9 +353,9 @@ export default function HomePage({ locale = "es" }) {
         title={t.resources.title}
         action={<ArrowLink href="/recursos">{t.resources.action}</ArrowLink>}
       >
-        <div className={styles.resourceGrid}>
+        <div className={styles.resourceGrid} data-reveal="" data-stagger="">
           {highlightedResources.map((resource, index) => (
-            <article key={resource.id}>
+            <article key={resource.id} className="dot-corner">
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{resource.title}</h3>
               <p>{resource.version}</p>
@@ -368,7 +380,7 @@ export default function HomePage({ locale = "es" }) {
       >
         <div className={styles.demoDate} aria-hidden="true">
           <span>Demo Day</span>
-          <strong>12</strong>
+          <strong data-count="12">12</strong>
           <small>{t.demo.month}</small>
         </div>
       </Section>

@@ -99,7 +99,7 @@ const copy = {
 
 function DocumentCard({ document, index, t }) {
   return (
-    <article className={resourceStyles.document}>
+    <article className={`${resourceStyles.document} dot-corner`}>
       <span>{String(index + 1).padStart(2, "0")}</span>
       <h3>{document.title}</h3>
       <p>{t.descriptions[document.id]}</p>
@@ -141,7 +141,7 @@ export default function RecursosPage({ locale = "es" }) {
                 <h3>{group.title}</h3>
                 <p>{group.copy}</p>
               </div>
-              <div className={resourceStyles.library}>
+              <div className={resourceStyles.library} data-reveal="" data-stagger="">
                 {documents.map((document, index) => <DocumentCard document={document} index={index} t={t} key={document.id} />)}
               </div>
             </div>

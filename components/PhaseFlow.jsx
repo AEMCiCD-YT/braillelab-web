@@ -25,5 +25,5 @@ const copy = {
 
 export default function PhaseFlow({ locale = "es" }) {
   const t = copy[locale] || copy.es;
-  return <ol className={styles.journey} aria-label={t.label}>{t.phases.map(([number, title, detail]) => <li key={number}><a href={localizePath("/cronograma", locale)}><b>{number}</b><span>{title}<small>{detail}</small></span><ArrowUpRight aria-hidden="true" size={18} /></a></li>)}</ol>;
+  return <ol className={styles.journey} aria-label={t.label} data-reveal="" data-stagger="">{t.phases.map(([number, title, detail]) => <li key={number}><a href={localizePath("/cronograma", locale)}><b>{number}</b><span>{title}<small>{detail}</small></span><ArrowUpRight aria-hidden="true" size={18} /></a></li>)}</ol>;
 }

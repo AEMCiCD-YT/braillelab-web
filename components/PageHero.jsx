@@ -7,11 +7,11 @@ export default function PageHero({ eyebrow, title, children, visual = "lab", acc
     <section className={styles.hero}>
       <div className={`wrap ${styles.grid}`}>
         <div>
-          <Eyebrow tone="dark">{eyebrow}</Eyebrow>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.copy}>{children}</p>
+          <div data-enter="" style={{ "--enter": ".1s" }}><Eyebrow tone="dark">{eyebrow}</Eyebrow></div>
+          <h1 className={styles.title} data-enter="" style={{ "--enter": ".22s" }}>{title}</h1>
+          <p className={styles.copy} data-enter="" style={{ "--enter": ".4s" }}>{children}</p>
         </div>
-        <PageHeroVisual variant={visual} accent={accent} locale={locale} />
+        <div data-enter="" style={{ "--enter": ".5s" }}><PageHeroVisual variant={visual} accent={accent} locale={locale} /></div>
       </div>
     </section>
   );

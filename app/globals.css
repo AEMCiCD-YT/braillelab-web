@@ -195,3 +195,143 @@ button:focus-visible {
     transform:none;
   }
 }
+
+/* Paquete de movimiento. Solo actúa con la clase .motion en <html>, que el script
+   del <head> añade si la persona no pidió reducir movimiento; sin JavaScript o con
+   movimiento reducido todo el contenido se ve completo y estático. */
+.motion [data-reveal] {
+  opacity:0;
+  translate:0 26px;
+  transition:opacity .6s cubic-bezier(.2,.7,.2,1),translate .7s cubic-bezier(.2,.7,.2,1);
+}
+
+.motion [data-reveal][data-shown] {
+  opacity:1;
+  translate:0 0;
+}
+
+.motion [data-stagger][data-reveal] {
+  opacity:1;
+  translate:none;
+}
+
+.motion [data-stagger] > * {
+  opacity:0;
+  translate:0 22px;
+  transition:opacity .55s cubic-bezier(.2,.7,.2,1),translate .65s cubic-bezier(.2,.7,.2,1);
+  transition-delay:calc(var(--i,0) * 90ms);
+}
+
+.motion [data-stagger][data-shown] > * {
+  opacity:1;
+  translate:0 0;
+}
+
+/* Firma braille bajo los títulos: seis puntos (2×3) que se encienden en orden. */
+.braille-rule {
+  display:grid;
+  grid-template-columns:repeat(6,8px);
+  gap:6px;
+  width:fit-content;
+}
+
+.braille-rule span {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--color-interactive);
+}
+
+.braille-rule span:last-child {
+  background:var(--color-accent);
+}
+
+.motion .braille-rule span {
+  background:transparent;
+  box-shadow:inset 0 0 0 1px var(--color-border);
+  transition:background .25s ease,box-shadow .25s ease;
+  transition-delay:calc(.25s + var(--d,0) * 80ms);
+}
+
+.motion [data-shown] .braille-rule span {
+  background:var(--color-interactive);
+  box-shadow:inset 0 0 0 1px transparent;
+}
+
+.motion [data-shown] .braille-rule span:last-child {
+  background:var(--color-accent);
+}
+
+/* Entrada de los héroes: cada hijo marcado sube y aparece con su propio retraso. */
+@keyframes rise-in {
+  from { opacity:0; translate:0 22px; }
+  to { opacity:1; translate:0 0; }
+}
+
+@keyframes dot-in {
+  from { opacity:0; scale:.2; }
+  to { opacity:1; scale:1; }
+}
+
+.motion [data-enter] {
+  animation:rise-in .8s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay:var(--enter,0s);
+}
+
+/* Esquinas braille en tarjetas: tres puntos que aparecen al pasar el cursor. */
+.dot-corner {
+  position:relative;
+}
+
+.dot-corner::after {
+  content:"";
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:22px;
+  height:8px;
+  background:
+    radial-gradient(circle,var(--color-interactive) 3.5px,transparent 4px) 0 0 / 8px 8px no-repeat,
+    radial-gradient(circle,var(--color-interactive) 3.5px,transparent 4px) 7px 0 / 8px 8px no-repeat,
+    radial-gradient(circle,var(--color-accent) 3.5px,transparent 4px) 14px 0 / 8px 8px no-repeat;
+  opacity:0;
+  translate:6px 0;
+  transition:opacity .25s ease,translate .25s ease;
+}
+
+.dot-corner {
+  transition:border-color .25s ease,box-shadow .25s ease,translate .25s ease;
+}
+
+.dot-corner:hover,
+.dot-corner:focus-within {
+  border-color:var(--color-interactive);
+  box-shadow:var(--shadow-soft);
+}
+
+.dot-corner:hover::after,
+.dot-corner:focus-within::after {
+  opacity:1;
+  translate:0 0;
+}
+
+.motion .dot-corner:hover {
+  translate:0 -3px;
+}
+
+/* Barra de lectura bajo la cabecera. */
+.read-progress {
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:3px;
+  background:var(--color-interactive);
+  transform-origin:0 50%;
+  transform:scaleX(var(--progress,0));
+  pointer-events:none;
+}
+
+html:not(.motion) .read-progress {
+  display:none;
+}
